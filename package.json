@@ -8,8 +8,8 @@
     "dev": "nodemon src/server.js",
     "init": "node src/init-db.js",
     "index": "node src/index-workflows.js",
-    "build": "npm run init && npm run index && npm run build:static",
-    "build:static": "cp -r static/* . || true",
+    "build": "npm run init && npm run index -- --force && npm run build:static",
+    "build:static": "cp -r static/* . && cp -r database . && cp -r workflows . || true",
     "netlify:build": "npm run build"
   },
   "dependencies": {

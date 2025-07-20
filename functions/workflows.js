@@ -3,21 +3,60 @@ const url = require('url');
 
 exports.handler = async (event, context) => {
   try {
+    // Security headers for all responses
+    const securityHeaders = {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+      'Access-Control-Allow-Origin': '*'
+    };
+
     const db = new WorkflowDatabase();
+    
+    // Debug logging for production issues
+    if (process.env.NETLIFY && event.queryStringParameters?.debug === 'true') {
+      console.log('Debug info:', {
+        dbPath: db.dbPath,
+        workflowsDir: db.workflowsDir,
+        __dirname,
+        cwd: process.cwd(),
+        env: Object.keys(process.env).filter(k => k.startsWith('NETLIFY'))
+      });
+    }
+    
     await db.initialize();
     
     const { httpMethod, queryStringParameters, path } = event;
+    
+    // Input validation for path
+    if (!path || typeof path !== 'string') {
+      return {
+        statusCode: 400,
+        headers: { ...securityHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Invalid path parameter' })
+      };
+    }
     
     // Handle CORS
     if (httpMethod === 'OPTIONS') {
       return {
         statusCode: 200,
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type'
+          ...securityHeaders,
+          'Access-Control-Allow-Methods': 'GET, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+          'Access-Control-Max-Age': '86400'
         },
         body: ''
+      };
+    }
+    
+    // Only allow GET requests
+    if (httpMethod !== 'GET') {
+      return {
+        statusCode: 405,
+        headers: { ...securityHeaders, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Method not allowed' })
       };
     }
     

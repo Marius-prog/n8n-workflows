@@ -4,9 +4,23 @@ const fs = require('fs-extra');
 const crypto = require('crypto');
 
 class WorkflowDatabase {
-  constructor(dbPath = 'database/workflows.db') {
-    this.dbPath = dbPath;
-    this.workflowsDir = 'workflows';
+  constructor(dbPath = null) {
+    // Handle different environments
+    if (!dbPath) {
+      if (process.env.NETLIFY || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+        // Production serverless environment
+        this.dbPath = path.join(__dirname, '..', 'database', 'workflows.db');
+        this.workflowsDir = path.join(__dirname, '..', 'workflows');
+      } else {
+        // Local development
+        this.dbPath = 'database/workflows.db';
+        this.workflowsDir = 'workflows';
+      }
+    } else {
+      this.dbPath = dbPath;
+      this.workflowsDir = 'workflows';
+    }
+    
     this.db = null;
     this.initialized = false;
   }
