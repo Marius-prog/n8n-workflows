@@ -8,9 +8,24 @@ class WorkflowDatabase {
     // Handle different environments
     if (!dbPath) {
       if (process.env.NETLIFY || process.env.AWS_LAMBDA_FUNCTION_NAME) {
-        // Production serverless environment
-        this.dbPath = path.join(__dirname, '..', 'database', 'workflows.db');
-        this.workflowsDir = path.join(__dirname, '..', 'workflows');
+        // Production serverless environment - try multiple possible paths
+        const possibleDbPaths = [
+          path.join(__dirname, '..', 'database', 'workflows.db'),
+          path.join(process.cwd(), 'database', 'workflows.db'),
+          './database/workflows.db'
+        ];
+        
+        this.dbPath = possibleDbPaths.find(p => fs.existsSync(p)) || possibleDbPaths[0];
+        
+        const possibleWorkflowDirs = [
+          path.join(__dirname, '..', 'workflows'),
+          path.join(process.cwd(), 'workflows'),
+          './workflows'
+        ];
+        
+        this.workflowsDir = possibleWorkflowDirs.find(p => fs.existsSync(p)) || possibleWorkflowDirs[0];
+        
+        console.log('Production paths:', { dbPath: this.dbPath, workflowsDir: this.workflowsDir });
       } else {
         // Local development
         this.dbPath = 'database/workflows.db';
