@@ -9,6 +9,8 @@
     "init": "node src/init-db.js",
     "index": "node src/index-workflows.js",
     "build": "npm run init && npm run index -- --force && npm run build:json && npm run build:static",
+    "build:netlify": "npm run build:json:prebuilt && npm run build:static",
+    "build:json:prebuilt": "echo 'Using pre-built JSON files for Netlify deployment'",
     "build:json": "node src/build-static-api.js",
     "build:static": "cp -r static/* . && cp -r api-static . && echo 'Static files and JSON API copied' && ls -la api-static/ && du -h api-static/",
     "netlify:build": "npm run build"
@@ -16,13 +18,15 @@
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "sqlite3": "^5.1.6",
     "compression": "^1.7.4",
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
     "fs-extra": "^11.2.0",
     "chokidar": "^3.5.3",
     "commander": "^11.1.0"
+  },
+  "optionalDependencies": {
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

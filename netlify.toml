@@ -1,7 +1,7 @@
 [build]
   publish = "static"
   functions = "functions"
-  command = "npm run build"
+  command = "npm run build:static"
 
 [build.environment]
   NODE_VERSION = "18"
