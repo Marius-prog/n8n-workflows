@@ -9,6 +9,11 @@
   NETLIFY = "true"
 
 [[redirects]]
+  from = "/api/workflows*"
+  to = "/.netlify/functions/workflows-static:splat"
+  status = 200
+
+[[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
@@ -21,7 +26,7 @@
 [functions]
   directory = "functions"
   node_bundler = "esbuild"
-  included_files = ["database/**", "workflows/**", "src/**"]
+  included_files = ["api-static/**", "database/**", "workflows/**", "src/**"]
 
 [[headers]]
   for = "/*"

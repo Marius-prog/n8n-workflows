@@ -8,8 +8,9 @@
     "dev": "nodemon src/server.js",
     "init": "node src/init-db.js",
     "index": "node src/index-workflows.js",
-    "build": "npm run init && npm run index -- --force && npm run build:static",
-    "build:static": "cp -r static/* . && echo 'Static files copied' && ls -la database/workflows.db && echo 'Database size:' && du -h database/workflows.db",
+    "build": "npm run init && npm run index -- --force && npm run build:json && npm run build:static",
+    "build:json": "node src/build-static-api.js",
+    "build:static": "cp -r static/* . && cp -r api-static . && echo 'Static files and JSON API copied' && ls -la api-static/ && du -h api-static/",
     "netlify:build": "npm run build"
   },
   "dependencies": {
