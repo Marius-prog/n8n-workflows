@@ -9,7 +9,7 @@
     "init": "node src/init-db.js",
     "index": "node src/index-workflows.js",
     "build": "npm run init && npm run index -- --force && npm run build:static",
-    "build:static": "cp -r static/* . && cp -r database . && cp -r workflows . && echo 'Files copied successfully' && ls -la database/ | head -5 && ls -la workflows/ | head -5",
+    "build:static": "cp -r static/* . && echo 'Static files copied' && ls -la database/workflows.db && echo 'Database size:' && du -h database/workflows.db",
     "netlify:build": "npm run build"
   },
   "dependencies": {

@@ -21,6 +21,7 @@
 [functions]
   directory = "functions"
   node_bundler = "esbuild"
+  included_files = ["database/**", "workflows/**", "src/**"]
 
 [[headers]]
   for = "/*"
