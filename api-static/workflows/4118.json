@@ -1,0 +1,68 @@
+{
+  "id": 4118,
+  "filename": "0007_Manual_Todoist_Create_Triggered.json",
+  "name": "Create a new task in Todoist",
+  "workflow_id": "100",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Todoist with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Todoist"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "f2cff8c8bd4b67547764afa66b3cd7e7",
+  "file_size": 857,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "100",
+    "name": "Create a new task in Todoist",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          550,
+          250
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Todoist",
+        "type": "n8n-nodes-base.todoist",
+        "position": [
+          750,
+          250
+        ],
+        "parameters": {
+          "content": "",
+          "options": {}
+        },
+        "credentials": {
+          "todoistApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Todoist",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

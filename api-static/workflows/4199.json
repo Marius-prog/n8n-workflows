@@ -1,0 +1,70 @@
+{
+  "id": 4199,
+  "filename": "0088_Manual_Harvest_Create_Triggered.json",
+  "name": "Create a client in Harvest",
+  "workflow_id": "120",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Harvest with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Harvest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c9e276a580a03160893d0f441ecbd285",
+  "file_size": 924,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "120",
+    "name": "Create a client in Harvest",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Harvest",
+        "type": "n8n-nodes-base.harvest",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "name": "",
+          "resource": "client",
+          "operation": "create",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "harvestApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Harvest",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

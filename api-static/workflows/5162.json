@@ -1,0 +1,60 @@
+{
+  "id": 5162,
+  "filename": "1051_Manual_Executeworkflow_Automate_Triggered.json",
+  "name": "Manual Executeworkflow Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ExecuteWorkflow with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "ExecuteWorkflow"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "f8824316c9a34694043ed04e0e5c430b",
+  "file_size": 705,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          220,
+          340
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Execute Workflow",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "position": [
+          410,
+          340
+        ],
+        "parameters": {
+          "workflowId": "1"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Execute Workflow",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

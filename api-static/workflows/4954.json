@@ -1,0 +1,45 @@
+{
+  "id": 4954,
+  "filename": "0843_Gumroad_Update_Triggered.json",
+  "name": "Receive updates when a sale is made in Gumroad",
+  "workflow_id": "34",
+  "active": 0,
+  "description": "Manual workflow integrating GumroadTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "GumroadTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9ceb17ed465ce27d403e38503a7c12ed",
+  "file_size": 527,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "34",
+    "name": "Receive updates when a sale is made in Gumroad",
+    "nodes": [
+      {
+        "name": "Gumroad Trigger",
+        "type": "n8n-nodes-base.gumroadTrigger",
+        "position": [
+          1310,
+          700
+        ],
+        "webhookId": "d72f9547-0530-4733-9e8b-3e3b1beec2eb",
+        "parameters": {
+          "resource": "sale"
+        },
+        "credentials": {
+          "gumroadApi": "gumroad"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

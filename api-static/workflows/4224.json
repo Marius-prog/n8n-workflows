@@ -1,0 +1,81 @@
+{
+  "id": 4224,
+  "filename": "0113_Emailsend_GoogleDrive_Send_Triggered.json",
+  "name": "Emailsend GoogleDrive Send Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating GoogleDriveTrigger, EmailSend with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "GoogleDriveTrigger",
+    "EmailSend"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "07c4952ef4e33ae710590d1146806846",
+  "file_size": 1333,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Google Drive Trigger",
+        "type": "n8n-nodes-base.googleDriveTrigger",
+        "position": [
+          250,
+          150
+        ],
+        "parameters": {
+          "event": "fileCreated",
+          "options": {},
+          "triggerOn": "specificFolder",
+          "folderToWatch": "1HwOAKkkgveLji8vVpW9Xrg1EsBskwMNb"
+        },
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "28",
+            "name": "Google Drive account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Send Email",
+        "type": "n8n-nodes-base.emailSend",
+        "position": [
+          450,
+          150
+        ],
+        "parameters": {
+          "text": "=A file in your Google Drive file folder has been created: {{$json[\"name\"]}}",
+          "options": {},
+          "subject": "File Update",
+          "toEmail": "mutedjam@n8n.io",
+          "fromEmail": "mutedjam@n8n.io"
+        },
+        "credentials": {
+          "smtp": {
+            "id": "14",
+            "name": "SMTP account"
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Google Drive Trigger": {
+        "main": [
+          [
+            {
+              "node": "Send Email",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

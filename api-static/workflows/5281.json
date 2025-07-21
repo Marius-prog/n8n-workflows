@@ -1,0 +1,70 @@
+{
+  "id": 5281,
+  "filename": "1170_Manual_Jira_Create_Triggered.json",
+  "name": "Create a new issue in Jira",
+  "workflow_id": "87",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Jira with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Jira"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "4b8a91abea65b70d3ee136d84bc4487b",
+  "file_size": 935,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "87",
+    "name": "Create a new issue in Jira",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          350,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Jira",
+        "type": "n8n-nodes-base.jira",
+        "position": [
+          550,
+          300
+        ],
+        "parameters": {
+          "project": "",
+          "summary": "Firewall on fire",
+          "issueType": "10001",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "jiraSoftwareCloudApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Jira",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

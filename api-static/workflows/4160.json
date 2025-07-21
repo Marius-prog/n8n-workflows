@@ -1,0 +1,96 @@
+{
+  "id": 4160,
+  "filename": "0049_Manual_Awss3_Automate_Triggered.json",
+  "name": "Manual Awss3 Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, AwsTranscribe, AwsS3 with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "AwsTranscribe",
+    "AwsS3"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c20f79d2c9605ed3032f82ef99989e10",
+  "file_size": 1550,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          190,
+          160
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "AWS Transcribe",
+        "type": "n8n-nodes-base.awsTranscribe",
+        "position": [
+          590,
+          160
+        ],
+        "parameters": {
+          "options": {},
+          "mediaFileUri": "=s3://{{$node[\"AWS S3\"].parameter[\"bucketName\"]}}/{{$json[\"Key\"]}}",
+          "detectLanguage": true,
+          "transcriptionJobName": "={{$json[\"Key\"].replace(/\\s/g,'-')}}"
+        },
+        "credentials": {
+          "aws": "AWS Transcribe Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "AWS S3",
+        "type": "n8n-nodes-base.awsS3",
+        "position": [
+          390,
+          160
+        ],
+        "parameters": {
+          "options": {},
+          "operation": "getAll",
+          "returnAll": true,
+          "bucketName": "n8n-docs"
+        },
+        "credentials": {
+          "aws": "AWS S3 Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "AWS S3": {
+        "main": [
+          [
+            {
+              "node": "AWS Transcribe",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "AWS S3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

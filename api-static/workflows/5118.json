@@ -1,0 +1,47 @@
+{
+  "id": 5118,
+  "filename": "1007_Eventbrite_Automate_Triggered.json",
+  "name": "Eventbrite Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating EventbriteTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "EventbriteTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "eb73b20fb9df920595623a41d4dbac0b",
+  "file_size": 590,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Eventbrite Trigger",
+        "type": "n8n-nodes-base.eventbriteTrigger",
+        "position": [
+          880,
+          400
+        ],
+        "webhookId": "90ebf00a-536b-4553-b879-2e2c3e35bd60",
+        "parameters": {
+          "event": "114095913950",
+          "actions": [
+            "order.placed",
+            "order.updated",
+            "order.refunded"
+          ],
+          "organization": "461207981776"
+        },
+        "credentials": {
+          "eventbriteApi": "eventbrite api"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

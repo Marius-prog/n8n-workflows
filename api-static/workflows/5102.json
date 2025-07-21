@@ -1,0 +1,64 @@
+{
+  "id": 5102,
+  "filename": "0991_Manual_Hunter_Automate_Triggered.json",
+  "name": "Manual Hunter Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Hunter with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Hunter"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5904f65d2c15cac5f28e413fc874bb40",
+  "file_size": 800,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Hunter",
+        "type": "n8n-nodes-base.hunter",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "email": "user@example.com",
+          "operation": "emailVerifier"
+        },
+        "credentials": {
+          "hunterApi": "hunter api creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Hunter",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

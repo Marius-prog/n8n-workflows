@@ -1,0 +1,60 @@
+{
+  "id": 5149,
+  "filename": "1038_Manual_Crypto_Automate_Triggered.json",
+  "name": "Manual Crypto Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Crypto with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Crypto"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b4f07c6ede8c66d10de19042451ecdb9",
+  "file_size": 680,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Crypto",
+        "type": "n8n-nodes-base.crypto",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "value": "n8n rocks!"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Crypto",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

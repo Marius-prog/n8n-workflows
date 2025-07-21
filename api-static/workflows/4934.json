@@ -1,0 +1,50 @@
+{
+  "id": 4934,
+  "filename": "0823_Zendesk_Update_Triggered.json",
+  "name": "Receive updates for support in Zendesk",
+  "workflow_id": "33",
+  "active": 0,
+  "description": "Manual workflow integrating ZendeskTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ZendeskTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b78be325eca203270185517a8c4bf21a",
+  "file_size": 605,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "33",
+    "name": "Receive updates for support in Zendesk",
+    "nodes": [
+      {
+        "name": "Zendesk Trigger",
+        "type": "n8n-nodes-base.zendeskTrigger",
+        "position": [
+          690,
+          300
+        ],
+        "webhookId": "7d01a119-83c7-43b7-8668-a2f26b95d225",
+        "parameters": {
+          "options": {},
+          "conditions": {
+            "all": [
+              {}
+            ]
+          }
+        },
+        "credentials": {
+          "zendeskApi": "zendesk-token"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

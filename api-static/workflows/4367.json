@@ -1,0 +1,100 @@
+{
+  "id": 4367,
+  "filename": "0256_GoogleSheets_Readbinaryfile_Automate.json",
+  "name": "GoogleSheets Readbinaryfile Automate",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating GoogleSheets, ReadBinaryFile, MoveBinaryData with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "GoogleSheets",
+    "ReadBinaryFile",
+    "MoveBinaryData"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "e5de5a201a66fa86f55a70a710b3cc85",
+  "file_size": 1575,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Google Sheets1",
+        "type": "n8n-nodes-base.googleSheets",
+        "notes": "Append data to sheet",
+        "position": [
+          980,
+          -120
+        ],
+        "parameters": {
+          "range": "A:C",
+          "options": {
+            "usePathForKeyRow": true
+          },
+          "sheetId": "qwertz",
+          "operation": "append",
+          "authentication": "oAuth2"
+        },
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "2",
+            "name": "google_sheets_oauth"
+          }
+        },
+        "notesInFlow": true,
+        "typeVersion": 1
+      },
+      {
+        "name": "read json file",
+        "type": "n8n-nodes-base.readBinaryFile",
+        "position": [
+          620,
+          -120
+        ],
+        "parameters": {
+          "filePath": "/username/users_spreadsheet.json"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "move binary data 2",
+        "type": "n8n-nodes-base.moveBinaryData",
+        "position": [
+          800,
+          -120
+        ],
+        "parameters": {
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "read json file": {
+        "main": [
+          [
+            {
+              "node": "move binary data 2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "move binary data 2": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

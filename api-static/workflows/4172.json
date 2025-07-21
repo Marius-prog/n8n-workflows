@@ -1,0 +1,160 @@
+{
+  "id": 4172,
+  "filename": "0061_Noop_GitHub_Automate_Triggered.json",
+  "name": "Noop GitHub Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating TelegramTrigger, If, Github, +2 more with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "TelegramTrigger",
+    "If",
+    "Github",
+    "Set",
+    "NoOp"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c46b189ab97c836b5ccd1d3c885414a4",
+  "file_size": 2673,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Telegram Trigger",
+        "type": "n8n-nodes-base.telegramTrigger",
+        "position": [
+          460,
+          320
+        ],
+        "webhookId": "4d8556a0-8fdf-4228-8ee2-3e3c72f5fc57",
+        "parameters": {
+          "updates": [
+            "message"
+          ],
+          "additionalFields": {}
+        },
+        "credentials": {
+          "telegramApi": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "IF",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          660,
+          320
+        ],
+        "parameters": {
+          "conditions": {
+            "string": [
+              {
+                "value1": "={{$json[\"message\"][\"text\"]}}",
+                "value2": "/deploy",
+                "operation": "contains"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "GitHub",
+        "type": "n8n-nodes-base.github",
+        "position": [
+          1060,
+          220
+        ],
+        "parameters": {
+          "owner": "n8n-io",
+          "resource": "release",
+          "releaseTag": "={{$json[\"version\"]}}",
+          "repository": "n8n",
+          "authentication": "oAuth2",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "githubOAuth2Api": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          860,
+          220
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "version",
+                "value": "={{$json[\"message\"][\"text\"].split(' ')[1]}}"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NoOp",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          860,
+          420
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "IF": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "NoOp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "GitHub",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Telegram Trigger": {
+        "main": [
+          [
+            {
+              "node": "IF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

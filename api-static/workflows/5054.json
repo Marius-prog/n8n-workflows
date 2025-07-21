@@ -1,0 +1,101 @@
+{
+  "id": 5054,
+  "filename": "0943_Manual_Xml_Automation_Triggered.json",
+  "name": "XML Conversion",
+  "workflow_id": "3",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Set, Xml with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "Set",
+    "Xml"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "81f2324a2c71c00fa5e035e8169adcc8",
+  "file_size": 1606,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "3",
+    "name": "XML Conversion",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          510,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "xml",
+                "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?> <ORDERS05>   <IDOC BEGIN=\"1\">     <EDI_DC40 SEGMENT=\"1\">       <TABNAM>EDI_DC40</TABNAM>     </EDI_DC40>   </IDOC> </ORDERS05>"
+              }
+            ]
+          },
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "XML",
+        "type": "n8n-nodes-base.xml",
+        "position": [
+          740,
+          300
+        ],
+        "parameters": {
+          "options": {
+            "attrkey": "$",
+            "mergeAttrs": false,
+            "explicitRoot": true
+          },
+          "dataPropertyName": "xml"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "XML",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

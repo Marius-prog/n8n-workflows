@@ -1,0 +1,105 @@
+{
+  "id": 5154,
+  "filename": "1043_HTTP_Telegram_Send_Webhook.json",
+  "name": "Send a cocktail recipe every day via a Telegram",
+  "workflow_id": "57",
+  "active": 0,
+  "description": "Scheduled workflow integrating Telegram, Cron, HttpRequest with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Telegram",
+    "Cron",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b388e8b342292630317a459fad2c0a39",
+  "file_size": 1727,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "57",
+    "name": "Send a cocktail recipe every day via a Telegram",
+    "nodes": [
+      {
+        "name": "Telegram",
+        "type": "n8n-nodes-base.telegram",
+        "position": [
+          930,
+          300
+        ],
+        "parameters": {
+          "file": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strDrinkThumb\"]}}",
+          "chatId": "-485396236",
+          "operation": "sendPhoto",
+          "additionalFields": {
+            "caption": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strInstructions\"]}}"
+          }
+        },
+        "credentials": {
+          "telegramApi": "telegram-bot"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          530,
+          300
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 20
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          730,
+          300
+        ],
+        "parameters": {
+          "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

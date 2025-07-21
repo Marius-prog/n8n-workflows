@@ -1,0 +1,147 @@
+{
+  "id": 4469,
+  "filename": "0358_HTTP_Discord_Monitor_Scheduled.json",
+  "name": "Website check",
+  "workflow_id": "1",
+  "active": 0,
+  "description": "Scheduled workflow integrating HttpRequest, If, Discord, +1 more with 5 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "HttpRequest",
+    "If",
+    "Discord",
+    "Cron"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b29107bc6ba17621db614f0fa0836ddb",
+  "file_size": 2307,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "1",
+    "name": "Website check",
+    "nodes": [
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          400,
+          300
+        ],
+        "parameters": {
+          "url": "",
+          "options": {},
+          "responseFormat": "string"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "IF",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          550,
+          300
+        ],
+        "parameters": {
+          "conditions": {
+            "string": [
+              {
+                "value1": "={{$node[\"HTTP Request\"].json[\"data\"]}}",
+                "value2": "Out Of Stock",
+                "operation": "contains"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "position": [
+          700,
+          300
+        ],
+        "parameters": {
+          "text": "value found",
+          "webhookUri": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Discord1",
+        "type": "n8n-nodes-base.discord",
+        "position": [
+          700,
+          450
+        ],
+        "parameters": {
+          "text": "value not found",
+          "webhookUri": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          210,
+          300
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "mode": "everyHour"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {
+      "timezone": "America/Los_Angeles"
+    },
+    "connections": {
+      "IF": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Discord1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "IF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

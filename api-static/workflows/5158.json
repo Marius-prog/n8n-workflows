@@ -1,0 +1,69 @@
+{
+  "id": 5158,
+  "filename": "1047_Manual_Emailsend_Send_Triggered.json",
+  "name": "Manual Emailsend Send Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, EmailSend with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "EmailSend"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c22144a00168b70626a89a9b70d7acf5",
+  "file_size": 1007,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Send Email",
+        "type": "n8n-nodes-base.emailSend",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "text": "This is a message to demonstrate the n8n Send Email workflow!",
+          "options": {
+            "allowUnauthorizedCerts": false
+          },
+          "subject": "n8n rocks!",
+          "toEmail": "user@example.com",
+          "fromEmail": "user@from.email"
+        },
+        "credentials": {
+          "smtp": "your@smtp_creds.here"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Send Email",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

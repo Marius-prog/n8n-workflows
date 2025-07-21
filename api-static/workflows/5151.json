@@ -1,0 +1,86 @@
+{
+  "id": 5151,
+  "filename": "1040_Manual_Editimage_Update_Webhook.json",
+  "name": "Manual Editimage Update Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, EditImage, HttpRequest with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "EditImage",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "8c68d7903879e08c7b833e822b5e8beb",
+  "file_size": 1204,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Edit Image",
+        "type": "n8n-nodes-base.editImage",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "operation": "information"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "url": "https://picsum.photos/200/300",
+          "options": {},
+          "responseFormat": "file"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Edit Image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": 4280,
+  "filename": "0169_Mattermost_Profitwell_Send_Scheduled.json",
+  "name": "Send financial metrics monthly to Mattermost",
+  "workflow_id": "146",
+  "active": 0,
+  "description": "Scheduled workflow integrating ProfitWell, Cron, Mattermost with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ProfitWell",
+    "Cron",
+    "Mattermost"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9c82678591f17bdb2551cfa93a64d306",
+  "file_size": 1983,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "146",
+    "name": "Send financial metrics monthly to Mattermost",
+    "nodes": [
+      {
+        "name": "ProfitWell",
+        "type": "n8n-nodes-base.profitWell",
+        "position": [
+          730,
+          220
+        ],
+        "parameters": {
+          "type": "monthly",
+          "options": {}
+        },
+        "credentials": {
+          "profitWellApi": "profitwell"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          530,
+          220
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 9,
+                "mode": "everyMonth"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          930,
+          220
+        ],
+        "parameters": {
+          "message": "=Active Customers: {{$node[\"ProfitWell\"].json[\"active_customers\"]}}\nTrailing Customers: {{$node[\"ProfitWell\"].json[\"active_trialing_customers\"]}}\nNew Customers: {{$node[\"ProfitWell\"].json[\"new_customers\"]}}\nGrowth Rate: {{$node[\"ProfitWell\"].json[\"growth_rate\"]}}\nRecurring Revenue: {{$node[\"ProfitWell\"].json[\"recurring_revenue\"]}}",
+          "channelId": "w6rsxrqds3bt9pguxzduowqucy",
+          "attachments": [],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "mattermost"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "ProfitWell",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ProfitWell": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

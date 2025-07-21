@@ -1,0 +1,77 @@
+{
+  "id": 4514,
+  "filename": "0403_Beeminder_Strava_Create_Triggered.json",
+  "name": "Add a datapoint to Beeminder when new activity is added to Strava",
+  "workflow_id": "208",
+  "active": 0,
+  "description": "Manual workflow integrating StravaTrigger, Beeminder with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "StravaTrigger",
+    "Beeminder"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "1e528b7e803f4fdc20e4d07882414f2e",
+  "file_size": 1188,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "208",
+    "name": "Add a datapoint to Beeminder when new activity is added to Strava",
+    "nodes": [
+      {
+        "name": "Strava Trigger",
+        "type": "n8n-nodes-base.stravaTrigger",
+        "position": [
+          470,
+          300
+        ],
+        "webhookId": "2b0c6812-ac24-42e5-b15e-8d1fb7606908",
+        "parameters": {
+          "event": "create",
+          "options": {}
+        },
+        "credentials": {
+          "stravaOAuth2Api": "strava"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Beeminder",
+        "type": "n8n-nodes-base.beeminder",
+        "position": [
+          670,
+          300
+        ],
+        "parameters": {
+          "goalName": "testing",
+          "additionalFields": {
+            "comment": "={{$json[\"object_data\"][\"name\"]}}"
+          }
+        },
+        "credentials": {
+          "beeminderApi": "Beeminder credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Strava Trigger": {
+        "main": [
+          [
+            {
+              "node": "Beeminder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

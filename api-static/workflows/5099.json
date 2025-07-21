@@ -1,0 +1,89 @@
+{
+  "id": 5099,
+  "filename": "0988_Manual_Writebinaryfile_Automate_Triggered.json",
+  "name": "Manual Writebinaryfile Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, GoogleDrive, WriteBinaryFile with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "GoogleDrive",
+    "WriteBinaryFile"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d54a3ee648479a3f07548c491fb64453",
+  "file_size": 1331,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Google Drive",
+        "type": "n8n-nodes-base.googleDrive",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "fileId": "1dJEBaECGmua09YP7W6WCBu66icIq32yRadQpk",
+          "options": {},
+          "operation": "download"
+        },
+        "credentials": {
+          "googleApi": "n8n-test-service-account"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Write Binary File",
+        "type": "n8n-nodes-base.writeBinaryFile",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "fileName": "/data/downloaded_file.pdf"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Google Drive": {
+        "main": [
+          [
+            {
+              "node": "Write Binary File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Google Drive",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

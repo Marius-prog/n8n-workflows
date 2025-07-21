@@ -1,0 +1,80 @@
+{
+  "id": 4263,
+  "filename": "0152_Shopify_Onfleet_Create_Triggered.json",
+  "name": "Creating an Onfleet Task for a new Shopify Fulfillment",
+  "workflow_id": "13",
+  "active": 0,
+  "description": "Manual workflow integrating ShopifyTrigger, Onfleet with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ShopifyTrigger",
+    "Onfleet"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "7dca58c7fbcce34cad79eb10a696812e",
+  "file_size": 1192,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": 13,
+    "name": "Creating an Onfleet Task for a new Shopify Fulfillment",
+    "nodes": [
+      {
+        "name": "Shopify Trigger",
+        "type": "n8n-nodes-base.shopifyTrigger",
+        "position": [
+          240,
+          440
+        ],
+        "webhookId": "576e8785-bbb4-426b-a922-da671efced68",
+        "parameters": {
+          "topic": "fulfillments/create"
+        },
+        "credentials": {
+          "shopifyApi": {
+            "id": "6",
+            "name": "Shopify account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Onfleet",
+        "type": "n8n-nodes-base.onfleet",
+        "position": [
+          460,
+          440
+        ],
+        "parameters": {
+          "operation": "create",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "onfleetApi": {
+            "id": "2",
+            "name": "Onfleet API Key"
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Shopify Trigger": {
+        "main": [
+          [
+            {
+              "node": "Onfleet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

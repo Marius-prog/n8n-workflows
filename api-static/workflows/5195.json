@@ -1,0 +1,40 @@
+{
+  "id": 5195,
+  "filename": "1084_Sse_Automation_Triggered.json",
+  "name": "Sse Automation Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating SseTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "SseTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "71295f1468cf74a5e3f2b0b8555c190e",
+  "file_size": 335,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "name": "",
+    "nodes": [
+      {
+        "name": "SSE Trigger",
+        "type": "n8n-nodes-base.sseTrigger",
+        "position": [
+          850,
+          420
+        ],
+        "parameters": {
+          "url": "https://n8n.io"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

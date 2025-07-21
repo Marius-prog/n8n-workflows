@@ -1,0 +1,49 @@
+{
+  "id": 4168,
+  "filename": "0057_Activecampaign_Create_Triggered.json",
+  "name": "Receive updates when a new account is added by an admin in ActiveCampaign",
+  "workflow_id": "112",
+  "active": 0,
+  "description": "Manual workflow integrating ActiveCampaignTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ActiveCampaignTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "76990ac056ce8282f7ab4b658092ec25",
+  "file_size": 590,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "112",
+    "name": "Receive updates when a new account is added by an admin in ActiveCampaign",
+    "nodes": [
+      {
+        "name": "ActiveCampaign Trigger",
+        "type": "n8n-nodes-base.activeCampaignTrigger",
+        "position": [
+          700,
+          250
+        ],
+        "parameters": {
+          "events": [
+            "account_add"
+          ],
+          "sources": [
+            "admin"
+          ]
+        },
+        "credentials": {
+          "activeCampaignApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

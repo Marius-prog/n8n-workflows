@@ -1,0 +1,82 @@
+{
+  "id": 5159,
+  "filename": "1048_Manual_Readpdf_Automate_Triggered.json",
+  "name": "Manual Readpdf Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ReadBinaryFile, ReadPDF with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "ReadBinaryFile",
+    "ReadPDF"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "71d65e9243a71dc35cb926cfdc00864f",
+  "file_size": 1100,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          680,
+          400
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Read Binary File",
+        "type": "n8n-nodes-base.readBinaryFile",
+        "position": [
+          880,
+          400
+        ],
+        "parameters": {
+          "filePath": "/data/pdf.pdf"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Read PDF",
+        "type": "n8n-nodes-base.readPDF",
+        "position": [
+          1090,
+          400
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Read Binary File": {
+        "main": [
+          [
+            {
+              "node": "Read PDF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Read Binary File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

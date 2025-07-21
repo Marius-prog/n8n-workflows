@@ -1,0 +1,65 @@
+{
+  "id": 5092,
+  "filename": "0981_Manual_Awssns_Automate_Triggered.json",
+  "name": "Manual Awssns Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, AwsSns with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "AwsSns"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "31bd3b001d7cb0bb6e9aa7ce98dc5993",
+  "file_size": 829,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "AWS SNS",
+        "type": "n8n-nodes-base.awsSns",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "topic": "n8n-rocks",
+          "message": "This is a test message",
+          "subject": "This is a test subject"
+        },
+        "credentials": {
+          "aws": "aws"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "AWS SNS",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

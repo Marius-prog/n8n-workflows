@@ -1,0 +1,105 @@
+{
+  "id": 4272,
+  "filename": "0161_Openweathermap_Spontit_Update_Scheduled.json",
+  "name": "Send daily weather updates via a push notification using Spontit",
+  "workflow_id": "141",
+  "active": 0,
+  "description": "Scheduled workflow integrating Cron, OpenWeatherMap, Spontit with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Cron",
+    "OpenWeatherMap",
+    "Spontit"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "482caf2d0d68631cd7f3dcf5caa96247",
+  "file_size": 1663,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "141",
+    "name": "Send daily weather updates via a push notification using Spontit",
+    "nodes": [
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          810,
+          340
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 9
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "OpenWeatherMap",
+        "type": "n8n-nodes-base.openWeatherMap",
+        "position": [
+          1010,
+          340
+        ],
+        "parameters": {
+          "cityName": "berlin"
+        },
+        "credentials": {
+          "openWeatherMapApi": "owm"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Spontit",
+        "type": "n8n-nodes-base.spontit",
+        "position": [
+          1210,
+          340
+        ],
+        "parameters": {
+          "content": "=Hey! The temperature outside is {{$node[\"OpenWeatherMap\"].json[\"main\"][\"temp\"]}}°C.",
+          "additionalFields": {
+            "pushTitle": "Today's Weather Update"
+          }
+        },
+        "credentials": {
+          "spontitApi": "spontit"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "OpenWeatherMap",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenWeatherMap": {
+        "main": [
+          [
+            {
+              "node": "Spontit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

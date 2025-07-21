@@ -1,0 +1,68 @@
+{
+  "id": 5273,
+  "filename": "1162_Manual_Circleci_Import_Triggered.json",
+  "name": "Get a pipeline in CircleCI",
+  "workflow_id": "84",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, CircleCi with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "CircleCi"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5498e1f093ee5ee8a736b05ae4ed343d",
+  "file_size": 858,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "84",
+    "name": "Get a pipeline in CircleCI",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "CircleCI",
+        "type": "n8n-nodes-base.circleCi",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "vcs": "",
+          "projectSlug": ""
+        },
+        "credentials": {
+          "circleCiApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "CircleCI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

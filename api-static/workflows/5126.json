@@ -1,0 +1,41 @@
+{
+  "id": 5126,
+  "filename": "1015_Shopify_Automate_Triggered.json",
+  "name": "Shopify Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ShopifyTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ShopifyTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "2d152a232ca5c2a904c25d61a672d8ec",
+  "file_size": 423,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Shopify Trigger",
+        "type": "n8n-nodes-base.shopifyTrigger",
+        "position": [
+          450,
+          450
+        ],
+        "webhookId": "fd11b3d8-ff82-4902-89cc-c93b36ae38e7",
+        "parameters": {
+          "topic": "orders/create"
+        },
+        "credentials": {
+          "shopifyApi": "shopify_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "id": 4176,
+  "filename": "0065_Openweathermap_Line_Update_Scheduled.json",
+  "name": "Send daily weather updates via a message in Line",
+  "workflow_id": "114",
+  "active": 0,
+  "description": "Scheduled workflow integrating Line, Cron, OpenWeatherMap with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Line",
+    "Cron",
+    "OpenWeatherMap"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d2db4ca9cf85b7ef78beed4d103481a0",
+  "file_size": 1595,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "114",
+    "name": "Send daily weather updates via a message in Line",
+    "nodes": [
+      {
+        "name": "Line",
+        "type": "n8n-nodes-base.line",
+        "position": [
+          890,
+          380
+        ],
+        "parameters": {
+          "message": "=Hey! The temperature outside is {{$node[\"OpenWeatherMap\"].json[\"main\"][\"temp\"]}}°C.",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "lineNotifyOAuth2Api": "line-credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          490,
+          380
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 9
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "OpenWeatherMap",
+        "type": "n8n-nodes-base.openWeatherMap",
+        "position": [
+          690,
+          380
+        ],
+        "parameters": {
+          "cityName": "berlin"
+        },
+        "credentials": {
+          "openWeatherMapApi": "owm"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "OpenWeatherMap",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenWeatherMap": {
+        "main": [
+          [
+            {
+              "node": "Line",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

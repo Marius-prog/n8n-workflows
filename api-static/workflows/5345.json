@@ -1,0 +1,68 @@
+{
+  "id": 5345,
+  "filename": "1234_Manual_Microsoftsql_Automation_Triggered.json",
+  "name": "Execute an SQL query in Microsoft SQL",
+  "workflow_id": "99",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MicrosoftSql with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "MicrosoftSql"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3339d45a97a0381cb486106f5eff27bc",
+  "file_size": 896,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "99",
+    "name": "Execute an SQL query in Microsoft SQL",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Microsoft SQL",
+        "type": "n8n-nodes-base.microsoftSql",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "query": "",
+          "operation": "executeQuery"
+        },
+        "credentials": {
+          "microsoftSql": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Microsoft SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

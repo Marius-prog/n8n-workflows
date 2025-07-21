@@ -1,0 +1,45 @@
+{
+  "id": 5109,
+  "filename": "0998_Gitlab_Automate_Triggered.json",
+  "name": "Gitlab Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating GitlabTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "GitlabTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "82754a8d331e6de0dface4fa6bfe585a",
+  "file_size": 495,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Gitlab Trigger",
+        "type": "n8n-nodes-base.gitlabTrigger",
+        "position": [
+          460,
+          480
+        ],
+        "webhookId": "0e855b27-6465-42be-9610-c61b2e09cef9",
+        "parameters": {
+          "owner": "n8n-io",
+          "events": [
+            "*"
+          ],
+          "repository": "n8n-docs"
+        },
+        "credentials": {
+          "gitlabApi": "gitlab_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

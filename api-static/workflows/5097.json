@@ -1,0 +1,68 @@
+{
+  "id": 5097,
+  "filename": "0986_Manual_Msg91_Send_Triggered.json",
+  "name": "Send an SMS using MSG91",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Msg91 with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Msg91"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "1edaea10861c10eac123c24ae771d000",
+  "file_size": 844,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "name": "Send an SMS using MSG91",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Msg91",
+        "type": "n8n-nodes-base.msg91",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "to": "",
+          "from": "",
+          "message": ""
+        },
+        "credentials": {
+          "msg91Api": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Msg91",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

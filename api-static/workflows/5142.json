@@ -1,0 +1,46 @@
+{
+  "id": 5142,
+  "filename": "1031_Box_Automate_Triggered.json",
+  "name": "Box Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating BoxTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "BoxTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ffe366c504e8939a36d2e9417746ca26",
+  "file_size": 538,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Box Trigger",
+        "type": "n8n-nodes-base.boxTrigger",
+        "position": [
+          1027,
+          368
+        ],
+        "webhookId": "0e56bb0c-8e81-42de-a902-c0ab31834bd8",
+        "parameters": {
+          "events": [
+            "FOLDER.MOVED",
+            "FOLDER.DOWNLOADED"
+          ],
+          "targetId": "118847708963",
+          "targetType": "file"
+        },
+        "credentials": {
+          "boxOAuth2Api": "box_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

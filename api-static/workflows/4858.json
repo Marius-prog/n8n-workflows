@@ -1,0 +1,90 @@
+{
+  "id": 4858,
+  "filename": "0747_Writebinaryfile_Spreadsheetfile_Automate.json",
+  "name": "Writebinaryfile Spreadsheetfile Automate",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Postgres, SpreadsheetFile, WriteBinaryFile with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Postgres",
+    "SpreadsheetFile",
+    "WriteBinaryFile"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "40101b7b2866d8c46793f7be6b2b2476",
+  "file_size": 1300,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Run Query",
+        "type": "n8n-nodes-base.postgres",
+        "position": [
+          450,
+          450
+        ],
+        "parameters": {
+          "query": "SELECT name, ean FROM product",
+          "operation": "executeQuery"
+        },
+        "credentials": {
+          "postgres": "postgres"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Spreadsheet File",
+        "type": "n8n-nodes-base.spreadsheetFile",
+        "position": [
+          600,
+          450
+        ],
+        "parameters": {
+          "operation": "toFile"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Write Binary File",
+        "type": "n8n-nodes-base.writeBinaryFile",
+        "position": [
+          750,
+          450
+        ],
+        "parameters": {
+          "fileName": "spreadsheet.xls"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Run Query": {
+        "main": [
+          [
+            {
+              "node": "Spreadsheet File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Spreadsheet File": {
+        "main": [
+          [
+            {
+              "node": "Write Binary File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

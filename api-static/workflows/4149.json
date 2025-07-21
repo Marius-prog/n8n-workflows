@@ -1,0 +1,93 @@
+{
+  "id": 4149,
+  "filename": "0038_Manual_Ical_Send_Triggered.json",
+  "name": "Manual Ical Send Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ICal, EmailSend with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "ICal",
+    "EmailSend"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "a61039c90b3c6277fe565bca03519ce4",
+  "file_size": 1609,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          350,
+          200
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "iCalendar",
+        "type": "n8n-nodes-base.iCal",
+        "position": [
+          550,
+          200
+        ],
+        "parameters": {
+          "end": "2021-06-11T16:15:00.000Z",
+          "start": "2021-06-11T15:30:00.000Z",
+          "title": "n8n Community Meetup",
+          "additionalFields": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Send Email",
+        "type": "n8n-nodes-base.emailSend",
+        "position": [
+          750,
+          200
+        ],
+        "parameters": {
+          "text": "Hey Harshil,\n\nWe are excited to invite you to the n8n community meetup!\n\nWith this email you will find the invite attached.\n\nLooking forward to seeing you at the meetup!\n\nCheers,\nHarshil",
+          "options": {},
+          "subject": "n8n Community Meetup 🚀",
+          "attachments": "data"
+        },
+        "credentials": {
+          "smtp": "Outlook Burner Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "iCalendar": {
+        "main": [
+          [
+            {
+              "node": "Send Email",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "iCalendar",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

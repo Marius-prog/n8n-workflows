@@ -1,0 +1,93 @@
+{
+  "id": 4196,
+  "filename": "0085_Shopify_Twitter_Create_Triggered.json",
+  "name": "Shopify Twitter Create Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Twitter, Telegram, ShopifyTrigger with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Twitter",
+    "Telegram",
+    "ShopifyTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "957b67a87ef162c2b49a48c30e374b92",
+  "file_size": 1765,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Twitter",
+        "type": "n8n-nodes-base.twitter",
+        "position": [
+          720,
+          -220
+        ],
+        "parameters": {
+          "text": "=Hey there, my design is now on a new product ✨\nVisit my {{$json[\"vendor\"]}} shop to get this cool{{$json[\"title\"]}} (and check out more {{$json[\"product_type\"]}}) 🛍️",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "twitterOAuth1Api": "twitter"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Telegram",
+        "type": "n8n-nodes-base.telegram",
+        "position": [
+          720,
+          -20
+        ],
+        "parameters": {
+          "text": "=Hey there, my design is now on a new product!\nVisit my {{$json[\"vendor\"]}} shop to get this cool{{$json[\"title\"]}} (and check out more {{$json[\"product_type\"]}})",
+          "chatId": "123456",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "telegramApi": "telegram_habot"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "product created",
+        "type": "n8n-nodes-base.shopifyTrigger",
+        "position": [
+          540,
+          -110
+        ],
+        "webhookId": "2a7e0e50-8f09-4a2b-bf54-a849a6ac4fe0",
+        "parameters": {
+          "topic": "products/create"
+        },
+        "credentials": {
+          "shopifyApi": "shopify_nodeqa"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "product created": {
+        "main": [
+          [
+            {
+              "node": "Twitter",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

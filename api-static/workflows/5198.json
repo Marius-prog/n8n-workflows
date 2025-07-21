@@ -1,0 +1,71 @@
+{
+  "id": 5198,
+  "filename": "1087_Manual_Unleashedsoftware_Automation_Triggered.json",
+  "name": "Manual Unleashedsoftware Automation Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, UnleashedSoftware with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "UnleashedSoftware"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3f799e94641e8bfe2bd40da05d0be597",
+  "file_size": 944,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "name": "",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          390,
+          220
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Unleashed Software",
+        "type": "n8n-nodes-base.unleashedSoftware",
+        "position": [
+          600,
+          220
+        ],
+        "parameters": {
+          "filters": {
+            "orderStatus": [
+              "Completed"
+            ]
+          },
+          "returnAll": true
+        },
+        "credentials": {
+          "unleashedSoftwareApi": "unleashed"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Unleashed Software",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

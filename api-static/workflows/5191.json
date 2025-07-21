@@ -1,0 +1,145 @@
+{
+  "id": 5191,
+  "filename": "1080_Manual_HTTP_Automation_Webhook.json",
+  "name": "Manual HTTP Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, HttpRequest, NextCloud with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "ManualTrigger",
+    "HttpRequest",
+    "NextCloud"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "2c7682ac34c754f048533e8209fdb499",
+  "file_size": 2384,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          20,
+          180
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          420,
+          180
+        ],
+        "parameters": {
+          "url": "https://n8n.io/n8n-logo.png",
+          "options": {},
+          "responseFormat": "file"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NextCloud",
+        "type": "n8n-nodes-base.nextCloud",
+        "position": [
+          220,
+          180
+        ],
+        "parameters": {
+          "path": "n8n",
+          "resource": "folder"
+        },
+        "credentials": {
+          "nextCloudApi": "nextcloud_creds"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NextCloud1",
+        "type": "n8n-nodes-base.nextCloud",
+        "position": [
+          620,
+          180
+        ],
+        "parameters": {
+          "path": "n8n/logo.png",
+          "binaryDataUpload": true
+        },
+        "credentials": {
+          "nextCloudApi": "nextcloud_creds"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NextCloud2",
+        "type": "n8n-nodes-base.nextCloud",
+        "position": [
+          820,
+          180
+        ],
+        "parameters": {
+          "path": "n8n",
+          "resource": "folder",
+          "operation": "list"
+        },
+        "credentials": {
+          "nextCloudApi": "nextcloud_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "NextCloud": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "NextCloud1": {
+        "main": [
+          [
+            {
+              "node": "NextCloud2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "NextCloud1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "NextCloud",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": 5048,
+  "filename": "0937_HTTP_Editimage_Update_Webhook.json",
+  "name": "HTTP Editimage Update Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating Webhook, EditImage, HttpRequest with 3 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Webhook",
+    "EditImage",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3ec206f7b0501bbe17528e3c8935ac17",
+  "file_size": 1537,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          700,
+          350
+        ],
+        "parameters": {
+          "path": "test",
+          "responseData": "firstEntryBinary",
+          "responseMode": "lastNode"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Edit Image",
+        "type": "n8n-nodes-base.editImage",
+        "position": [
+          1100,
+          350
+        ],
+        "parameters": {
+          "text": "=They found the killer it was {{$node[\"Webhook\"].data[\"query\"][\"name\"]}}!",
+          "fontSize": "=25",
+          "operation": "text",
+          "positionX": 150,
+          "positionY": 180,
+          "lineLength": 18
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Read File URL",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          900,
+          350
+        ],
+        "parameters": {
+          "url": "https://www.needpix.com/file_download.php?url=//storage.needpix.com/thumbs/newspaper-412809_1280.jpg",
+          "responseFormat": "file"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Read File URL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Read File URL": {
+        "main": [
+          [
+            {
+              "node": "Edit Image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

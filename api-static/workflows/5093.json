@@ -1,0 +1,97 @@
+{
+  "id": 5093,
+  "filename": "0982_Manual_Mongodb_Automate_Triggered.json",
+  "name": "Manual Mongodb Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Set, MongoDb with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "Set",
+    "MongoDb"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "905a108e4b2d890d8aff711bd8d2bdff",
+  "file_size": 1385,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          220,
+          320
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          420,
+          320
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "my_key",
+                "value": "my_value"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "MongoDB",
+        "type": "n8n-nodes-base.mongoDb",
+        "position": [
+          620,
+          320
+        ],
+        "parameters": {
+          "fields": "my_key",
+          "operation": "insert",
+          "collection": "n8n-collection"
+        },
+        "credentials": {
+          "mongoDb": "mongodb_credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "id": 4275,
+  "filename": "0164_Crypto_Webhook_Automate_Webhook.json",
+  "name": "Crypto Webhook Automate Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating Webhook, Crypto, Set with 3 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Webhook",
+    "Crypto",
+    "Set"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3b2de6762f8f9ac27f5876cb329788ea",
+  "file_size": 1595,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          460,
+          300
+        ],
+        "webhookId": "0db0a40c-e5d1-463f-8252-03599f1303e6",
+        "parameters": {
+          "path": "0db0a40c-e5d1-463f-8252-03599f1303e6",
+          "options": {},
+          "responseMode": "lastNode"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Crypto",
+        "type": "n8n-nodes-base.crypto",
+        "position": [
+          660,
+          300
+        ],
+        "parameters": {
+          "type": "SHA256",
+          "value": "={{$json[\"query\"][\"crc_token\"]}}",
+          "action": "hmac",
+          "secret": "API KEY SECRET",
+          "encoding": "base64"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          840,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "response_token",
+                "value": "=sha256={{$json[\"data\"]}}"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Crypto": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Crypto",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

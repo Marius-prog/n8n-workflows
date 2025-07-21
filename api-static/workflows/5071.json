@@ -1,0 +1,66 @@
+{
+  "id": 5071,
+  "filename": "0960_Manual_Freshdesk_Automate_Triggered.json",
+  "name": "Manual Freshdesk Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Freshdesk with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Freshdesk"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "1151a72feed8ccedcc6e87d323d9a223",
+  "file_size": 875,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Freshdesk",
+        "type": "n8n-nodes-base.freshdesk",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "status": "open",
+          "options": {},
+          "requester": "email",
+          "requesterIdentificationValue": "user@example.com"
+        },
+        "credentials": {
+          "freshdeskApi": "freshdesk-api"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Freshdesk",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

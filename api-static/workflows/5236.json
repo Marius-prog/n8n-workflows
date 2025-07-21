@@ -1,0 +1,61 @@
+{
+  "id": 5236,
+  "filename": "1125_Create.json",
+  "name": "Create",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Function with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "Function"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "2fb060617ddab3c3c35d95cfb096bf35",
+  "file_size": 1035,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Mock Data",
+        "type": "n8n-nodes-base.function",
+        "position": [
+          802,
+          307
+        ],
+        "parameters": {
+          "functionCode": "return [\n  {\n    json: {\n      id: 1,\n      name: \"Jim\"\n    }\n  },\n  {\n    json: {\n      id: 2,\n      name: \"Stefan\"\n    }\n  },\n  {\n    json: {\n      id: 3,\n      name: \"Hans\"\n    }\n  }\n];"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Create an array of objects",
+        "type": "n8n-nodes-base.function",
+        "position": [
+          1052,
+          307
+        ],
+        "parameters": {
+          "functionCode": "return [\n  {\n    json: {\n      data_object: items.map(item => item.json),\n    },\n  }\n];\n"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Mock Data": {
+        "main": [
+          [
+            {
+              "node": "Create an array of objects",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

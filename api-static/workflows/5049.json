@@ -1,0 +1,78 @@
+{
+  "id": 5049,
+  "filename": "0938_Manual_Mailchimp_Automation_Triggered.json",
+  "name": "Mailchimp",
+  "workflow_id": "3",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Mailchimp with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Mailchimp"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "a0153e81d597b036d44973d767b1a345",
+  "file_size": 1111,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "3",
+    "name": "Mailchimp",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          480,
+          310
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Mailchimp",
+        "type": "n8n-nodes-base.mailchimp",
+        "position": [
+          780,
+          310
+        ],
+        "parameters": {
+          "list": "97542c5cf8",
+          "email": "xxxx@email.com",
+          "status": "subscribed",
+          "options": {},
+          "mergeFieldsUi": {
+            "mergeFieldsValues": [
+              {
+                "name": "FNAME",
+                "value": "Joe"
+              }
+            ]
+          }
+        },
+        "credentials": {
+          "mailchimpApi": "mailchimpAPI"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Mailchimp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

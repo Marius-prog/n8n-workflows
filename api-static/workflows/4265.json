@@ -1,0 +1,103 @@
+{
+  "id": 4265,
+  "filename": "0154_HTTP_Mattermost_Automation_Webhook.json",
+  "name": "Mattermost Webhook",
+  "workflow_id": "13",
+  "active": 1,
+  "description": "Webhook workflow integrating Webhook, HttpRequest, Mattermost with 3 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Webhook",
+    "HttpRequest",
+    "Mattermost"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "f97e2b289364b0f228b6864da11fd7dc",
+  "file_size": 1883,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "13",
+    "name": "Mattermost Webhook",
+    "nodes": [
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          340,
+          200
+        ],
+        "parameters": {
+          "path": "webhook",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          570,
+          200
+        ],
+        "parameters": {
+          "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          770,
+          200
+        ],
+        "parameters": {
+          "message": "=Why not try {{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strDrink\"]}}?\n{{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strInstructions\"]}} Serve in {{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strGlass\"]}}.",
+          "channelId": "={{$node[\"Webhook\"].json[\"body\"][\"channel_id\"]}}",
+          "attachments": [
+            {
+              "image_url": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strDrinkThumb\"]}}"
+            }
+          ],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "Mattermost"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": true,
+    "settings": {},
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

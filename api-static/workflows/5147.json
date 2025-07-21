@@ -1,0 +1,69 @@
+{
+  "id": 5147,
+  "filename": "1036_Error_Twilio_Send_Triggered.json",
+  "name": "Send an SMS when a workflow fails",
+  "workflow_id": "56",
+  "active": 0,
+  "description": "Manual workflow integrating ErrorTrigger, Twilio with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ErrorTrigger",
+    "Twilio"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c6de87087bff00e72ada90f3ad5c2c8f",
+  "file_size": 1040,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "56",
+    "name": "Send an SMS when a workflow fails",
+    "nodes": [
+      {
+        "name": "Error Trigger",
+        "type": "n8n-nodes-base.errorTrigger",
+        "position": [
+          550,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Twilio",
+        "type": "n8n-nodes-base.twilio",
+        "position": [
+          750,
+          260
+        ],
+        "parameters": {
+          "to": "",
+          "from": "",
+          "message": "=Your workflow with ID: {{$node[\"Error Trigger\"].json[\"workflow\"][\"id\"]}} and name: {{$node[\"Error Trigger\"].json[\"workflow\"][\"name\"]}} failed to execute."
+        },
+        "credentials": {
+          "twilioApi": "twilio-credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Error Trigger": {
+        "main": [
+          [
+            {
+              "node": "Twilio",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

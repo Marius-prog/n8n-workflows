@@ -1,0 +1,64 @@
+{
+  "id": 5132,
+  "filename": "1021_Manual_Zohocrm_Automate_Triggered.json",
+  "name": "Manual Zohocrm Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ZohoCrm with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "ZohoCrm"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "fb8f244b47aef1b65fb306225555aad2",
+  "file_size": 782,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Zoho CRM",
+        "type": "n8n-nodes-base.zohoCrm",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "options": {},
+          "operation": "getAll"
+        },
+        "credentials": {
+          "zohoOAuth2Api": "zoho_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Zoho CRM",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

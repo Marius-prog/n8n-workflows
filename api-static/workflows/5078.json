@@ -1,0 +1,46 @@
+{
+  "id": 5078,
+  "filename": "0967_Asana_Update_Triggered.json",
+  "name": "Receive updates when an event occurs in Asana",
+  "workflow_id": "47",
+  "active": 0,
+  "description": "Manual workflow integrating AsanaTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "AsanaTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d4ef5f102bd5eded9464c4cb16e0d942",
+  "file_size": 557,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "47",
+    "name": "Receive updates when an event occurs in Asana",
+    "nodes": [
+      {
+        "name": "Asana-Trigger",
+        "type": "n8n-nodes-base.asanaTrigger",
+        "position": [
+          1490,
+          860
+        ],
+        "webhookId": "0de3b493-efb6-472c-9deb-80d28c89d28d",
+        "parameters": {
+          "resource": "Tweets",
+          "workspace": "Engineering"
+        },
+        "credentials": {
+          "asanaApi": "asana"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

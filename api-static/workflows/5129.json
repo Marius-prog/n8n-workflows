@@ -1,0 +1,74 @@
+{
+  "id": 5129,
+  "filename": "1018_Typeform_Airtable_Automation_Triggered.json",
+  "name": "CFP Selection 1",
+  "workflow_id": "54",
+  "active": 0,
+  "description": "Manual workflow integrating TypeformTrigger, Airtable with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "TypeformTrigger",
+    "Airtable"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "19daaf5fc455dad730a434843b0d532e",
+  "file_size": 980,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "54",
+    "name": "CFP Selection 1",
+    "nodes": [
+      {
+        "name": "Typeform Trigger",
+        "type": "n8n-nodes-base.typeformTrigger",
+        "position": [
+          450,
+          250
+        ],
+        "parameters": {
+          "formId": ""
+        },
+        "credentials": {
+          "typeformApi": "Typeform"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Airtable",
+        "type": "n8n-nodes-base.airtable",
+        "position": [
+          660,
+          250
+        ],
+        "parameters": {
+          "table": "",
+          "operation": "append",
+          "application": ""
+        },
+        "credentials": {
+          "airtableApi": "Airtable"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Typeform Trigger": {
+        "main": [
+          [
+            {
+              "node": "Airtable",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

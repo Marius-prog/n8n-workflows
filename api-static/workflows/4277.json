@@ -1,0 +1,94 @@
+{
+  "id": 4277,
+  "filename": "0166_Manual_Lingvanex_Automation_Webhook.json",
+  "name": "Translate cocktail instructions using LingvaNex",
+  "workflow_id": "145",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, LingvaNex, HttpRequest with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "LingvaNex",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "466b1dc351c5ea4b8e6076c056b86bab",
+  "file_size": 1490,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "145",
+    "name": "Translate cocktail instructions using LingvaNex",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "LingvaNex",
+        "type": "n8n-nodes-base.lingvaNex",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "text": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strInstructions\"]}}",
+          "options": {},
+          "translateTo": "it_IT"
+        },
+        "credentials": {
+          "lingvaNexApi": "LingvaNex"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "LingvaNex",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": 5161,
+  "filename": "1050_Emailreadimap_Send.json",
+  "name": "Emailreadimap Send",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating EmailReadImap with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "EmailReadImap"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "993f1a7e3f4404c893ab5e4cede1151c",
+  "file_size": 390,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "IMAP Email",
+        "type": "n8n-nodes-base.emailReadImap",
+        "position": [
+          760,
+          400
+        ],
+        "parameters": {
+          "options": {
+            "allowUnauthorizedCerts": false
+          }
+        },
+        "credentials": {
+          "imap": "imap_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

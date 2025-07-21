@@ -1,0 +1,154 @@
+{
+  "id": 5075,
+  "filename": "0964_HTTP_Bannerbear_Automation_Scheduled.json",
+  "name": "Cocktail Recipe Sharing",
+  "workflow_id": "46",
+  "active": 0,
+  "description": "Scheduled workflow integrating Bannerbear, HttpRequest, Cron, +1 more with 4 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "Bannerbear",
+    "HttpRequest",
+    "Cron",
+    "Rocketchat"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c59e6868dc26d066f0480233fbed6dde",
+  "file_size": 2802,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "46",
+    "name": "Cocktail Recipe Sharing",
+    "nodes": [
+      {
+        "name": "Bannerbear",
+        "type": "n8n-nodes-base.bannerbear",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "templateId": "",
+          "modificationsUi": {
+            "modificationsValues": [
+              {
+                "name": "cocktail-image",
+                "imageUrl": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strDrinkThumb\"]}}"
+              },
+              {
+                "name": "title",
+                "text": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strDrink\"]}}"
+              },
+              {
+                "name": "recipe",
+                "text": "={{$node[\"HTTP Request\"].json[\"drinks\"][0][\"strInstructions\"]}}"
+              }
+            ]
+          },
+          "additionalFields": {
+            "waitForImage": true
+          }
+        },
+        "credentials": {
+          "bannerbearApi": "Bannerbear"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 18,
+                "mode": "everyWeek",
+                "weekday": "5"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Rocketchat",
+        "type": "n8n-nodes-base.rocketchat",
+        "position": [
+          850,
+          300
+        ],
+        "parameters": {
+          "channel": "",
+          "options": {},
+          "attachments": [
+            {
+              "imageUrl": "={{$node[\"Bannerbear\"].json[\"image_url\"]}}"
+            }
+          ]
+        },
+        "credentials": {
+          "rocketchatApi": "Rocket"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Bannerbear": {
+        "main": [
+          [
+            {
+              "node": "Rocketchat",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Bannerbear",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "id": 4226,
+  "filename": "0115_HubSpot_Clearbit_Update_Triggered.json",
+  "name": "HubSpot Clearbit Update Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Clearbit, HubspotTrigger, Hubspot with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "Clearbit",
+    "HubspotTrigger",
+    "Hubspot"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3c15fd777031df4f5e91df72087e01cd",
+  "file_size": 2844,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Clearbit",
+        "type": "n8n-nodes-base.clearbit",
+        "position": [
+          850,
+          300
+        ],
+        "parameters": {
+          "email": "={{$json[\"properties\"][\"email\"][\"value\"]}}",
+          "resource": "person",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "clearbitApi": {
+            "id": "296",
+            "name": "Clearbit account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Hubspot Trigger",
+        "type": "n8n-nodes-base.hubspotTrigger",
+        "position": [
+          450,
+          300
+        ],
+        "webhookId": "b9c442e0-6f98-4d6f-8170-7135c4dbd850",
+        "parameters": {
+          "eventsUi": {
+            "eventValues": [
+              {}
+            ]
+          },
+          "additionalFields": {}
+        },
+        "credentials": {
+          "hubspotDeveloperApi": {
+            "id": "295",
+            "name": "Hubspot Developer account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Get Contact",
+        "type": "n8n-nodes-base.hubspot",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "resource": "contact",
+          "contactId": "={{$json[\"contactId\"]}}",
+          "operation": "get",
+          "authentication": "oAuth2",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "hubspotOAuth2Api": {
+            "id": "268",
+            "name": "HubSpot@Test Account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Update Contact",
+        "type": "n8n-nodes-base.hubspot",
+        "position": [
+          1050,
+          300
+        ],
+        "parameters": {
+          "email": "={{$json[\"email\"]}}",
+          "resource": "contact",
+          "authentication": "oAuth2",
+          "additionalFields": {
+            "city": "={{$json[\"geo\"][\"city\"]}}",
+            "jobTitle": "={{$json[\"employment\"][\"title\"]}}",
+            "companyName": "={{$json[\"employment\"][\"name\"]}}"
+          }
+        },
+        "credentials": {
+          "hubspotOAuth2Api": {
+            "id": "268",
+            "name": "HubSpot@Test Account"
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Clearbit": {
+        "main": [
+          [
+            {
+              "node": "Update Contact",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Contact": {
+        "main": [
+          [
+            {
+              "node": "Clearbit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Hubspot Trigger": {
+        "main": [
+          [
+            {
+              "node": "Get Contact",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

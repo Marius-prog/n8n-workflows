@@ -1,0 +1,45 @@
+{
+  "id": 5240,
+  "filename": "1129_Wufoo_Update_Triggered.json",
+  "name": "Receive updates when a form is submitted in Wufoo",
+  "workflow_id": "78",
+  "active": 0,
+  "description": "Manual workflow integrating WufooTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "WufooTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b4fc309fe7b0caac84eac98142f005b0",
+  "file_size": 517,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "78",
+    "name": "Receive updates when a form is submitted in Wufoo",
+    "nodes": [
+      {
+        "name": "Wufoo Trigger",
+        "type": "n8n-nodes-base.wufooTrigger",
+        "position": [
+          1290,
+          140
+        ],
+        "webhookId": "106376c5-b49c-412f-8463-4db23a23c057",
+        "parameters": {
+          "form": "n8n"
+        },
+        "credentials": {
+          "wufooApi": "wufoo"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

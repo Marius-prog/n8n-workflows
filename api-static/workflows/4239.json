@@ -1,0 +1,136 @@
+{
+  "id": 4239,
+  "filename": "0128_Manual_N8Ntrainingcustomerdatastore_Automation_Webhook.json",
+  "name": "Manual N8Ntrainingcustomerdatastore Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Set, N8nTrainingCustomerDatastore, +1 more with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "Set",
+    "N8nTrainingCustomerDatastore",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "cabb0d261765901bcc446758786c5d18",
+  "file_size": 2306,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "apiKey",
+                "value": "n8n-secret-keey"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Customer Datastore",
+        "type": "n8n-nodes-base.n8nTrainingCustomerDatastore",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "operation": "getAllPeople",
+          "returnAll": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          850,
+          300
+        ],
+        "parameters": {
+          "url": "https://webhook.site/f99d65ab-8959-4466-a427-cdd0ad482220",
+          "options": {},
+          "requestMethod": "POST",
+          "bodyParametersUi": {
+            "parameter": [
+              {
+                "name": "name",
+                "value": "={{$json[\"name\"]}}"
+              }
+            ]
+          },
+          "headerParametersUi": {
+            "parameter": [
+              {
+                "name": "api-key",
+                "value": "={{ $item(0).$node[\"Set\"].json[\"apiKey\"] }}"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Customer Datastore",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Customer Datastore": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

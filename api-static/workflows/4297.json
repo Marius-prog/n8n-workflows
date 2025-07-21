@@ -1,0 +1,75 @@
+{
+  "id": 4297,
+  "filename": "0186_Quickbooks_Onfleet_Create_Triggered.json",
+  "name": "Create a QuickBooks invoice on a new Onfleet Task creation",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating OnfleetTrigger, Quickbooks with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "OnfleetTrigger",
+    "Quickbooks"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d1a7ca15f5317285922ee8215817d3e1",
+  "file_size": 1145,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "name": "Create a QuickBooks invoice on a new Onfleet Task creation",
+    "nodes": [
+      {
+        "name": "Onfleet Trigger",
+        "type": "n8n-nodes-base.onfleetTrigger",
+        "position": [
+          460,
+          300
+        ],
+        "webhookId": "6d6a2bee-f83e-4ebd-a1d5-8708c34393dc",
+        "parameters": {
+          "triggerOn": "taskCreated",
+          "additionalFields": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "QuickBooks Online",
+        "type": "n8n-nodes-base.quickbooks",
+        "position": [
+          680,
+          300
+        ],
+        "parameters": {
+          "Line": [],
+          "resource": "invoice",
+          "operation": "create",
+          "additionalFields": {
+            "Balance": 0,
+            "TxnDate": "",
+            "ShipAddr": "",
+            "BillEmail": ""
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Onfleet Trigger": {
+        "main": [
+          [
+            {
+              "node": "QuickBooks Online",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

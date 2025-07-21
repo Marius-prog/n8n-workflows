@@ -1,0 +1,48 @@
+{
+  "id": 4258,
+  "filename": "0147_Toggl_Create_Triggered.json",
+  "name": "Get new time entries from Toggl",
+  "workflow_id": "138",
+  "active": 0,
+  "description": "Manual workflow integrating TogglTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "TogglTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3f22042cdd13947f8a75b74ed69ebb1a",
+  "file_size": 488,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "138",
+    "name": "Get new time entries from Toggl",
+    "nodes": [
+      {
+        "name": "Toggl",
+        "type": "n8n-nodes-base.togglTrigger",
+        "position": [
+          650,
+          250
+        ],
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {}
+            ]
+          }
+        },
+        "credentials": {
+          "togglApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": 4218,
+  "filename": "0107_Manual_Zulip_Send_Triggered.json",
+  "name": "Send a private message on Zulip",
+  "workflow_id": "126",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Zulip with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Zulip"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ac8dce89ff701f15f2b684972948c07a",
+  "file_size": 823,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "126",
+    "name": "Send a private message on Zulip",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Zulip",
+        "type": "n8n-nodes-base.zulip",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "to": []
+        },
+        "credentials": {
+          "zulipApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Zulip",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

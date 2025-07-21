@@ -1,0 +1,43 @@
+{
+  "id": 4152,
+  "filename": "0041_Chargebee_Update_Triggered.json",
+  "name": "Receive updates for events in Chargebee",
+  "workflow_id": "108",
+  "active": 0,
+  "description": "Manual workflow integrating ChargebeeTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ChargebeeTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "64017e58d74fb7022f506c39baf1d74f",
+  "file_size": 416,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "108",
+    "name": "Receive updates for events in Chargebee",
+    "nodes": [
+      {
+        "name": "Chargebee Trigger",
+        "type": "n8n-nodes-base.chargebeeTrigger",
+        "position": [
+          700,
+          250
+        ],
+        "parameters": {
+          "events": [
+            "*"
+          ]
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

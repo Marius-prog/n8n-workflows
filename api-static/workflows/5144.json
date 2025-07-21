@@ -1,0 +1,64 @@
+{
+  "id": 5144,
+  "filename": "1033_Manual_Microsoftexcel_Automate_Triggered.json",
+  "name": "Manual Microsoftexcel Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MicrosoftExcel with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "MicrosoftExcel"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "718e51f5921544f2f51bbf93369701ef",
+  "file_size": 817,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Microsoft Excel",
+        "type": "n8n-nodes-base.microsoftExcel",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "filters": {},
+          "operation": "getAll"
+        },
+        "credentials": {
+          "microsoftExcelOAuth2Api": "ms-oauth-creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Microsoft Excel",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

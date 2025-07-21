@@ -1,0 +1,140 @@
+{
+  "id": 5315,
+  "filename": "1204_Manual_Peekalink_Automate_Triggered.json",
+  "name": "Manual Peekalink Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Peekalink, If, +1 more with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "ManualTrigger",
+    "Peekalink",
+    "If",
+    "NoOp"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "84350c676a5cfed72daed42db53252b1",
+  "file_size": 2248,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          310,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Peekalink",
+        "type": "n8n-nodes-base.peekalink",
+        "position": [
+          510,
+          300
+        ],
+        "parameters": {
+          "url": "https://n8n1.io",
+          "operation": "isAvailable"
+        },
+        "credentials": {
+          "peekalinkApi": "Peekalink API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "IF",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          710,
+          300
+        ],
+        "parameters": {
+          "conditions": {
+            "string": [],
+            "boolean": [
+              {
+                "value1": "={{$json[\"isAvailable\"]}}",
+                "value2": true
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Peekalink1",
+        "type": "n8n-nodes-base.peekalink",
+        "position": [
+          910,
+          200
+        ],
+        "parameters": {
+          "url": "={{$node[\"Peekalink\"].parameter[\"url\"]}}"
+        },
+        "credentials": {
+          "peekalinkApi": "Peekalink API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NoOp",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          910,
+          400
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "IF": {
+        "main": [
+          [
+            {
+              "node": "Peekalink1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "NoOp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Peekalink": {
+        "main": [
+          [
+            {
+              "node": "IF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Peekalink",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

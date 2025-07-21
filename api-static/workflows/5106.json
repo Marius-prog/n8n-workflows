@@ -1,0 +1,66 @@
+{
+  "id": 5106,
+  "filename": "0995_Manual_Mailgun_Automate_Triggered.json",
+  "name": "Manual Mailgun Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Mailgun with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Mailgun"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d27f1f064dcb63ed874dbf342b39e704",
+  "file_size": 892,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Mailgun",
+        "type": "n8n-nodes-base.mailgun",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "text": "This is a test message ",
+          "subject": "This is a Subject",
+          "toEmail": "user2@example.com",
+          "fromEmail": "user@example.com"
+        },
+        "credentials": {
+          "mailgunApi": "mailgun-creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Mailgun",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

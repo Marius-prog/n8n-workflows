@@ -1,0 +1,71 @@
+{
+  "id": 4129,
+  "filename": "0018_Manual_Chargebee_Create_Triggered.json",
+  "name": "Create a new customer in Chargebee",
+  "workflow_id": "103",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Chargebee with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Chargebee"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "eb19944f843117c851d082b66848aa82",
+  "file_size": 949,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "103",
+    "name": "Create a new customer in Chargebee",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Chargebee",
+        "type": "n8n-nodes-base.chargebee",
+        "position": [
+          460,
+          300
+        ],
+        "parameters": {
+          "resource": "customer",
+          "properties": {
+            "last_name": "",
+            "first_name": ""
+          }
+        },
+        "credentials": {
+          "chargebeeApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Chargebee",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

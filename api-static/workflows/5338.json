@@ -1,0 +1,129 @@
+{
+  "id": 5338,
+  "filename": "1227_Autopilot_Automate.json",
+  "name": "Autopilot Automate",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Autopilot with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "Autopilot"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "28d175d3b02531fe4cdfca4c8b5679bf",
+  "file_size": 2250,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Autopilot",
+        "type": "n8n-nodes-base.autopilot",
+        "position": [
+          470,
+          320
+        ],
+        "parameters": {
+          "name": "n8n-docs",
+          "resource": "list"
+        },
+        "credentials": {
+          "autopilotApi": "Autopilot API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Autopilot1",
+        "type": "n8n-nodes-base.autopilot",
+        "position": [
+          670,
+          320
+        ],
+        "parameters": {
+          "email": "",
+          "additionalFields": {
+            "autopilotList": "={{$json[\"list_id\"]}}"
+          }
+        },
+        "credentials": {
+          "autopilotApi": "Autopilot API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Autopilot2",
+        "type": "n8n-nodes-base.autopilot",
+        "position": [
+          870,
+          320
+        ],
+        "parameters": {
+          "email": "={{$node[\"Autopilot1\"].parameter[\"email\"]}}",
+          "additionalFields": {
+            "Company": "n8n"
+          }
+        },
+        "credentials": {
+          "autopilotApi": "Autopilot API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Autopilot3",
+        "type": "n8n-nodes-base.autopilot",
+        "position": [
+          1070,
+          320
+        ],
+        "parameters": {
+          "listId": "={{$node[\"Autopilot\"].json[\"list_id\"]}}",
+          "resource": "contactList",
+          "operation": "getAll",
+          "returnAll": true
+        },
+        "credentials": {
+          "autopilotApi": "Autopilot API Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Autopilot": {
+        "main": [
+          [
+            {
+              "node": "Autopilot1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Autopilot1": {
+        "main": [
+          [
+            {
+              "node": "Autopilot2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Autopilot2": {
+        "main": [
+          [
+            {
+              "node": "Autopilot3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

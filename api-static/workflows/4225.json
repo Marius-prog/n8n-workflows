@@ -1,0 +1,70 @@
+{
+  "id": 4225,
+  "filename": "0114_Manual_Salesmate_Create_Triggered.json",
+  "name": "Create a company in Salesmate",
+  "workflow_id": "128",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Salesmate with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Salesmate"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "2f635e674555a65bdf7437b9dec73cd4",
+  "file_size": 926,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "128",
+    "name": "Create a company in Salesmate",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Salesmate",
+        "type": "n8n-nodes-base.salesmate",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "name": "",
+          "owner": "",
+          "resource": "company",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "salesmateApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Salesmate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

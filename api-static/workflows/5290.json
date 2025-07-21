@@ -1,0 +1,66 @@
+{
+  "id": 5290,
+  "filename": "1179_Error_Mailgun_Automate_Triggered.json",
+  "name": "Error Mailgun Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ErrorTrigger, Mailgun with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ErrorTrigger",
+    "Mailgun"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9d387fd3598f5437b28e637ff12cbbcf",
+  "file_size": 1032,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Error Trigger",
+        "type": "n8n-nodes-base.errorTrigger",
+        "position": [
+          250,
+          500
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Mailgun",
+        "type": "n8n-nodes-base.mailgun",
+        "position": [
+          450,
+          500
+        ],
+        "parameters": {
+          "text": "=Error: {{$node[\"Error Trigger\"].data[\"execution\"][\"error\"][\"message\"]}}\n\nStack Trace:\n{{$node[\"Error Trigger\"].data[\"execution\"][\"error\"][\"stack\"]}}",
+          "subject": "=Workflow Error:  {{$node[\"Error Trigger\"].data[\"workflow\"][\"name\"]}}",
+          "toEmail": "",
+          "fromEmail": ""
+        },
+        "credentials": {
+          "mailgunApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Error Trigger": {
+        "main": [
+          [
+            {
+              "node": "Mailgun",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

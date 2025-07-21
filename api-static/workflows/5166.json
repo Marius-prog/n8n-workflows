@@ -1,0 +1,130 @@
+{
+  "id": 5166,
+  "filename": "1055_Manual_Mysql_Automation_Triggered.json",
+  "name": "Manual Mysql Automation Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MySql, Set with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "MySql",
+    "Set"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "40621fc4587017d3323bf4c487af6a66",
+  "file_size": 2043,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          460,
+          230
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "MySQL",
+        "type": "n8n-nodes-base.mySql",
+        "position": [
+          660,
+          230
+        ],
+        "parameters": {
+          "query": "CREATE TABLE test (id INT, name VARCHAR(255), PRIMARY KEY (id));",
+          "operation": "executeQuery"
+        },
+        "credentials": {
+          "mySql": "mysql_creds"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "MySQL1",
+        "type": "n8n-nodes-base.mySql",
+        "position": [
+          1060,
+          230
+        ],
+        "parameters": {
+          "table": "test",
+          "columns": "id, name"
+        },
+        "credentials": {
+          "mySql": "mysql_creds"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          860,
+          230
+        ],
+        "parameters": {
+          "values": {
+            "number": [
+              {
+                "name": "id"
+              }
+            ],
+            "string": [
+              {
+                "name": "name",
+                "value": "n8n"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1,
+        "alwaysOutputData": false
+      }
+    ],
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

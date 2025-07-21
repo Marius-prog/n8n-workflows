@@ -1,0 +1,70 @@
+{
+  "id": 4296,
+  "filename": "0185_Shopify_Onfleet_Automation_Triggered.json",
+  "name": "Updating Shopify tags on Onfleet events",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating OnfleetTrigger, Shopify with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "OnfleetTrigger",
+    "Shopify"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5abc9e381dda7fccd947f55d6ff28a52",
+  "file_size": 963,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "name": "Updating Shopify tags on Onfleet events",
+    "nodes": [
+      {
+        "name": "Onfleet Trigger",
+        "type": "n8n-nodes-base.onfleetTrigger",
+        "position": [
+          460,
+          300
+        ],
+        "webhookId": "6d6a2bee-f83e-4ebd-a1d5-8708c34393dc",
+        "parameters": {
+          "triggerOn": "taskDelayed",
+          "additionalFields": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Shopify",
+        "type": "n8n-nodes-base.shopify",
+        "position": [
+          680,
+          300
+        ],
+        "parameters": {
+          "operation": "update",
+          "updateFields": {
+            "tags": ""
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Onfleet Trigger": {
+        "main": [
+          [
+            {
+              "node": "Shopify",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

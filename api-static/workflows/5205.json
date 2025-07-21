@@ -1,0 +1,124 @@
+{
+  "id": 5205,
+  "filename": "1094_Manual_Salesforce_Automate_Triggered.json",
+  "name": "Manual Salesforce Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Salesforce with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "Salesforce"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "41425872b206ecb9dff314862e115069",
+  "file_size": 2117,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          420,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Salesforce",
+        "type": "n8n-nodes-base.salesforce",
+        "position": [
+          620,
+          260
+        ],
+        "parameters": {
+          "company": "CompanyInc",
+          "lastname": "DudeOne",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "salesforceOAuth2Api": "salesforce_creds"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Salesforce1",
+        "type": "n8n-nodes-base.salesforce",
+        "position": [
+          810,
+          260
+        ],
+        "parameters": {
+          "leadId": "={{$node[\"Salesforce\"].json[\"id\"]}}",
+          "operation": "update",
+          "updateFields": {
+            "city": "Berlin"
+          }
+        },
+        "credentials": {
+          "salesforceOAuth2Api": "salesforce_creds"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Salesforce2",
+        "type": "n8n-nodes-base.salesforce",
+        "position": [
+          1020,
+          260
+        ],
+        "parameters": {
+          "title": "Deal Won!",
+          "leadId": "={{$node[\"Salesforce\"].json[\"id\"]}}",
+          "options": {},
+          "operation": "addNote"
+        },
+        "credentials": {
+          "salesforceOAuth2Api": "salesforce_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Salesforce": {
+        "main": [
+          [
+            {
+              "node": "Salesforce1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Salesforce1": {
+        "main": [
+          [
+            {
+              "node": "Salesforce2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Salesforce",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

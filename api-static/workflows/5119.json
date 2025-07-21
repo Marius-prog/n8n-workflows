@@ -1,0 +1,63 @@
+{
+  "id": 5119,
+  "filename": "1008_Manual_Rundeck_Automate_Triggered.json",
+  "name": "Manual Rundeck Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Rundeck with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Rundeck"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "0e2e0fbd3a489e3bf4619e0b12cd2b36",
+  "file_size": 782,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Rundeck",
+        "type": "n8n-nodes-base.rundeck",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "jobid": "f02c7661-6f75-4ffe-958c-c0ed5f9bc9e6"
+        },
+        "credentials": {
+          "rundeckApi": "rundeck_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Rundeck",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": 4209,
+  "filename": "0098_Manual_Segment_Monitor_Triggered.json",
+  "name": "Track an event in Segment",
+  "workflow_id": "122",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Segment with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Segment"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "0ee03e1e3feb9d7a9a4a248fb9f26360",
+  "file_size": 858,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "122",
+    "name": "Track an event in Segment",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Segment",
+        "type": "n8n-nodes-base.segment",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "event": "",
+          "resource": "track"
+        },
+        "credentials": {
+          "segmentApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Segment",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

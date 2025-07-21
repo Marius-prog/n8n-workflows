@@ -1,0 +1,70 @@
+{
+  "id": 4453,
+  "filename": "0342_Manual_GoogleCalendar_Create_Triggered.json",
+  "name": "Add a event to Calender",
+  "workflow_id": "1",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, GoogleCalendar with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "GoogleCalendar"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b18cc286bc328308f17449a83ccc0e07",
+  "file_size": 1020,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "1",
+    "name": "Add a event to Calender",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          410,
+          320
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Google Calendar",
+        "type": "n8n-nodes-base.googleCalendar",
+        "position": [
+          830,
+          320
+        ],
+        "parameters": {
+          "end": "2020-06-27T07:00:00.000Z",
+          "start": "2020-06-25T07:00:00.000Z",
+          "calendar": "shaligramshraddha@gmail.com",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "googleCalendarOAuth2Api": "new one"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Google Calendar",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": 5143,
+  "filename": "1032_Manual_Microsoftonedrive_Automate_Triggered.json",
+  "name": "Manual Microsoftonedrive Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MicrosoftOneDrive with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "MicrosoftOneDrive"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "19c43205a4ebb6345d3c166184e590e7",
+  "file_size": 890,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Microsoft OneDrive",
+        "type": "n8n-nodes-base.microsoftOneDrive",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "name": "n8n-rocks",
+          "options": {},
+          "resource": "folder",
+          "operation": "create"
+        },
+        "credentials": {
+          "microsoftOneDriveOAuth2Api": "n8n-docs-creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Microsoft OneDrive",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

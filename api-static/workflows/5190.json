@@ -1,0 +1,47 @@
+{
+  "id": 5190,
+  "filename": "1079_Helpscout_Create_Triggered.json",
+  "name": "Receive updates when a customer is created in HelpScout",
+  "workflow_id": "61",
+  "active": 0,
+  "description": "Manual workflow integrating HelpScoutTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "HelpScoutTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "fcbdf69122d0fac2b3484826c914828c",
+  "file_size": 583,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "61",
+    "name": "Receive updates when a customer is created in HelpScout",
+    "nodes": [
+      {
+        "name": "HelpScout Trigger",
+        "type": "n8n-nodes-base.helpScoutTrigger",
+        "position": [
+          690,
+          260
+        ],
+        "webhookId": "aaaf8b3f-8247-4d98-ae65-8c6626aade95",
+        "parameters": {
+          "events": [
+            "customer.created"
+          ]
+        },
+        "credentials": {
+          "helpScoutOAuth2Api": "helpscout"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

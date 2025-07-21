@@ -1,0 +1,47 @@
+{
+  "id": 4849,
+  "filename": "0738_Customerio_Update_Triggered.json",
+  "name": "Receive updates when a subscriber unsubscribes in Customer.io",
+  "workflow_id": "29",
+  "active": 0,
+  "description": "Manual workflow integrating CustomerIoTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "CustomerIoTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "633bdc000be46c90e62c1d21d67a4c73",
+  "file_size": 593,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "29",
+    "name": "Receive updates when a subscriber unsubscribes in Customer.io",
+    "nodes": [
+      {
+        "name": "Customer.io Trigger",
+        "type": "n8n-nodes-base.customerIoTrigger",
+        "position": [
+          650,
+          260
+        ],
+        "webhookId": "88092579-1b8d-4d44-98d5-f24b3579cbc2",
+        "parameters": {
+          "events": [
+            "customer.unsubscribed"
+          ]
+        },
+        "credentials": {
+          "customerIoApi": "customerIO"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

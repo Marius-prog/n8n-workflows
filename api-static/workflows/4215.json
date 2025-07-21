@@ -1,0 +1,72 @@
+{
+  "id": 4215,
+  "filename": "0104_Netlify_Webhook_Automate_Webhook.json",
+  "name": "Netlify Webhook Automate Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating Webhook, Netlify with 2 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "Webhook",
+    "Netlify"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "7d0f65023d6be3a351fdf5aacc7548b5",
+  "file_size": 1069,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          450,
+          300
+        ],
+        "webhookId": "0d36a8db-0177-4501-9f7a-e46b6829d07a",
+        "parameters": {
+          "path": "0d36a8db-0177-4501-9f7a-e46b6829d07a",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Netlify",
+        "type": "n8n-nodes-base.netlify",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "siteId": "5e15e032-9345-41b8-a98f-509e545f061c",
+          "operation": "create",
+          "additionalFields": {
+            "title": "={{$json[\"body\"][\"data\"][\"title\"]}}"
+          }
+        },
+        "credentials": {
+          "netlifyApi": "Netlify account"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Netlify",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

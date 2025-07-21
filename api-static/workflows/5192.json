@@ -1,0 +1,44 @@
+{
+  "id": 5192,
+  "filename": "1081_HubSpot_Automate_Triggered.json",
+  "name": "HubSpot Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating HubspotTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "HubspotTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "cbc4a07647d0d64921d15126624fc3f4",
+  "file_size": 509,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Hubspot Trigger",
+        "type": "n8n-nodes-base.hubspotTrigger",
+        "position": [
+          700,
+          260
+        ],
+        "webhookId": "9fe8c037-be4f-4809-a7c2-96e509bfc52e",
+        "parameters": {
+          "appId": "dghert3",
+          "additionalFields": {
+            "maxConcurrentRequests": 5
+          }
+        },
+        "credentials": {
+          "hubspotDeveloperApi": "hubspot_trigger"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": 4933,
+  "filename": "0822_Cron_Postgres_Automation_Scheduled.json",
+  "name": "Postgres Data Ingestion",
+  "workflow_id": "33",
+  "active": 1,
+  "description": "Scheduled workflow integrating Cron, Function, Postgres with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Cron",
+    "Function",
+    "Postgres"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "97a819a7b06eebcfe01b55599c92cf3c",
+  "file_size": 1825,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "33",
+    "name": "Postgres Data Ingestion",
+    "nodes": [
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          300,
+          250
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Function",
+        "type": "n8n-nodes-base.function",
+        "position": [
+          500,
+          250
+        ],
+        "parameters": {
+          "functionCode": "var today = new Date();\nvar date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();\nvar time = today.getHours() + \":\" + today.getMinutes() + \":\" + today.getSeconds();\nvar dateTime = date+' '+time;\n\nitems[0].json.sensor_id = 'humidity01';\nitems[0].json.value = Math.ceil(Math.random()*100);\nitems[0].json.time_stamp = dateTime;\nitems[0].json.notification = false;\n\nreturn items;"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Postgres",
+        "type": "n8n-nodes-base.postgres",
+        "position": [
+          680,
+          250
+        ],
+        "parameters": {
+          "table": "n8n",
+          "columns": "sensor_id,value,time_stamp,notification"
+        },
+        "credentials": {
+          "postgres": "Postgres"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": true,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "Function",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Function": {
+        "main": [
+          [
+            {
+              "node": "Postgres",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

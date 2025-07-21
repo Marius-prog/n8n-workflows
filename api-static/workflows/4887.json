@@ -1,0 +1,130 @@
+{
+  "id": 4887,
+  "filename": "0776_Manual_Mailerlite_Create_Triggered.json",
+  "name": "Receive updates when a subscriber is added to a group and strore the information in Airtable",
+  "workflow_id": "30",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MailerLiteTrigger, Set, +1 more with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "MailerLiteTrigger",
+    "Set",
+    "Airtable"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "46ae638b36e2c0e5f0af64f2083dd0da",
+  "file_size": 2314,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "30",
+    "name": "Receive updates when a subscriber is added to a group and strore the information in Airtable",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "disabled": true,
+        "position": [
+          110,
+          600
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "MailerLite Trigger",
+        "type": "n8n-nodes-base.mailerLiteTrigger",
+        "position": [
+          530,
+          300
+        ],
+        "webhookId": "dd15d919-18b3-4af7-a5c9-c4583cdda9f5",
+        "parameters": {
+          "event": "subscriber.add_to_group"
+        },
+        "credentials": {
+          "mailerLiteApi": "mailerlite"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          730,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "Name",
+                "value": "={{$node[\"MailerLite Trigger\"].json[\"data\"][\"subscriber\"][\"name\"]}}"
+              },
+              {
+                "name": "Email",
+                "value": "={{$node[\"MailerLite Trigger\"].json[\"data\"][\"subscriber\"][\"email\"]}}"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Airtable",
+        "type": "n8n-nodes-base.airtable",
+        "position": [
+          930,
+          300
+        ],
+        "parameters": {
+          "table": "Data",
+          "options": {},
+          "operation": "append",
+          "application": ""
+        },
+        "credentials": {
+          "airtableApi": "airtable-harshil"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Airtable",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MailerLite Trigger": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          []
+        ]
+      }
+    }
+  }
+}

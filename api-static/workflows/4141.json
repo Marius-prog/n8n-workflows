@@ -1,0 +1,72 @@
+{
+  "id": 4141,
+  "filename": "0030_Manual_Clickup_Create_Triggered.json",
+  "name": "Create a task in ClickUp",
+  "workflow_id": "105",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ClickUp with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "ClickUp"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b0b136a78b493a5fde332a90d2073590",
+  "file_size": 946,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "105",
+    "name": "Create a task in ClickUp",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "ClickUp",
+        "type": "n8n-nodes-base.clickUp",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "list": "",
+          "name": "",
+          "team": "",
+          "space": "",
+          "folder": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "clickUpApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "ClickUp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

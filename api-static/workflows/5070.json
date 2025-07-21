@@ -1,0 +1,66 @@
+{
+  "id": 5070,
+  "filename": "0959_Manual_Signl4_Automate_Triggered.json",
+  "name": "Manual Signl4 Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Signl4 with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Signl4"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ccc36c7fbe6b873a6668b6c4f21d8177",
+  "file_size": 871,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "SIGNL4",
+        "type": "n8n-nodes-base.signl4",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "message": "This is a test alert sent from n8n to SIGNL4",
+          "additionalFields": {
+            "title": "Sample Title"
+          }
+        },
+        "credentials": {
+          "signl4Api": "Signl4 Team Secret"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "SIGNL4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

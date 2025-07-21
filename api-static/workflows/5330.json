@@ -1,0 +1,71 @@
+{
+  "id": 5330,
+  "filename": "1219_Manual_Agilecrm_Create_Triggered.json",
+  "name": "Create a new contact in Agile CRM",
+  "workflow_id": "96",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, AgileCrm with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "AgileCrm"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "7b768c3ae5625924bea9c4bf4e26b1a4",
+  "file_size": 946,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "96",
+    "name": "Create a new contact in Agile CRM",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "AgileCRM",
+        "type": "n8n-nodes-base.agileCrm",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "operation": "create",
+          "additionalFields": {
+            "lastName": "",
+            "firstName": ""
+          }
+        },
+        "credentials": {
+          "agileCrmApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "AgileCRM",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

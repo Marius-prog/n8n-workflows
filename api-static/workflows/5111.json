@@ -1,0 +1,75 @@
+{
+  "id": 5111,
+  "filename": "1000_Manual_Travisci_Create_Triggered.json",
+  "name": "Trigger a build using the TravisCI node",
+  "workflow_id": "52",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, TravisCi with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "TravisCi"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "6f3faa3017a3a1225616d199375e99c1",
+  "file_size": 1006,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "52",
+    "name": "Trigger a build using the TravisCI node",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          510,
+          350
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "TravisCI",
+        "type": "n8n-nodes-base.travisCi",
+        "position": [
+          710,
+          350
+        ],
+        "parameters": {
+          "slug": "",
+          "branch": "",
+          "operation": "trigger",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "travisCiApi": "travisCI"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "TravisCI": {
+        "main": [
+          []
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "TravisCI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": 5286,
+  "filename": "1175_Manual_Trello_Create_Triggered.json",
+  "name": "Create a new card in Trello",
+  "workflow_id": "89",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Trello with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Trello"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "bb6314994032e8c993eae1a4baf97c73",
+  "file_size": 934,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "89",
+    "name": "Create a new card in Trello",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Trello",
+        "type": "n8n-nodes-base.trello",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "name": "Hello",
+          "listId": "",
+          "description": "Here are some details",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "trelloApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Trello",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

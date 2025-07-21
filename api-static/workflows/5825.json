@@ -1,0 +1,111 @@
+{
+  "id": 5825,
+  "filename": "1714_Manual_Start_Update_Webhook.json",
+  "name": "Manual Start Update Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Start, HttpRequest with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "Start",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b618b99ca64bb6fdfa336f03ead92176",
+  "file_size": 1937,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Start",
+        "type": "n8n-nodes-base.start",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "url": "https://unsplash.com/photos/lUDMZUWFUXE/download?ixid=MnwxMjA3fDB8MXxhbGx8Mnx8fHx8fDJ8fDE2MzczMjY4Mjc&force=true",
+          "options": {},
+          "responseFormat": "file",
+          "headerParametersUi": {
+            "parameter": []
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request1",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "url": "https://api.twitter.com/1.1/account/update_profile_banner.json",
+          "options": {},
+          "requestMethod": "POST",
+          "authentication": "oAuth1",
+          "jsonParameters": true,
+          "sendBinaryData": true,
+          "binaryPropertyName": "banner:data"
+        },
+        "credentials": {
+          "oAuth1Api": {
+            "id": "300",
+            "name": "Unnamed credential"
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

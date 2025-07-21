@@ -1,0 +1,69 @@
+{
+  "id": 5066,
+  "filename": "0955_HTTP_Automation_Webhook.json",
+  "name": "HTTP Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating HttpRequest with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "dfc329962ce1b04f305ed71ae19225e7",
+  "file_size": 1118,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "url": "https://api.digitalocean.com/v2/droplets",
+          "options": {
+            "bodyContentType": "json"
+          },
+          "requestMethod": "POST",
+          "bodyParametersUi": {
+            "parameter": [
+              {
+                "name": "name",
+                "value": "API-creation-test"
+              },
+              {
+                "name": "region",
+                "value": "blr1"
+              },
+              {
+                "name": "size",
+                "value": "s-1vcpu-1gb"
+              },
+              {
+                "name": "image",
+                "value": "ubuntu-20-04-x64"
+              }
+            ]
+          },
+          "headerParametersUi": {
+            "parameter": [
+              {
+                "name": "Authorization",
+                "value": "Bearer {your_personal_access_token}"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

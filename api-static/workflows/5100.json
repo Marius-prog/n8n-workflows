@@ -1,0 +1,48 @@
+{
+  "id": 5100,
+  "filename": "0989_Mailchimp_Automate_Triggered.json",
+  "name": "Mailchimp Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating MailchimpTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "MailchimpTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "fbfe7641dd889500a4ea3c4bcff77823",
+  "file_size": 513,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Mailchimp Trigger",
+        "type": "n8n-nodes-base.mailchimpTrigger",
+        "position": [
+          870,
+          370
+        ],
+        "parameters": {
+          "list": "0a5a4ca5de",
+          "events": [
+            "subscribe"
+          ],
+          "sources": [
+            "api",
+            "admin",
+            "user"
+          ]
+        },
+        "credentials": {
+          "mailchimpApi": "mailchimp_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

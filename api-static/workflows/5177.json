@@ -1,0 +1,70 @@
+{
+  "id": 5177,
+  "filename": "1066_Manual_GitHub_Create_Triggered.json",
+  "name": "new",
+  "workflow_id": "5",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Github with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Github"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "4cf5d49925b355e8eb8773c7515ff6a3",
+  "file_size": 915,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "5",
+    "name": "new",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          540,
+          350
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Github",
+        "type": "n8n-nodes-base.github",
+        "position": [
+          790,
+          350
+        ],
+        "parameters": {
+          "owner": "n8n-io",
+          "resource": "repository",
+          "operation": "getProfile",
+          "repository": "n8n"
+        },
+        "credentials": {
+          "githubApi": "shraddha"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Github",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

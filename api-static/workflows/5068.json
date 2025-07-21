@@ -1,0 +1,67 @@
+{
+  "id": 5068,
+  "filename": "0957_Manual_Paypal_Automation_Triggered.json",
+  "name": "Manual Paypal Automation Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, PayPal with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "PayPal"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b9c8bff76b3f03f8f4b80332e6940051",
+  "file_size": 845,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "name": "",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          540,
+          240
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "PayPal",
+        "type": "n8n-nodes-base.payPal",
+        "position": [
+          730,
+          240
+        ],
+        "parameters": {
+          "senderBatchId": "123",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "payPalApi": "paypal-credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "PayPal",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

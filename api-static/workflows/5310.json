@@ -1,0 +1,67 @@
+{
+  "id": 5310,
+  "filename": "1199_Manual_Sms77_Send_Triggered.json",
+  "name": "Sending an SMS using sms77",
+  "workflow_id": "92",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Sms77 with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Sms77"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "69352e0bb604a3c0985749ce3fdc92fb",
+  "file_size": 837,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "92",
+    "name": "Sending an SMS using sms77",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Sms77",
+        "type": "n8n-nodes-base.sms77",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "message": "Hello from n8n!"
+        },
+        "credentials": {
+          "sms77Api": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Sms77",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

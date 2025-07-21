@@ -1,0 +1,69 @@
+{
+  "id": 5336,
+  "filename": "1225_Manual_Asana_Create_Triggered.json",
+  "name": "Create a new task in Asana",
+  "workflow_id": "98",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Asana with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Asana"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "25b13ae880b086cfabf908b21702c777",
+  "file_size": 877,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "98",
+    "name": "Create a new task in Asana",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Asana",
+        "type": "n8n-nodes-base.asana",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "name": "",
+          "workspace": "",
+          "otherProperties": {}
+        },
+        "credentials": {
+          "asanaApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Asana",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

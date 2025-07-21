@@ -1,0 +1,114 @@
+{
+  "id": 5217,
+  "filename": "1106_GoogleSheets_Cron_Automate_Scheduled.json",
+  "name": "GoogleSheets Cron Automate Scheduled",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Scheduled workflow integrating GoogleSheets, Cron with 4 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "GoogleSheets",
+    "Cron"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b12c9c9b520150b6253f6b71995f0d9f",
+  "file_size": 1847,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Read Sheet",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          700,
+          300
+        ],
+        "parameters": {
+          "range": "Data!A:G",
+          "rawData": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          500,
+          300
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "mode": "custom",
+                "cronExpression": "0 */2 * * * *"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Write Sheet 2",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          900,
+          400
+        ],
+        "parameters": {
+          "range": "={{$node[\"Read Sheet\"].parameter[\"range\"]}}",
+          "rawData": true,
+          "operation": "update"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Write Sheet 1",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          900,
+          200
+        ],
+        "parameters": {
+          "range": "={{$node[\"Read Sheet\"].parameter[\"range\"]}}",
+          "rawData": true,
+          "operation": "update"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "Read Sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Read Sheet": {
+        "main": [
+          [
+            {
+              "node": "Write Sheet 2",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Write Sheet 1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

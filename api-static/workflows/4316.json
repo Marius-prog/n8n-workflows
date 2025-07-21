@@ -1,0 +1,44 @@
+{
+  "id": 4316,
+  "filename": "0205_Thehive_Update_Triggered.json",
+  "name": "Receive updates when an event occurs in TheHive",
+  "workflow_id": "161",
+  "active": 0,
+  "description": "Manual workflow integrating TheHiveTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "TheHiveTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "abce6427bd47ecc9c518a75ab4bbe114",
+  "file_size": 480,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "161",
+    "name": "Receive updates when an event occurs in TheHive",
+    "nodes": [
+      {
+        "name": "TheHive Trigger",
+        "type": "n8n-nodes-base.theHiveTrigger",
+        "position": [
+          690,
+          220
+        ],
+        "webhookId": "bef3fea8-2d68-43e8-9061-6c17c1059c86",
+        "parameters": {
+          "events": [
+            "*"
+          ]
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

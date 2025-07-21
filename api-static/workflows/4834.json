@@ -1,0 +1,46 @@
+{
+  "id": 4834,
+  "filename": "0723_Convertkit_Create_Triggered.json",
+  "name": "Receive updates when a subscriber is added through a form in ConvertKit",
+  "workflow_id": "28",
+  "active": 0,
+  "description": "Manual workflow integrating ConvertKitTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ConvertKitTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "82afc8323bbc4318642bd58a0d8c2f1c",
+  "file_size": 597,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "28",
+    "name": "Receive updates when a subscriber is added through a form in ConvertKit",
+    "nodes": [
+      {
+        "name": "ConvertKit Trigger",
+        "type": "n8n-nodes-base.convertKitTrigger",
+        "position": [
+          690,
+          260
+        ],
+        "webhookId": "55336480-7be1-4432-8fc8-d860572c1c18",
+        "parameters": {
+          "event": "formSubscribe",
+          "formId": 1657198
+        },
+        "credentials": {
+          "convertKitApi": "convertkit"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

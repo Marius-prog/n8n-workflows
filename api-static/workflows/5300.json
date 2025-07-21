@@ -1,0 +1,70 @@
+{
+  "id": 5300,
+  "filename": "1189_Manual_Rocketchat_Send_Triggered.json",
+  "name": "Post a message to a channel in RocketChat",
+  "workflow_id": "90",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Rocketchat with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Rocketchat"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3e47e583808b541de69e123ec80e4e87",
+  "file_size": 958,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "90",
+    "name": "Post a message to a channel in RocketChat",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Rocketchat",
+        "type": "n8n-nodes-base.rocketchat",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "text": "Hello everyone",
+          "channel": "#general",
+          "options": {},
+          "attachments": []
+        },
+        "credentials": {
+          "rocketchatApi": "Rocket"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Rocketchat",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

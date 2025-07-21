@@ -1,0 +1,65 @@
+{
+  "id": 4857,
+  "filename": "0746_Manual_Discord_Automation_Triggered.json",
+  "name": "Discord Intro",
+  "workflow_id": "2",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Discord with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Discord"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "8eaff4203f9ef092e13e7caa93b798f4",
+  "file_size": 835,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "2",
+    "name": "Discord Intro",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          510,
+          330
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "position": [
+          800,
+          330
+        ],
+        "parameters": {
+          "text": "Hello World!",
+          "webhookUri": "https://discordapp.com/api/webhooks/XXX/XXX"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

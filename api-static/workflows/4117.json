@@ -1,0 +1,98 @@
+{
+  "id": 4117,
+  "filename": "0006_Openweathermap_Cron_Automate_Scheduled.json",
+  "name": "Openweathermap Cron Automate Scheduled",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Scheduled workflow integrating Plivo, OpenWeatherMap, Cron with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Plivo",
+    "OpenWeatherMap",
+    "Cron"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3753384da1eaf4eb8cd3215491aad162",
+  "file_size": 1442,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Plivo",
+        "type": "n8n-nodes-base.plivo",
+        "position": [
+          1030,
+          400
+        ],
+        "parameters": {
+          "message": "=Hey! The temperature outside is {{$node[\"OpenWeatherMap\"].json[\"main\"][\"temp\"]}}°C."
+        },
+        "credentials": {
+          "plivoApi": "Plivo API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "OpenWeatherMap",
+        "type": "n8n-nodes-base.openWeatherMap",
+        "position": [
+          830,
+          400
+        ],
+        "parameters": {
+          "cityName": "berlin"
+        },
+        "credentials": {
+          "openWeatherMapApi": "owm"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          630,
+          400
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 9
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "OpenWeatherMap",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenWeatherMap": {
+        "main": [
+          [
+            {
+              "node": "Plivo",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

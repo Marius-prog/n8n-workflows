@@ -61,6 +61,33 @@ exports.handler = async (event, context) => {
       // Individual workflow
       const workflowId = pathParts[0].replace('.json', '');
       filePath = path.join(__dirname, '..', 'api-static', 'workflows', `${workflowId}.json`);
+    } else if (pathParts.length === 2 && pathParts[1] === 'diagram') {
+      // Workflow diagram - generate on the fly
+      const workflowId = pathParts[0];
+      const workflowPath = path.join(__dirname, '..', 'api-static', 'workflows', `${workflowId}.json`);
+      
+      if (!fs.existsSync(workflowPath)) {
+        return {
+          statusCode: 404,
+          headers: { ...securityHeaders, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ error: 'Workflow not found' })
+        };
+      }
+      
+      const workflowData = JSON.parse(fs.readFileSync(workflowPath, 'utf8'));
+      const diagram = generateMermaidDiagram(
+        workflowData.raw_workflow?.nodes || [], 
+        workflowData.raw_workflow?.connections || {}
+      );
+      
+      return {
+        statusCode: 200,
+        headers: {
+          ...securityHeaders,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ diagram })
+      };
     } else {
       return {
         statusCode: 404,
@@ -105,3 +132,40 @@ exports.handler = async (event, context) => {
     };
   }
 };
+
+// Generate Mermaid diagram
+function generateMermaidDiagram(nodes, connections) {
+  if (!nodes || nodes.length === 0) {
+    return 'graph TD\\n    A[No nodes found]';
+  }
+  
+  let diagram = 'graph TD\\n';
+  
+  // Add nodes
+  nodes.forEach(node => {
+    const nodeId = sanitizeNodeId(node.name);
+    const nodeType = node.type?.split('.').pop() || 'unknown';
+    diagram += `    ${nodeId}["${node.name}\\\\n(${nodeType})"]\\n`;
+  });
+  
+  // Add connections
+  if (connections) {
+    Object.entries(connections).forEach(([sourceNode, outputs]) => {
+      const sourceId = sanitizeNodeId(sourceNode);
+      
+      outputs.main?.forEach(outputConnections => {
+        outputConnections.forEach(connection => {
+          const targetId = sanitizeNodeId(connection.node);
+          diagram += `    ${sourceId} --> ${targetId}\\n`;
+        });
+      });
+    });
+  }
+  
+  return diagram;
+}
+
+function sanitizeNodeId(nodeName) {
+  // Convert node name to valid Mermaid ID
+  return nodeName.replace(/[^a-zA-Z0-9]/g, '_').replace(/^_+|_+$/g, '');
+}

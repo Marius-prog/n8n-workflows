@@ -1,0 +1,124 @@
+{
+  "id": 4130,
+  "filename": "0019_Manual_Uproc_Send_Triggered.json",
+  "name": "verify email",
+  "workflow_id": "103",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, FunctionItem, Uproc, +1 more with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "FunctionItem",
+    "Uproc",
+    "If"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "8c494f71d86e892f9378934910b4732a",
+  "file_size": 2097,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "103",
+    "name": "verify email",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          440,
+          510
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Create Email Item",
+        "type": "n8n-nodes-base.functionItem",
+        "position": [
+          640,
+          510
+        ],
+        "parameters": {
+          "functionCode": "item.email = \"mcolomer@gmail.com\";\nreturn item;"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Check Email Exists",
+        "type": "n8n-nodes-base.uproc",
+        "position": [
+          850,
+          510
+        ],
+        "parameters": {
+          "tool": "checkEmailExists",
+          "email": "={{$node[\"Create Email Item\"].json[\"email\"]}}",
+          "additionalOptions": {}
+        },
+        "credentials": {
+          "uprocApi": "miquel-uproc"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Email Exists?",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          1050,
+          510
+        ],
+        "parameters": {
+          "conditions": {
+            "string": [
+              {
+                "value1": "={{$node[\"Check Email Exists\"].json[\"message\"][\"response\"]}}",
+                "value2": "deliverable"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Create Email Item": {
+        "main": [
+          [
+            {
+              "node": "Check Email Exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Check Email Exists": {
+        "main": [
+          [
+            {
+              "node": "Email Exists?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Create Email Item",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

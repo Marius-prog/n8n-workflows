@@ -1,0 +1,130 @@
+{
+  "id": 5167,
+  "filename": "1056_Manual_Postgres_Automate_Triggered.json",
+  "name": "Manual Postgres Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Set, Postgres with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "Set",
+    "Postgres"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ef530b4dc1e4a43036bb599018dd10f5",
+  "file_size": 2092,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          260,
+          290
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          660,
+          290
+        ],
+        "parameters": {
+          "values": {
+            "number": [
+              {
+                "name": "id"
+              }
+            ],
+            "string": [
+              {
+                "name": "name",
+                "value": "n8n"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "typeVersion": 1,
+        "alwaysOutputData": false
+      },
+      {
+        "name": "Postgres",
+        "type": "n8n-nodes-base.postgres",
+        "position": [
+          460,
+          290
+        ],
+        "parameters": {
+          "query": "CREATE TABLE test (id INT, name VARCHAR(255), PRIMARY KEY (id));",
+          "operation": "executeQuery"
+        },
+        "credentials": {
+          "postgres": "postgres_docker_creds"
+        },
+        "typeVersion": 1,
+        "alwaysOutputData": true
+      },
+      {
+        "name": "Postgres1",
+        "type": "n8n-nodes-base.postgres",
+        "position": [
+          860,
+          290
+        ],
+        "parameters": {
+          "table": "test",
+          "columns": "id, name"
+        },
+        "credentials": {
+          "postgres": "postgres_docker_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Postgres1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Postgres": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Postgres",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

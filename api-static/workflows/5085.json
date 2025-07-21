@@ -1,0 +1,98 @@
+{
+  "id": 5085,
+  "filename": "0974_GoogleSheets_Telegram_Export_Triggered.json",
+  "name": "Save Telegram reply to journal spreadsheet",
+  "workflow_id": "4",
+  "active": 0,
+  "description": "Manual workflow integrating GoogleSheets, TelegramTrigger, FunctionItem with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "GoogleSheets",
+    "TelegramTrigger",
+    "FunctionItem"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "6d7bc862d9b8ed09c9630c4a4463befe",
+  "file_size": 2204,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": 4,
+    "name": "Save Telegram reply to journal spreadsheet",
+    "nodes": [
+      {
+        "name": "Add entry to sheet",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          700,
+          240
+        ],
+        "parameters": {
+          "options": {},
+          "sheetId": "YOUR_SPREADSHEET_ID",
+          "operation": "append"
+        },
+        "credentials": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Get journal reply",
+        "type": "n8n-nodes-base.telegramTrigger",
+        "position": [
+          220,
+          240
+        ],
+        "webhookId": "fe4a6042-d343-4a02-b443-6d32c38e094d",
+        "parameters": {
+          "updates": [
+            "message"
+          ],
+          "additionalFields": {}
+        },
+        "credentials": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Parse message",
+        "type": "n8n-nodes-base.functionItem",
+        "position": [
+          460,
+          240
+        ],
+        "parameters": {
+          "functionCode": "// When telgram sees a message it will make sure its a reply to its message and from the user. \n// If thats the case then it will return {entry: string, date: string}\n\nconst botUsername = 'BOT_USERNAME'\nconst user = 'YOUR_USERNAME'\n\nconst res = item.message\n\nconst isReplyToBot = res.reply_to_message.from.username === botUsername\nconst isFromUser = res.from.username === user\n\n// This assumes your message is formatted as follows: \"SOME CUSTOM MESSAGE: YYYY-MM-DD\"\nconst date = res.reply_to_message.text.split(':')[1].replace(/\\s/g, '');\n\nconst journalEntry = res.text\n\nif (isReplyToBot && isFromUser) {\n  return {entry: journalEntry, date}\n}\n\nreturn undefined;"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Parse message": {
+        "main": [
+          [
+            {
+              "node": "Add entry to sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get journal reply": {
+        "main": [
+          [
+            {
+              "node": "Parse message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

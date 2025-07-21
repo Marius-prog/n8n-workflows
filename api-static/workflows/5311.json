@@ -1,0 +1,69 @@
+{
+  "id": 5311,
+  "filename": "1200_Manual_Googletranslate_Automation_Triggered.json",
+  "name": "Translate text from English to German",
+  "workflow_id": "92",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, GoogleTranslate with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "GoogleTranslate"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d79c044ac6fb8b36369a245692b0438d",
+  "file_size": 976,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "92",
+    "name": "Translate text from English to German",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          270,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Google Translate",
+        "type": "n8n-nodes-base.googleTranslate",
+        "position": [
+          470,
+          300
+        ],
+        "parameters": {
+          "text": "Hello from n8n!",
+          "translateTo": "de",
+          "authentication": "oAuth2"
+        },
+        "credentials": {
+          "googleTranslateOAuth2Api": "google-translate"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Google Translate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

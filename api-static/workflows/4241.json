@@ -1,0 +1,174 @@
+{
+  "id": 4241,
+  "filename": "0130_HubSpot_Cron_Automate_Scheduled.json",
+  "name": "HubSpot Cron Automate Scheduled",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Scheduled workflow integrating Hubspot, Pipedrive, Merge, +1 more with 5 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "Hubspot",
+    "Pipedrive",
+    "Merge",
+    "Cron"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "861b137706f2fc920ae6e47988b8c35d",
+  "file_size": 2977,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Hubspot",
+        "type": "n8n-nodes-base.hubspot",
+        "position": [
+          750,
+          900
+        ],
+        "parameters": {
+          "resource": "contact",
+          "operation": "getAll",
+          "returnAll": true,
+          "additionalFields": {}
+        },
+        "credentials": {
+          "hubspotApi": {
+            "id": "21",
+            "name": "hubspot_nodeqa"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Pipedrive",
+        "type": "n8n-nodes-base.pipedrive",
+        "position": [
+          750,
+          710
+        ],
+        "parameters": {
+          "resource": "person",
+          "operation": "getAll",
+          "returnAll": true,
+          "additionalFields": {}
+        },
+        "credentials": {
+          "pipedriveApi": {
+            "id": "15",
+            "name": "asasas"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Merge",
+        "type": "n8n-nodes-base.merge",
+        "position": [
+          950,
+          800
+        ],
+        "parameters": {
+          "mode": "removeKeyMatches",
+          "propertyName1": "email[0].value",
+          "propertyName2": "identity-profiles[0].identities[0].value"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HubSpot2",
+        "type": "n8n-nodes-base.hubspot",
+        "position": [
+          1150,
+          800
+        ],
+        "parameters": {
+          "email": "={{$json[\"email\"][0][\"value\"]}}",
+          "resource": "contact",
+          "additionalFields": {
+            "firstName": "={{$json[\"first_name\"]}}"
+          }
+        },
+        "credentials": {
+          "hubspotApi": {
+            "id": "21",
+            "name": "hubspot_nodeqa"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          550,
+          800
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "Pipedrive",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Hubspot",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "HubSpot2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Hubspot": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Pipedrive": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

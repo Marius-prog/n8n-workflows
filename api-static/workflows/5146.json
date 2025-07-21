@@ -1,0 +1,44 @@
+{
+  "id": 5146,
+  "filename": "1035_Jira_Automate_Triggered.json",
+  "name": "Jira Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating JiraTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "JiraTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "e94704943dfcd70813429eee6a52bc27",
+  "file_size": 463,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Jira Trigger",
+        "type": "n8n-nodes-base.jiraTrigger",
+        "position": [
+          880,
+          400
+        ],
+        "webhookId": "a3ddaf66-7f75-4494-b435-ef88ef1f1917",
+        "parameters": {
+          "events": [
+            "*"
+          ],
+          "additionalFields": {}
+        },
+        "credentials": {
+          "jiraSoftwareCloudApi": "n8n"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

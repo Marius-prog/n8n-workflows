@@ -1,0 +1,159 @@
+{
+  "id": 4500,
+  "filename": "0389_Manual_Googleanalytics_Import_Triggered.json",
+  "name": "Get analytics of a website and store it Airtable",
+  "workflow_id": "205",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, GoogleAnalytics, Set, +1 more with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "GoogleAnalytics",
+    "Set",
+    "Airtable"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "69a6ed5e831171e8da1783aa0fad8baa",
+  "file_size": 2850,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "205",
+    "name": "Get analytics of a website and store it Airtable",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          270,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Google Analytics",
+        "type": "n8n-nodes-base.googleAnalytics",
+        "position": [
+          470,
+          300
+        ],
+        "parameters": {
+          "viewId": "",
+          "additionalFields": {
+            "metricsUi": {
+              "metricValues": [
+                {
+                  "alias": "Sessions",
+                  "expression": "ga:sessions"
+                }
+              ]
+            },
+            "dimensionUi": {
+              "dimensionValues": [
+                {
+                  "name": "ga:country"
+                }
+              ]
+            },
+            "dateRangesUi": {
+              "dateRanges": {
+                "endDate": "2020-08-30T18:30:00.000Z",
+                "startDate": "2019-12-31T18:30:00.000Z"
+              }
+            }
+          }
+        },
+        "credentials": {
+          "googleAnalyticsOAuth2": "analytics-dev"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          670,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "number": [
+              {
+                "name": "Metric",
+                "value": "={{$json[\"total\"]}}"
+              }
+            ],
+            "string": [
+              {
+                "name": "Country",
+                "value": "={{$json[\"ga:country\"]}}"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Airtable",
+        "type": "n8n-nodes-base.airtable",
+        "position": [
+          870,
+          300
+        ],
+        "parameters": {
+          "table": "Table 1",
+          "options": {},
+          "operation": "append",
+          "application": ""
+        },
+        "credentials": {
+          "airtableApi": "Airtable Credentials n8n"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Airtable",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Analytics": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Google Analytics",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

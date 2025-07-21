@@ -1,0 +1,55 @@
+{
+  "id": 5079,
+  "filename": "0968_Postmark_Update_Triggered.json",
+  "name": "Receive updates when an email is bounced or opened",
+  "workflow_id": "48",
+  "active": 0,
+  "description": "Manual workflow integrating PostmarkTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "PostmarkTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "0d1218e4da1c46cf773edc3357687fd2",
+  "file_size": 686,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "48",
+    "name": "Receive updates when an email is bounced or opened",
+    "nodes": [
+      {
+        "name": "Postmark Trigger",
+        "type": "n8n-nodes-base.postmarkTrigger",
+        "position": [
+          690,
+          260
+        ],
+        "webhookId": "1422ac7a-62ba-4f7c-8e22-4e8ecb4950ce",
+        "parameters": {
+          "events": [
+            "bounce",
+            "open"
+          ],
+          "includeContent": true
+        },
+        "credentials": {
+          "postmarkApi": "postmark"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Postmark Trigger": {
+        "main": [
+          []
+        ]
+      }
+    }
+  }
+}

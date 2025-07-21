@@ -1,0 +1,68 @@
+{
+  "id": 4855,
+  "filename": "0744_Manual_Googletasks_Create_Triggered.json",
+  "name": "Add task to tasklist",
+  "workflow_id": "2",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, GoogleTasks with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "GoogleTasks"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "e3cb953dee92f2dfd6fbf5cc50ddb34c",
+  "file_size": 917,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "2",
+    "name": "Add task to tasklist",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          500,
+          310
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Google Tasks",
+        "type": "n8n-nodes-base.googleTasks",
+        "position": [
+          920,
+          310
+        ],
+        "parameters": {
+          "task": "MDY3OTAyNjUyMDk5NDY5ODIzMzM6MDow",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "googleTasksOAuth2Api": "shraddha"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Google Tasks",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

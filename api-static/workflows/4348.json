@@ -1,0 +1,99 @@
+{
+  "id": 4348,
+  "filename": "0237_GoogleSheets_Spreadsheetfile_Create_Webhook.json",
+  "name": "GoogleSheets Spreadsheetfile Create Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating GoogleSheets, SpreadsheetFile, Webhook with 3 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "GoogleSheets",
+    "SpreadsheetFile",
+    "Webhook"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d7a9bbc82d1b2818dc1752c7009375a1",
+  "file_size": 1639,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Read from Google Sheets",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          460,
+          300
+        ],
+        "parameters": {
+          "options": {},
+          "sheetId": "1uFISwZJ1rzkOnOSNocX-_n-ASSAznWGdpcPK3_KCvVo"
+        },
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "19",
+            "name": "Tom's Google Sheets account"
+          }
+        },
+        "typeVersion": 2
+      },
+      {
+        "name": "Create HTML file",
+        "type": "n8n-nodes-base.spreadsheetFile",
+        "position": [
+          680,
+          300
+        ],
+        "parameters": {
+          "options": {},
+          "operation": "toFile",
+          "fileFormat": "html"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          240,
+          300
+        ],
+        "webhookId": "08569699-fea2-4856-80aa-fe878ab9dd4f",
+        "parameters": {
+          "path": "08569699-fea2-4856-80aa-fe878ab9dd4f",
+          "options": {},
+          "responseData": "firstEntryBinary",
+          "responseMode": "lastNode"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Read from Google Sheets",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Read from Google Sheets": {
+        "main": [
+          [
+            {
+              "node": "Create HTML file",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": 5148,
+  "filename": "1037_Manual_Mandrill_Automate_Triggered.json",
+  "name": "Manual Mandrill Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Mandrill with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Mandrill"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "83998df14ac83aa710b3527637801f39",
+  "file_size": 880,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Mandrill",
+        "type": "n8n-nodes-base.mandrill",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "options": {},
+          "toEmail": "user@example.com",
+          "template": "welcomeemailv2",
+          "fromEmail": "example@yourdomain.com"
+        },
+        "credentials": {
+          "mandrillApi": "mandrill_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Mandrill",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

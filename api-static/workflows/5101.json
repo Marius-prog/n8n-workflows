@@ -1,0 +1,64 @@
+{
+  "id": 5101,
+  "filename": "0990_Manual_Cockpit_Automate_Triggered.json",
+  "name": "Manual Cockpit Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Cockpit with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Cockpit"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "2e50d80ae3445b0229f34a8b4242f9d0",
+  "file_size": 789,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          750,
+          360
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Cockpit",
+        "type": "n8n-nodes-base.cockpit",
+        "position": [
+          950,
+          360
+        ],
+        "parameters": {
+          "options": {},
+          "collection": "samplecollection"
+        },
+        "credentials": {
+          "cockpitApi": "cockpit api"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Cockpit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

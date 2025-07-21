@@ -1,0 +1,137 @@
+{
+  "id": 4163,
+  "filename": "0052_Manual_Git_Automate_Triggered.json",
+  "name": "Manual Git Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Git with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "ManualTrigger",
+    "Git"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ed78e1999c98b18dc7ce3e98e55ac8f4",
+  "file_size": 2260,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          230,
+          320
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Git",
+        "type": "n8n-nodes-base.git",
+        "position": [
+          430,
+          320
+        ],
+        "parameters": {
+          "operation": "add",
+          "pathsToAdd": "README.md"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Git1",
+        "type": "n8n-nodes-base.git",
+        "position": [
+          630,
+          320
+        ],
+        "parameters": {
+          "message": "✨ First commit from n8n",
+          "options": {},
+          "operation": "commit",
+          "repositoryPath": "={{$node[\"Git\"].parameter[\"repositoryPath\"]}}"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Git2",
+        "type": "n8n-nodes-base.git",
+        "position": [
+          830,
+          320
+        ],
+        "parameters": {
+          "options": {},
+          "repositoryPath": "={{$node[\"Git\"].parameter[\"repositoryPath\"]}}"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Git3",
+        "type": "n8n-nodes-base.git",
+        "position": [
+          1030,
+          320
+        ],
+        "parameters": {
+          "options": {},
+          "operation": "push",
+          "repositoryPath": "={{$node[\"Git\"].parameter[\"repositoryPath\"]}}"
+        },
+        "executeOnce": false,
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Git": {
+        "main": [
+          [
+            {
+              "node": "Git1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Git1": {
+        "main": [
+          [
+            {
+              "node": "Git2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Git2": {
+        "main": [
+          [
+            {
+              "node": "Git3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Git",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

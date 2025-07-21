@@ -1,0 +1,69 @@
+{
+  "id": 5067,
+  "filename": "0956_HTTP_Readbinaryfile_Automation_Webhook.json",
+  "name": "HTTP Readbinaryfile Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ReadBinaryFile, HttpRequest with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ReadBinaryFile",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c75cd8c2a7060a383c65249cf67b9706",
+  "file_size": 1070,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Read Binary File",
+        "type": "n8n-nodes-base.readBinaryFile",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "filePath": "/data/demo1.wav"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "url": "https://api.wit.ai/speech?v=20200513",
+          "options": {
+            "bodyContentType": "raw"
+          },
+          "requestMethod": "POST",
+          "jsonParameters": true,
+          "sendBinaryData": true,
+          "headerParametersJson": "={{JSON.parse('{\"Authorization\":\"Bearer {your_token_goes_here}\", \"Content-Type\":\"audio/wav\"}')}}"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Read Binary File": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

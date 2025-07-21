@@ -1,0 +1,109 @@
+{
+  "id": 4125,
+  "filename": "0014_Manual_Coda_Create_Triggered.json",
+  "name": "Insert data into a new row for a table in Coda",
+  "workflow_id": "102",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Coda, Set with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "Coda",
+    "Set"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "0a5daf8e3002e4f4aa08b738727a6b98",
+  "file_size": 1684,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "102",
+    "name": "Insert data into a new row for a table in Coda",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Coda",
+        "type": "n8n-nodes-base.coda",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "docId": "",
+          "options": {},
+          "tableId": ""
+        },
+        "credentials": {
+          "codaApi": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "Column 1",
+                "value": "This is column 1 data"
+              },
+              {
+                "name": "Column 2",
+                "value": "This is column 2 data"
+              },
+              {
+                "name": "Column 3",
+                "value": "This is column 3 data"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Coda",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

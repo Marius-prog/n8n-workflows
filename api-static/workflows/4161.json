@@ -1,0 +1,104 @@
+{
+  "id": 4161,
+  "filename": "0050_Uptimerobot_Automate.json",
+  "name": "Uptimerobot Automate",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating UptimeRobot with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "UptimeRobot"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5b25db7f2bfecfe3e5234d9fdadee7f9",
+  "file_size": 1753,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "UptimeRobot2",
+        "type": "n8n-nodes-base.uptimeRobot",
+        "position": [
+          890,
+          320
+        ],
+        "parameters": {
+          "id": "={{$json[\"id\"]}}",
+          "resource": "monitor",
+          "operation": "get"
+        },
+        "credentials": {
+          "uptimeRobotApi": "UptimeRobot API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "UptimeRobot",
+        "type": "n8n-nodes-base.uptimeRobot",
+        "position": [
+          490,
+          320
+        ],
+        "parameters": {
+          "url": "https://n8n.io",
+          "type": 1,
+          "resource": "monitor",
+          "operation": "create",
+          "friendlyName": "n8n"
+        },
+        "credentials": {
+          "uptimeRobotApi": "UptimeRobot API Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "UptimeRobot1",
+        "type": "n8n-nodes-base.uptimeRobot",
+        "position": [
+          690,
+          320
+        ],
+        "parameters": {
+          "id": "={{$json[\"id\"]}}",
+          "resource": "monitor",
+          "operation": "update",
+          "updateFields": {
+            "friendly_name": "n8n website"
+          }
+        },
+        "credentials": {
+          "uptimeRobotApi": "UptimeRobot API Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "UptimeRobot": {
+        "main": [
+          [
+            {
+              "node": "UptimeRobot1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "UptimeRobot1": {
+        "main": [
+          [
+            {
+              "node": "UptimeRobot2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "id": 4331,
+  "filename": "0220_Readbinaryfile_Manual_Automate_Triggered.json",
+  "name": "Readbinaryfile Manual Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ReadBinaryFile, SpreadsheetFile, +2 more with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "ManualTrigger",
+    "ReadBinaryFile",
+    "SpreadsheetFile",
+    "MoveBinaryData",
+    "WriteBinaryFile"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "35f02747a0e6b0d8c423d094d73fed55",
+  "file_size": 2119,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          -240,
+          180
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Read Binary File",
+        "type": "n8n-nodes-base.readBinaryFile",
+        "position": [
+          -60,
+          180
+        ],
+        "parameters": {
+          "filePath": "/username/n8n_spreadsheet.csv"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Spreadsheet File1",
+        "type": "n8n-nodes-base.spreadsheetFile",
+        "position": [
+          120,
+          180
+        ],
+        "parameters": {
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Move Binary Data",
+        "type": "n8n-nodes-base.moveBinaryData",
+        "position": [
+          300,
+          180
+        ],
+        "parameters": {
+          "mode": "jsonToBinary",
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Write Binary File",
+        "type": "n8n-nodes-base.writeBinaryFile",
+        "position": [
+          480,
+          180
+        ],
+        "parameters": {
+          "fileName": "/username/n8n_spreadsheet.json"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Move Binary Data": {
+        "main": [
+          [
+            {
+              "node": "Write Binary File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Read Binary File": {
+        "main": [
+          [
+            {
+              "node": "Spreadsheet File1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Spreadsheet File1": {
+        "main": [
+          [
+            {
+              "node": "Move Binary Data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Read Binary File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

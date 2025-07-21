@@ -1,0 +1,42 @@
+{
+  "id": 4182,
+  "filename": "0071_Pipedrive_Update_Triggered.json",
+  "name": "Receive updates for all changes in Pipedrive",
+  "workflow_id": "115",
+  "active": 0,
+  "description": "Manual workflow integrating PipedriveTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "PipedriveTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9d9ce4cb87dbfb0766c42f0ff835f3c7",
+  "file_size": 428,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "115",
+    "name": "Receive updates for all changes in Pipedrive",
+    "nodes": [
+      {
+        "name": "Pipedrive Trigger",
+        "type": "n8n-nodes-base.pipedriveTrigger",
+        "position": [
+          750,
+          250
+        ],
+        "parameters": {},
+        "credentials": {
+          "pipedriveApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

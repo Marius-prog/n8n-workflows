@@ -1,0 +1,68 @@
+{
+  "id": 5344,
+  "filename": "1233_HTTP_Deepl_Automation_Webhook.json",
+  "name": "HTTP Deepl Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating HttpRequest, DeepL with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "HttpRequest",
+    "DeepL"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "0232a801a08d428d3c09cd866e4d17c0",
+  "file_size": 939,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          510,
+          320
+        ],
+        "parameters": {
+          "url": "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "DeepL",
+        "type": "n8n-nodes-base.deepL",
+        "position": [
+          710,
+          320
+        ],
+        "parameters": {
+          "text": "={{$json[\"drinks\"][0][\"strInstructions\"]}}",
+          "translateTo": "FR",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "deepLApi": "DeepL API Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "DeepL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

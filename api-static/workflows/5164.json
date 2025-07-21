@@ -1,0 +1,70 @@
+{
+  "id": 5164,
+  "filename": "1053_Manual_Philipshue_Automation_Triggered.json",
+  "name": "Turn on a light and set its brightness",
+  "workflow_id": "58",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, PhilipsHue with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "PhilipsHue"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3e171bff514975859b487e050d20e3de",
+  "file_size": 940,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "58",
+    "name": "Turn on a light and set its brightness",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          590,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Philips Hue",
+        "type": "n8n-nodes-base.philipsHue",
+        "position": [
+          790,
+          260
+        ],
+        "parameters": {
+          "lightId": "123",
+          "additionalFields": {
+            "bri": 90
+          }
+        },
+        "credentials": {
+          "philipsHueOAuth2Api": "philips-hue"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Philips Hue",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

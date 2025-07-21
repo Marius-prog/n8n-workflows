@@ -1,0 +1,65 @@
+{
+  "id": 4303,
+  "filename": "0192_Manual_Openthesaurus_Import_Triggered.json",
+  "name": "Get synonyms of a German word",
+  "workflow_id": "157",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, OpenThesaurus with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "OpenThesaurus"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "04aaf2ed490dc04f1afcc4d5f6e436d6",
+  "file_size": 818,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "157",
+    "name": "Get synonyms of a German word",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          550,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "OpenThesaurus",
+        "type": "n8n-nodes-base.openThesaurus",
+        "position": [
+          750,
+          260
+        ],
+        "parameters": {
+          "text": "Hallo",
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "OpenThesaurus",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

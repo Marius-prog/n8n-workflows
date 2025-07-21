@@ -1,0 +1,19 @@
+{
+  "id": 5401,
+  "filename": "1290_Automation.json",
+  "name": "Automation",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow with 0 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 0,
+  "integrations": [],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "99914b932bd37a50b983c5e7c90ae93b",
+  "file_size": 2,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {}
+}

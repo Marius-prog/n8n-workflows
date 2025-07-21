@@ -1,0 +1,70 @@
+{
+  "id": 5277,
+  "filename": "1166_Manual_Messagebird_Send_Triggered.json",
+  "name": "Sending an SMS with MessageBird",
+  "workflow_id": "85",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MessageBird with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "MessageBird"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "4d508f36b22081801b095d3a5594610c",
+  "file_size": 938,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "85",
+    "name": "Sending an SMS with MessageBird",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "MessageBird",
+        "type": "n8n-nodes-base.messageBird",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "message": "",
+          "originator": "",
+          "recipients": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "messageBirdApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "MessageBird",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

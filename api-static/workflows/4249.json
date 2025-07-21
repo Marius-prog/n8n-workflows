@@ -1,0 +1,44 @@
+{
+  "id": 4249,
+  "filename": "0138_Amqp_Send_Triggered.json",
+  "name": "Receive messages for an ActiveMQ queue via AMQP Trigger",
+  "workflow_id": "135",
+  "active": 0,
+  "description": "Manual workflow integrating AmqpTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "AmqpTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "94d26ce6a84f475024d77b99730f989c",
+  "file_size": 449,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "135",
+    "name": "Receive messages for an ActiveMQ queue via AMQP Trigger",
+    "nodes": [
+      {
+        "name": "AMQP Trigger",
+        "type": "n8n-nodes-base.amqpTrigger",
+        "position": [
+          650,
+          200
+        ],
+        "parameters": {
+          "sink": ""
+        },
+        "credentials": {
+          "amqp": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

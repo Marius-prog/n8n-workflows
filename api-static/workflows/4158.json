@@ -1,0 +1,48 @@
+{
+  "id": 4158,
+  "filename": "0047_Clickup_Update_Triggered.json",
+  "name": "Receive updates for events in ClickUp",
+  "workflow_id": "110",
+  "active": 0,
+  "description": "Manual workflow integrating ClickUpTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ClickUpTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "f600aff25e0f94bf3a37ac3551ecaa77",
+  "file_size": 515,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "110",
+    "name": "Receive updates for events in ClickUp",
+    "nodes": [
+      {
+        "name": "ClickUp Trigger",
+        "type": "n8n-nodes-base.clickUpTrigger",
+        "position": [
+          700,
+          250
+        ],
+        "parameters": {
+          "team": "",
+          "events": [
+            "*"
+          ],
+          "filters": {}
+        },
+        "credentials": {
+          "clickUpApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

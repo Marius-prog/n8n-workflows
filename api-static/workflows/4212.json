@@ -1,0 +1,177 @@
+{
+  "id": 4212,
+  "filename": "0101_Wait_Manual_Automation_Webhook.json",
+  "name": "Wait Manual Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, N8nTrainingCustomerDatastore, SplitInBatches, +3 more with 6 nodes (medium complexity)",
+  "trigger_type": "Manual",
+  "complexity": "medium",
+  "node_count": 6,
+  "integrations": [
+    "ManualTrigger",
+    "N8nTrainingCustomerDatastore",
+    "SplitInBatches",
+    "HttpRequest",
+    "Wait",
+    "NoOp"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ccbc01e239c716c11570b1be05d89728",
+  "file_size": 3020,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Customer Datastore",
+        "type": "n8n-nodes-base.n8nTrainingCustomerDatastore",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "operation": "getAllPeople",
+          "returnAll": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "SplitInBatches",
+        "type": "n8n-nodes-base.splitInBatches",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "options": {},
+          "batchSize": 1
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          850,
+          300
+        ],
+        "parameters": {
+          "url": "https://jsonplaceholder.typicode.com/posts",
+          "options": {},
+          "requestMethod": "POST",
+          "bodyParametersUi": {
+            "parameter": [
+              {
+                "name": "id",
+                "value": "={{$json[\"id\"]}}"
+              },
+              {
+                "name": "name",
+                "value": "={{$json[\"name\"]}}"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Wait",
+        "type": "n8n-nodes-base.wait",
+        "position": [
+          950,
+          100
+        ],
+        "webhookId": "b809abfb-8e02-4b31-90b9-0005be656312",
+        "parameters": {
+          "unit": "seconds",
+          "amount": 4
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Replace Me",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          1050,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "SplitInBatches",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Replace Me",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "SplitInBatches": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Customer Datastore": {
+        "main": [
+          [
+            {
+              "node": "SplitInBatches",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Customer Datastore",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "id": 4311,
+  "filename": "0200_Manual_Executecommand_Export_Scheduled.json",
+  "name": "Tools / Backup Gitlab",
+  "workflow_id": "15",
+  "active": 1,
+  "description": "Scheduled workflow integrating ManualTrigger, ExecuteCommand, Cron with 7 nodes (medium complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "medium",
+  "node_count": 7,
+  "integrations": [
+    "ManualTrigger",
+    "ExecuteCommand",
+    "Cron"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "f1e0db6213bd2c36f4f095c0faa7bd9f",
+  "file_size": 3393,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "15",
+    "name": "Tools / Backup Gitlab",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          400
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Export Workflows",
+        "type": "n8n-nodes-base.executeCommand",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "command": "npx n8n export:workflow --backup --output repo/workflows/"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Export Credentials",
+        "type": "n8n-nodes-base.executeCommand",
+        "position": [
+          600,
+          300
+        ],
+        "parameters": {
+          "command": "npx n8n export:credentials --backup --output repo/credentials/"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "git add",
+        "type": "n8n-nodes-base.executeCommand",
+        "position": [
+          750,
+          300
+        ],
+        "parameters": {
+          "command": "git -C repo add ."
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "git commit",
+        "type": "n8n-nodes-base.executeCommand",
+        "position": [
+          900,
+          300
+        ],
+        "parameters": {
+          "command": "=git -C repo commit -m \"Auto backup ({{ new Date().toISOString() }})\""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "git push",
+        "type": "n8n-nodes-base.executeCommand",
+        "position": [
+          1050,
+          300
+        ],
+        "parameters": {
+          "command": "git -C repo push"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          250,
+          200
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 0
+              },
+              {
+                "hour": 12
+              },
+              {
+                "hour": 6
+              },
+              {
+                "hour": 18
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": true,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "Export Workflows",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "git add": {
+        "main": [
+          [
+            {
+              "node": "git commit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "git commit": {
+        "main": [
+          [
+            {
+              "node": "git push",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Export Workflows": {
+        "main": [
+          [
+            {
+              "node": "Export Credentials",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Export Credentials": {
+        "main": [
+          [
+            {
+              "node": "git add",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Export Workflows",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

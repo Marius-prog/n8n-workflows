@@ -1,0 +1,145 @@
+{
+  "id": 5189,
+  "filename": "1078_Manual_Dropbox_Automation_Webhook.json",
+  "name": "Manual Dropbox Automation Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Dropbox, HttpRequest with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "ManualTrigger",
+    "Dropbox",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9ba2c0fd51b4311b4caa0d98715141cb",
+  "file_size": 2365,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          50,
+          200
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Dropbox",
+        "type": "n8n-nodes-base.dropbox",
+        "position": [
+          250,
+          200
+        ],
+        "parameters": {
+          "path": "/n8n",
+          "resource": "folder"
+        },
+        "credentials": {
+          "dropboxApi": "dropbox_accesstoken"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Dropbox1",
+        "type": "n8n-nodes-base.dropbox",
+        "position": [
+          650,
+          200
+        ],
+        "parameters": {
+          "path": "/n8n/file.png",
+          "binaryData": true
+        },
+        "credentials": {
+          "dropboxApi": "dropbox_accesstoken"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          200
+        ],
+        "parameters": {
+          "url": "https://n8n.io/n8n-logo.png",
+          "options": {},
+          "responseFormat": "file"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Dropbox2",
+        "type": "n8n-nodes-base.dropbox",
+        "position": [
+          850,
+          200
+        ],
+        "parameters": {
+          "path": "/n8n",
+          "resource": "folder",
+          "operation": "list"
+        },
+        "credentials": {
+          "dropboxApi": "dropbox_accesstoken"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Dropbox": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Dropbox1": {
+        "main": [
+          [
+            {
+              "node": "Dropbox2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Dropbox1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Dropbox",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

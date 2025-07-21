@@ -1,0 +1,92 @@
+{
+  "id": 4169,
+  "filename": "0058_Manual_Readbinaryfile_Automate_Triggered.json",
+  "name": "Standup Bot - Read Config",
+  "workflow_id": "112",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ReadBinaryFile, MoveBinaryData with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "ReadBinaryFile",
+    "MoveBinaryData"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5a895d84046996120d3cfe7d6776b595",
+  "file_size": 1381,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": 112,
+    "name": "Standup Bot - Read Config",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          240,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Read Config File",
+        "type": "n8n-nodes-base.readBinaryFile",
+        "position": [
+          420,
+          300
+        ],
+        "parameters": {
+          "filePath": "/home/node/.n8n/standup-bot-config.json",
+          "dataPropertyName": "config"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Convert to JSON",
+        "type": "n8n-nodes-base.moveBinaryData",
+        "position": [
+          600,
+          300
+        ],
+        "parameters": {
+          "options": {
+            "encoding": "utf8"
+          },
+          "sourceKey": "config"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Read Config File": {
+        "main": [
+          [
+            {
+              "node": "Convert to JSON",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Read Config File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

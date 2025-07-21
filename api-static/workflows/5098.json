@@ -1,0 +1,75 @@
+{
+  "id": 5098,
+  "filename": "0987_Manual_Facebookgraphapi_Automation_Triggered.json",
+  "name": "Manual Facebookgraphapi Automation Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, FacebookGraphApi with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "FacebookGraphApi"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "4295726796a34865b120203d617e166a",
+  "file_size": 1041,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Facebook Graph API",
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "node": "me",
+          "options": {
+            "fields": {
+              "field": [
+                {
+                  "name": "last_name"
+                },
+                {
+                  "name": "first_name"
+                }
+              ]
+            }
+          }
+        },
+        "credentials": {
+          "facebookGraphApi": "graph_credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Facebook Graph API",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

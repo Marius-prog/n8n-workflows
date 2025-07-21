@@ -1,0 +1,47 @@
+{
+  "id": 5076,
+  "filename": "0965_Paypal_Update_Triggered.json",
+  "name": "Receive updates when a billing plan is activated in PayPal",
+  "workflow_id": "46",
+  "active": 0,
+  "description": "Manual workflow integrating PayPalTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "PayPalTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "301966233ff07a88c2f434da2e5752bb",
+  "file_size": 575,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "46",
+    "name": "Receive updates when a billing plan is activated in PayPal",
+    "nodes": [
+      {
+        "name": "PayPal Trigger",
+        "type": "n8n-nodes-base.payPalTrigger",
+        "position": [
+          1130,
+          620
+        ],
+        "webhookId": "242a300e-b5a0-45a2-87bc-40def6fe56ef",
+        "parameters": {
+          "events": [
+            "BILLING.PLAN.ACTIVATED"
+          ]
+        },
+        "credentials": {
+          "payPalApi": "paypal"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

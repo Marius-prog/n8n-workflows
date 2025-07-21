@@ -28,8 +28,9 @@ async function buildStaticAPI() {
     
     let processed = 0;
     for (const workflow of allWorkflows) {
-      const detail = await db.getWorkflowDetail(workflow.id + '.json');
+      const detail = await db.getWorkflowDetail(workflow.filename);
       if (detail) {
+        // Use the workflow ID as the filename for the API
         await fs.writeJson(
           path.join(workflowsDir, `${workflow.id}.json`), 
           detail, 
@@ -39,6 +40,8 @@ async function buildStaticAPI() {
         if (processed % 100 === 0) {
           console.log(`   ✅ Processed ${processed}/${allWorkflows.length} workflows`);
         }
+      } else {
+        console.log(`   ⚠️  No detail found for workflow: ${workflow.filename} (ID: ${workflow.id})`);
       }
     }
     

@@ -1,0 +1,121 @@
+{
+  "id": 5308,
+  "filename": "1197_Manual_Reddit_Automate_Triggered.json",
+  "name": "Manual Reddit Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Reddit with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "Reddit"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "891766843284fe2d138a7b6a56fcc793",
+  "file_size": 2092,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          270,
+          340
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Reddit",
+        "type": "n8n-nodes-base.reddit",
+        "position": [
+          470,
+          340
+        ],
+        "parameters": {
+          "text": "This post was created using the Reddit node in n8n",
+          "title": "Created from n8n",
+          "subreddit": "n8n"
+        },
+        "credentials": {
+          "redditOAuth2Api": "Reddit OAuth Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Reddit1",
+        "type": "n8n-nodes-base.reddit",
+        "position": [
+          670,
+          340
+        ],
+        "parameters": {
+          "postId": "={{$json[\"id\"]}}",
+          "operation": "get",
+          "subreddit": "={{$node[\"Reddit\"].parameter[\"subreddit\"]}}"
+        },
+        "credentials": {
+          "redditOAuth2Api": "Reddit OAuth Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Reddit2",
+        "type": "n8n-nodes-base.reddit",
+        "position": [
+          870,
+          340
+        ],
+        "parameters": {
+          "postId": "={{$json[\"id\"]}}",
+          "resource": "postComment",
+          "commentText": "This comment was added from n8n!"
+        },
+        "credentials": {
+          "redditOAuth2Api": "Reddit OAuth Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Reddit": {
+        "main": [
+          [
+            {
+              "node": "Reddit1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Reddit1": {
+        "main": [
+          [
+            {
+              "node": "Reddit2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Reddit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

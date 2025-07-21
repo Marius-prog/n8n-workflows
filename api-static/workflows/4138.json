@@ -1,0 +1,70 @@
+{
+  "id": 4138,
+  "filename": "0027_Mattermost_N8N_Automate_Triggered.json",
+  "name": "Mattermost N8N Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating N8nTrigger, Mattermost with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "N8nTrigger",
+    "Mattermost"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "1395122349a225851583efa2056efcd5",
+  "file_size": 967,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "n8n Trigger",
+        "type": "n8n-nodes-base.n8nTrigger",
+        "position": [
+          450,
+          200
+        ],
+        "parameters": {
+          "events": [
+            "init"
+          ]
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          650,
+          200
+        ],
+        "parameters": {
+          "message": "=Your n8n instance started at {{$json[\"timestamp\"]}}",
+          "channelId": "toyi3uoycf8rirtm7d5jm15sso",
+          "attachments": [],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "Mattermost Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "n8n Trigger": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

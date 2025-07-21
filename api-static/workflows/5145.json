@@ -1,0 +1,64 @@
+{
+  "id": 5145,
+  "filename": "1034_Manual_Helpscout_Automate_Triggered.json",
+  "name": "Manual Helpscout Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, HelpScout with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "HelpScout"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "ca8b400b4772a8680a8c2504feac5695",
+  "file_size": 804,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "HelpScout",
+        "type": "n8n-nodes-base.helpScout",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "resource": "mailbox",
+          "operation": "getAll"
+        },
+        "credentials": {
+          "helpScoutOAuth2Api": "helpscout_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "HelpScout",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

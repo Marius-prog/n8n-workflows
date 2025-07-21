@@ -1,0 +1,87 @@
+{
+  "id": 4301,
+  "filename": "0190_Executecommand_Functionitem_Automate.json",
+  "name": "Executecommand Functionitem Automate",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ExecuteCommand, If, FunctionItem with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ExecuteCommand",
+    "If",
+    "FunctionItem"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3442b65bb0a81eeaf4e6fa75ceef1c70",
+  "file_size": 1335,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Execute Command",
+        "type": "n8n-nodes-base.executeCommand",
+        "position": [
+          600,
+          350
+        ],
+        "parameters": {
+          "command": "echo \"{ \\\"value1\\\": true, \\\"value2\\\": 1 }\""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "IF",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          800,
+          450
+        ],
+        "parameters": {
+          "conditions": {
+            "boolean": [
+              {
+                "value1": "={{JSON.parse($node[\"Execute Command\"].data[\"stdout\"]).value1}}",
+                "value2": true
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "To Flow Data",
+        "type": "n8n-nodes-base.functionItem",
+        "position": [
+          800,
+          250
+        ],
+        "parameters": {
+          "functionCode": "item = JSON.parse(item.stdout);\nreturn item;"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Execute Command": {
+        "main": [
+          [
+            {
+              "node": "To Flow Data",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "IF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

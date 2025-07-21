@@ -1,0 +1,122 @@
+{
+  "id": 4456,
+  "filename": "0345_Mailchimp_Cron_Create_Scheduled.json",
+  "name": "Create entry in Mailchimp from Airtable",
+  "workflow_id": "1",
+  "active": 0,
+  "description": "Scheduled workflow integrating Cron, Airtable, Mailchimp with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Cron",
+    "Airtable",
+    "Mailchimp"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9736f0ad57c56394a8c557a0b36fad8e",
+  "file_size": 2056,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "1",
+    "name": "Create entry in Mailchimp from Airtable",
+    "nodes": [
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          450,
+          450
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {}
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Airtable",
+        "type": "n8n-nodes-base.airtable",
+        "position": [
+          650,
+          450
+        ],
+        "parameters": {
+          "table": "Users",
+          "operation": "list",
+          "application": "=apprZs8g4tIGDUtqQ",
+          "additionalOptions": {
+            "fields": [
+              "Name",
+              "Email",
+              "Interest"
+            ]
+          }
+        },
+        "credentials": {
+          "airtableApi": "claudiajanebates@gmail.com"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mailchimp",
+        "type": "n8n-nodes-base.mailchimp",
+        "position": [
+          840,
+          450
+        ],
+        "parameters": {
+          "list": "777b2643d4",
+          "email": "={{$node[\"Airtable\"].json[\"fields\"][\"Email\"]}}",
+          "status": "subscribed",
+          "options": {
+            "tags": "Interest"
+          },
+          "mergeFieldsUi": {
+            "mergeFieldsValues": [
+              {
+                "name": "FNAME",
+                "value": "={{$node[\"Airtable\"].json[\"fields\"][\"Name\"]}}"
+              }
+            ]
+          }
+        },
+        "credentials": {
+          "mailchimpApi": "claudiajanebates@gmail.com"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "Airtable",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Airtable": {
+        "main": [
+          [
+            {
+              "node": "Mailchimp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

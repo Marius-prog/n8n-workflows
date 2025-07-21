@@ -1,0 +1,69 @@
+{
+  "id": 5168,
+  "filename": "1057_Manual_Mocean_Send_Triggered.json",
+  "name": "Send an SMS using the Mocean node",
+  "workflow_id": "59",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Mocean with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Mocean"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "6602099ee73957123f9145fa631d6ef2",
+  "file_size": 879,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "59",
+    "name": "Send an SMS using the Mocean node",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          590,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Mocean",
+        "type": "n8n-nodes-base.mocean",
+        "position": [
+          790,
+          260
+        ],
+        "parameters": {
+          "to": "",
+          "from": "",
+          "message": ""
+        },
+        "credentials": {
+          "moceanApi": "mocean"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Mocean",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

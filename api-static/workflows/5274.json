@@ -1,0 +1,105 @@
+{
+  "id": 5274,
+  "filename": "1163_Openweathermap_Cron_Update_Scheduled.json",
+  "name": "Send daily weather updates to a phone number using the Vonage node",
+  "workflow_id": "84",
+  "active": 0,
+  "description": "Scheduled workflow integrating Vonage, Cron, OpenWeatherMap with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Vonage",
+    "Cron",
+    "OpenWeatherMap"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "dbcd439eba34f29ef35ae11d714200cb",
+  "file_size": 1653,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "84",
+    "name": "Send daily weather updates to a phone number using the Vonage node",
+    "nodes": [
+      {
+        "name": "Vonage",
+        "type": "n8n-nodes-base.vonage",
+        "position": [
+          770,
+          260
+        ],
+        "parameters": {
+          "to": "1234",
+          "from": "Vonage APIs",
+          "message": "=Hey! The temperature outside is {{$node[\"OpenWeatherMap\"].json[\"main\"][\"temp\"]}}°C.",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "vonageApi": "vonage"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          370,
+          260
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 9
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "OpenWeatherMap",
+        "type": "n8n-nodes-base.openWeatherMap",
+        "position": [
+          570,
+          260
+        ],
+        "parameters": {
+          "cityName": "berlin"
+        },
+        "credentials": {
+          "openWeatherMapApi": "owm"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "OpenWeatherMap",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenWeatherMap": {
+        "main": [
+          [
+            {
+              "node": "Vonage",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

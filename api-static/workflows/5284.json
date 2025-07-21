@@ -1,0 +1,72 @@
+{
+  "id": 5284,
+  "filename": "1173_Manual_Openweathermap_Import_Triggered.json",
+  "name": "Get the current weather data for a city",
+  "workflow_id": "88",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, OpenWeatherMap with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "OpenWeatherMap"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "bbd19fb2ed7a44b3c93a50195227bb47",
+  "file_size": 952,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "88",
+    "name": "Get the current weather data for a city",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "OpenWeatherMap",
+        "type": "n8n-nodes-base.openWeatherMap",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "cityName": "berlin,de"
+        },
+        "credentials": {
+          "openWeatherMapApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "OpenWeatherMap": {
+        "main": [
+          []
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "OpenWeatherMap",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

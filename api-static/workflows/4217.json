@@ -1,0 +1,68 @@
+{
+  "id": 4217,
+  "filename": "0106_Manual_Drift_Create_Triggered.json",
+  "name": "Create a contact in Drift",
+  "workflow_id": "125",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Drift with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Drift"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5bd8383e222ca42232c672604d7e34b3",
+  "file_size": 855,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "125",
+    "name": "Create a contact in Drift",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Drift ",
+        "type": "n8n-nodes-base.drift",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "email": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "driftApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Drift ",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

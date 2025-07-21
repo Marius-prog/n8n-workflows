@@ -1,0 +1,61 @@
+{
+  "id": 5234,
+  "filename": "1123_Automate.json",
+  "name": "Automate",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Function with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "Function"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "791489676130fd917c60c036f65294f6",
+  "file_size": 851,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Mock Data",
+        "type": "n8n-nodes-base.function",
+        "position": [
+          550,
+          300
+        ],
+        "parameters": {
+          "functionCode": "return [{json:[\"item-1\", \"item-2\", \"item-3\", \"item-4\"]}];"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Function",
+        "type": "n8n-nodes-base.function",
+        "position": [
+          750,
+          300
+        ],
+        "parameters": {
+          "functionCode": "return items[0].json.map(item => {\n  return {\n    json: {\n      data:item\n    },\n  }\n});\n"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Mock Data": {
+        "main": [
+          [
+            {
+              "node": "Function",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

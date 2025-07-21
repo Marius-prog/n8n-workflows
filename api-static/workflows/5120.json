@@ -1,0 +1,44 @@
+{
+  "id": 5120,
+  "filename": "1009_Calendly_Automate_Triggered.json",
+  "name": "Calendly Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating CalendlyTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "CalendlyTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "7ebb9f56a047a6825c16305902e64cfc",
+  "file_size": 485,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Calendly Trigger",
+        "type": "n8n-nodes-base.calendlyTrigger",
+        "position": [
+          880,
+          400
+        ],
+        "webhookId": "9d13bcea-781a-4462-a9af-44bfb1fb6891",
+        "parameters": {
+          "events": [
+            "invitee.created",
+            "invitee.canceled"
+          ]
+        },
+        "credentials": {
+          "calendlyApi": "calendly_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

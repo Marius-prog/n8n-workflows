@@ -1,0 +1,70 @@
+{
+  "id": 5094,
+  "filename": "0983_Manual_Awsses_Automate_Triggered.json",
+  "name": "Manual Awsses Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, AwsSes with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "AwsSes"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "fdb5c35fbf812e8256ecf864cae359db",
+  "file_size": 972,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "AWS SES",
+        "type": "n8n-nodes-base.awsSes",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "body": "This is a sample message body in an email\n",
+          "subject": "n8n Rocks",
+          "fromEmail": "n8n@n8n.io",
+          "toAddresses": [
+            "user@example.com",
+            "user2@example.com"
+          ],
+          "additionalFields": {}
+        },
+        "credentials": {
+          "aws": "aws"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "AWS SES",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": 5333,
+  "filename": "1222_Openweathermap_Webhook_Create_Webhook.json",
+  "name": "Openweathermap Webhook Create Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating OpenWeatherMap, Webhook, Set with 4 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "OpenWeatherMap",
+    "Webhook",
+    "Set"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3d79908839992f47e2a5286b20edfa6d",
+  "file_size": 2334,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "OpenWeatherMap",
+        "type": "n8n-nodes-base.openWeatherMap",
+        "position": [
+          900,
+          300
+        ],
+        "parameters": {
+          "cityName": "={{ $json[\"city\"] }}",
+          "language": "en"
+        },
+        "credentials": {
+          "openWeatherMapApi": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Webhook GET",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          500,
+          300
+        ],
+        "webhookId": "a31f0bbd-a583-470e-9a1e-29a9ce778122",
+        "parameters": {
+          "path": "weather",
+          "options": {
+            "responsePropertyName": "data"
+          },
+          "responseMode": "lastNode"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set City",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          700,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "city",
+                "value": "={{ $json[\"query\"][\"parameter\"] || 'berlin,de' }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Create Response",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          1100,
+          300
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "data",
+                "value": "=It has {{$json[\"main\"][\"temp\"]}}\\xE2\\x84\\x83  and feels like {{$json[\"main\"][\"feels_like\"]}}\\xE2\\x84\\x83  in {{$json[\"name\"]}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Set City": {
+        "main": [
+          [
+            {
+              "node": "OpenWeatherMap",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook GET": {
+        "main": [
+          [
+            {
+              "node": "Set City",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenWeatherMap": {
+        "main": [
+          [
+            {
+              "node": "Create Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

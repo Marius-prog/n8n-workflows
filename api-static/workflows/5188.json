@@ -1,0 +1,109 @@
+{
+  "id": 5188,
+  "filename": "1077_Mattermost_Webhook_Automate_Webhook.json",
+  "name": "Mattermost Webhook Automate Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating Webhook, Set, Mattermost with 3 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Webhook",
+    "Set",
+    "Mattermost"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "cce48482032d3cb901df0167c1d337f1",
+  "file_size": 1902,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          590,
+          400
+        ],
+        "webhookId": "822cce61-ff5f-4cea-b8ba-1822651786e3",
+        "parameters": {
+          "path": "822cce61-ff5f-4cea-b8ba-1822651786e3",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          780,
+          400
+        ],
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "amudhan",
+                "value": "n8n-rocks"
+              }
+            ]
+          },
+          "options": {},
+          "keepOnlySet": true
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          990,
+          400
+        ],
+        "parameters": {
+          "message": "=Join me in a video call:",
+          "channelId": "={{$node[\"Webhook\"].json[\"body\"][\"channel_id\"]}}",
+          "attachments": [
+            {
+              "title": "=https://whereby.com/{{$json[$node[\"Webhook\"].json[\"body\"][\"user_name\"]]}}",
+              "title_link": "=https://whereby.com/{{$json[$node[\"Webhook\"].json[\"body\"][\"user_name\"]]}}"
+            }
+          ],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "mm_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

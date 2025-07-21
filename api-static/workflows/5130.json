@@ -1,0 +1,75 @@
+{
+  "id": 5130,
+  "filename": "1019_Manual_Paddle_Create_Triggered.json",
+  "name": "Create a coupon on Paddle",
+  "workflow_id": "54",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Paddle with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Paddle"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "761ab516b4d960b436725147253951be",
+  "file_size": 979,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "54",
+    "name": "Create a coupon on Paddle",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          550,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Paddle",
+        "type": "n8n-nodes-base.paddle",
+        "position": [
+          750,
+          260
+        ],
+        "parameters": {
+          "discountAmount": 2,
+          "additionalFields": {
+            "couponCode": "n8n-docs"
+          }
+        },
+        "credentials": {
+          "paddleApi": "paddle"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Paddle": {
+        "main": [
+          []
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Paddle",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": 5328,
+  "filename": "1217_Posthog_Webhook_Automate_Webhook.json",
+  "name": "Posthog Webhook Automate Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating PostHog, Webhook with 2 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "PostHog",
+    "Webhook"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "8948facf160d7e98dc5c42f9acb12131",
+  "file_size": 965,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "PostHog",
+        "type": "n8n-nodes-base.postHog",
+        "position": [
+          640,
+          280
+        ],
+        "parameters": {
+          "eventName": "={{$json[\"query\"][\"event\"]}}",
+          "distinctId": "n8n",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "postHogApi": "PostHog Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          440,
+          280
+        ],
+        "webhookId": "f6d0071e-3cf9-49fd-8bbd-afdbea6b0c67",
+        "parameters": {
+          "path": "f6d0071e-3cf9-49fd-8bbd-afdbea6b0c67",
+          "options": {}
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "PostHog",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

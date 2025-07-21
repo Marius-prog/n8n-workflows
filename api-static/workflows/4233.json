@@ -1,0 +1,69 @@
+{
+  "id": 4233,
+  "filename": "0122_Manual_Flow_Import_Triggered.json",
+  "name": "Get all the tasks in Flow",
+  "workflow_id": "130",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Flow with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Flow"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b33c4838e2510170c59cc88eae15c4aa",
+  "file_size": 878,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "130",
+    "name": "Get all the tasks in Flow",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Flow",
+        "type": "n8n-nodes-base.flow",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "filters": {},
+          "operation": "getAll",
+          "returnAll": true
+        },
+        "credentials": {
+          "flowApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Flow",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

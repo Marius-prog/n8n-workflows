@@ -1,0 +1,40 @@
+{
+  "id": 5095,
+  "filename": "0984_Awssns_Automate_Triggered.json",
+  "name": "Awssns Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating AwsSnsTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "AwsSnsTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "4ba447a282c3de9821adc7646ea60a2e",
+  "file_size": 385,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "AWS-SNS-Trigger",
+        "type": "n8n-nodes-base.awsSnsTrigger",
+        "position": [
+          440,
+          300
+        ],
+        "parameters": {
+          "topic": "arn:aws:sns:ap-south-1:100558637562:n8n-rocks"
+        },
+        "credentials": {
+          "aws": "amudhan-aws"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

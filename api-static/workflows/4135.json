@@ -1,0 +1,69 @@
+{
+  "id": 4135,
+  "filename": "0024_Manual_Clearbit_Send_Triggered.json",
+  "name": "Look up a person using their email in Clearbit",
+  "workflow_id": "104",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Clearbit with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Clearbit"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "194e6e4180a2f835f21958efd8c7f548",
+  "file_size": 917,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "104",
+    "name": "Look up a person using their email in Clearbit",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Clearbit",
+        "type": "n8n-nodes-base.clearbit",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "email": "",
+          "resource": "person",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "clearbitApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Clearbit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

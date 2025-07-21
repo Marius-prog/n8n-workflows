@@ -1,0 +1,41 @@
+{
+  "id": 5113,
+  "filename": "1002_Acuityscheduling_Automate_Triggered.json",
+  "name": "Acuityscheduling Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating AcuitySchedulingTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "AcuitySchedulingTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "81ea894573af1e205a2bc02a9d5d83d8",
+  "file_size": 458,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Acuity Scheduling Trigger",
+        "type": "n8n-nodes-base.acuitySchedulingTrigger",
+        "position": [
+          880,
+          400
+        ],
+        "webhookId": "b326732d-9473-469f-a421-dd823d26b945",
+        "parameters": {
+          "event": "appointment.scheduled"
+        },
+        "credentials": {
+          "acuitySchedulingApi": "acuity_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

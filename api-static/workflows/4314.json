@@ -1,0 +1,90 @@
+{
+  "id": 4314,
+  "filename": "0203_Manual_Writebinaryfile_Automation_Webhook.json",
+  "name": "Write a file to the host machine",
+  "workflow_id": "160",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, HttpRequest, WriteBinaryFile with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "HttpRequest",
+    "WriteBinaryFile"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "9e25ce249db546125624186e70dc3dda",
+  "file_size": 1361,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "160",
+    "name": "Write a file to the host machine",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          260,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          460,
+          300
+        ],
+        "parameters": {
+          "url": "https://docs.n8n.io/assets/img/n8n-logo.png",
+          "options": {},
+          "responseFormat": "file"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Write Binary File",
+        "type": "n8n-nodes-base.writeBinaryFile",
+        "position": [
+          660,
+          300
+        ],
+        "parameters": {
+          "fileName": "/Users/tanay/Desktop/n8n-logo.png"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Write Binary File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

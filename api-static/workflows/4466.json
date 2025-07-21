@@ -1,0 +1,69 @@
+{
+  "id": 4466,
+  "filename": "0355_Manual_Twake_Send_Triggered.json",
+  "name": "Send a message on Twake",
+  "workflow_id": "1",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Twake with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Twake"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "d9eb9bbcfa5a918998274a2b62bc2a6d",
+  "file_size": 882,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "1",
+    "name": "Send a message on Twake",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          600,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Twake",
+        "type": "n8n-nodes-base.twake",
+        "position": [
+          800,
+          300
+        ],
+        "parameters": {
+          "content": "",
+          "channelId": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "twakeCloudApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Twake",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

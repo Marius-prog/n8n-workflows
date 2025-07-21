@@ -1,0 +1,45 @@
+{
+  "id": 5108,
+  "filename": "0997_GitHub_Automate_Triggered.json",
+  "name": "GitHub Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating GithubTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "GithubTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "bab6cfcf23b147c1c962579c108a8ba5",
+  "file_size": 495,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Github Trigger",
+        "type": "n8n-nodes-base.githubTrigger",
+        "position": [
+          260,
+          410
+        ],
+        "webhookId": "887a6b2b-dfc3-48b5-86e3-fc414613baee",
+        "parameters": {
+          "owner": "n8n-io",
+          "events": [
+            "*"
+          ],
+          "repository": "n8n-docs"
+        },
+        "credentials": {
+          "githubApi": "github_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

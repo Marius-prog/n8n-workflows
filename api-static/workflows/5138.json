@@ -1,0 +1,65 @@
+{
+  "id": 5138,
+  "filename": "1027_Manual_Box_Automate_Triggered.json",
+  "name": "Manual Box Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Box with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Box"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3f919535ee0aca8ff5e270ca9c316bd6",
+  "file_size": 789,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Box",
+        "type": "n8n-nodes-base.box",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "name": "n8n-rocks",
+          "options": {},
+          "resource": "folder"
+        },
+        "credentials": {
+          "boxOAuth2Api": "box"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Box",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

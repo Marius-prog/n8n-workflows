@@ -1,0 +1,178 @@
+{
+  "id": 4664,
+  "filename": "0553_Code_Schedule_Send_Scheduled.json",
+  "name": "Code Schedule Send Scheduled",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Scheduled workflow integrating Ftp, ScheduleTrigger, Mqtt, +3 more with 6 nodes (medium complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "medium",
+  "node_count": 6,
+  "integrations": [
+    "Ftp",
+    "ScheduleTrigger",
+    "Mqtt",
+    "MqttTrigger",
+    "Code",
+    "ConvertToFile"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "e8c569da42a403bc2081b41ad73cc897",
+  "file_size": 3434,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "SFTP zip file content",
+        "type": "n8n-nodes-base.ftp",
+        "position": [
+          1520,
+          680
+        ],
+        "parameters": {
+          "path": "=zigbee_backups/zigbee_backup_{{ new Date().toISOString().replaceAll(':','_') }}.zip",
+          "protocol": "sftp",
+          "operation": "upload"
+        },
+        "credentials": {
+          "sftp": {
+            "name": "SFTP Zigbee Backups"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "CRON Monday 2:45 am",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "position": [
+          860,
+          440
+        ],
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "45 2 * * 1"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1.1
+      },
+      {
+        "name": "Send Zigbee2MQTT backup request",
+        "type": "n8n-nodes-base.mqtt",
+        "position": [
+          1040,
+          440
+        ],
+        "parameters": {
+          "topic": "zigbee2mqtt/bridge/request/backup",
+          "message": "getbackup",
+          "options": {},
+          "sendInputData": false
+        },
+        "credentials": {
+          "mqtt": {
+            "name": "MQTT account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "MQTT Trigger - Backup Response",
+        "type": "n8n-nodes-base.mqttTrigger",
+        "position": [
+          860,
+          680
+        ],
+        "parameters": {
+          "topics": "zigbee2mqtt/bridge/response/backup",
+          "options": {}
+        },
+        "credentials": {
+          "mqtt": {
+            "name": "MQTT account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Parse JSON Object from Message Text",
+        "type": "n8n-nodes-base.code",
+        "position": [
+          1080,
+          680
+        ],
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "\nlet containerObject = JSON.parse($json.message);\nlet messageObject = containerObject.data;\nreturn messageObject;"
+        },
+        "typeVersion": 2
+      },
+      {
+        "name": "Convert to File - base64 to binary",
+        "type": "n8n-nodes-base.convertToFile",
+        "position": [
+          1300,
+          680
+        ],
+        "parameters": {
+          "options": {},
+          "operation": "toBinary",
+          "sourceProperty": "zip"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "CRON Monday 2:45 am": {
+        "main": [
+          [
+            {
+              "node": "Send Zigbee2MQTT backup request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MQTT Trigger - Backup Response": {
+        "main": [
+          [
+            {
+              "node": "Parse JSON Object from Message Text",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Convert to File - base64 to binary": {
+        "main": [
+          [
+            {
+              "node": "SFTP zip file content",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Parse JSON Object from Message Text": {
+        "main": [
+          [
+            {
+              "node": "Convert to File - base64 to binary",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

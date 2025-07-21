@@ -1,0 +1,71 @@
+{
+  "id": 5062,
+  "filename": "0951_Manual_Activecampaign_Automation_Triggered.json",
+  "name": "Manual Activecampaign Automation Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, ActiveCampaign with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "ActiveCampaign"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "3a35b7352ca3cacc50f602910582d61c",
+  "file_size": 959,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "name": "",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          600,
+          250
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "ActiveCampaign",
+        "type": "n8n-nodes-base.activeCampaign",
+        "position": [
+          800,
+          250
+        ],
+        "parameters": {
+          "email": "",
+          "updateIfExists": true,
+          "additionalFields": {
+            "lastName": "",
+            "firstName": ""
+          }
+        },
+        "credentials": {
+          "activeCampaignApi": "ActiveCampaign"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "ActiveCampaign",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

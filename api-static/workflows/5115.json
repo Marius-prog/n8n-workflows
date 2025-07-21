@@ -1,0 +1,41 @@
+{
+  "id": 5115,
+  "filename": "1004_Invoiceninja_Automate_Triggered.json",
+  "name": "Invoiceninja Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating InvoiceNinjaTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "InvoiceNinjaTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "74af4a648ec65c0d245a932de3bfe4d6",
+  "file_size": 446,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Invoice Ninja Trigger",
+        "type": "n8n-nodes-base.invoiceNinjaTrigger",
+        "position": [
+          890,
+          400
+        ],
+        "webhookId": "97be21b3-ebf5-48cf-b291-5d954657a544",
+        "parameters": {
+          "event": "create_invoice"
+        },
+        "credentials": {
+          "invoiceNinjaApi": "invoice_ninja_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": 5247,
+  "filename": "1136_Manual_HubSpot_Automation_Triggered.json",
+  "name": "6",
+  "workflow_id": "7",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Hubspot with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Hubspot"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "186e29a9d663bc719f0a64b02cbcdef6",
+  "file_size": 909,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "7",
+    "name": "6",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          440,
+          320
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Hubspot",
+        "type": "n8n-nodes-base.hubspot",
+        "position": [
+          750,
+          320
+        ],
+        "parameters": {
+          "resource": "contact",
+          "operation": "getAll",
+          "returnAll": true,
+          "additionalFields": {}
+        },
+        "credentials": {
+          "hubspotApi": "scsc"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Hubspot",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

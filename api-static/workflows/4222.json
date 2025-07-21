@@ -1,0 +1,68 @@
+{
+  "id": 4222,
+  "filename": "0111_Manual_Vero_Create_Triggered.json",
+  "name": "Create a user profile in Vero",
+  "workflow_id": "127",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Vero with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Vero"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "f3da20288a87e520af3cdb10b33460e5",
+  "file_size": 850,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "127",
+    "name": "Create a user profile in Vero",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Vero",
+        "type": "n8n-nodes-base.vero",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "id": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "veroApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Vero",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

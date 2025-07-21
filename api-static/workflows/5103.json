@@ -1,0 +1,44 @@
+{
+  "id": 5103,
+  "filename": "0992_Mqtt_Send_Triggered.json",
+  "name": "Receive messages for a MQTT queue",
+  "workflow_id": "51",
+  "active": 0,
+  "description": "Manual workflow integrating MqttTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "MqttTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "662d1187f9d58a9330e44ea3c7eaf886",
+  "file_size": 433,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "51",
+    "name": "Receive messages for a MQTT queue",
+    "nodes": [
+      {
+        "name": "MQTT Trigger",
+        "type": "n8n-nodes-base.mqttTrigger",
+        "position": [
+          690,
+          260
+        ],
+        "parameters": {
+          "options": {}
+        },
+        "credentials": {
+          "mqtt": "mqtt"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {}
+  }
+}

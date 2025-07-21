@@ -1,0 +1,104 @@
+{
+  "id": 4914,
+  "filename": "0803_Manual_Customerio_Create_Triggered.json",
+  "name": "Create a customer and add them to a segment in Customer.io",
+  "workflow_id": "32",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, CustomerIo with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "CustomerIo"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "53f9af5de13f4ec3a5bab3878e97913d",
+  "file_size": 1670,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "32",
+    "name": "Create a customer and add them to a segment in Customer.io",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          440,
+          260
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "CustomerIo",
+        "type": "n8n-nodes-base.customerIo",
+        "position": [
+          650,
+          260
+        ],
+        "parameters": {
+          "id": "2",
+          "additionalFields": {
+            "customProperties": {
+              "customProperty": [
+                {
+                  "key": "Name",
+                  "value": "n8n"
+                }
+              ]
+            }
+          }
+        },
+        "credentials": {
+          "customerIoApi": "cust"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "CustomerIo1",
+        "type": "n8n-nodes-base.customerIo",
+        "position": [
+          840,
+          260
+        ],
+        "parameters": {
+          "resource": "segment",
+          "customerIds": "={{$node[\"CustomerIo\"].json[\"id\"]}}"
+        },
+        "credentials": {
+          "customerIoApi": "cust"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "CustomerIo": {
+        "main": [
+          [
+            {
+              "node": "CustomerIo1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "CustomerIo",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

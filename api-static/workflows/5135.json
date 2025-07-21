@@ -1,0 +1,64 @@
+{
+  "id": 5135,
+  "filename": "1024_Manual_Mondaycom_Automate_Triggered.json",
+  "name": "Manual Mondaycom Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, MondayCom with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "MondayCom"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "7248d0c56cd5ee4ef37a6e0c037492ce",
+  "file_size": 789,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Monday.com",
+        "type": "n8n-nodes-base.mondayCom",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "boardId": "663435997",
+          "operation": "get"
+        },
+        "credentials": {
+          "mondayComApi": "monday"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Monday.com",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

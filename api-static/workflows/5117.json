@@ -1,0 +1,42 @@
+{
+  "id": 5117,
+  "filename": "1006_Copper_Automate_Triggered.json",
+  "name": "Copper Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating CopperTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "CopperTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "26e8625e22f83e2dcb7f66ae90d001f6",
+  "file_size": 441,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Copper Trigger",
+        "type": "n8n-nodes-base.copperTrigger",
+        "position": [
+          890,
+          400
+        ],
+        "webhookId": "493ce79a-6a08-4062-86d9-7f4618b6c1ea",
+        "parameters": {
+          "event": "new",
+          "resource": "project"
+        },
+        "credentials": {
+          "copperApi": "copper_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

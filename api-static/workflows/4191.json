@@ -1,0 +1,68 @@
+{
+  "id": 4191,
+  "filename": "0080_Manual_Disqus_Import_Triggered.json",
+  "name": "Get details of a forum in Disqus",
+  "workflow_id": "119",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Disqus with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Disqus"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "61780fa377a94a2d870ae3e5fdce0238",
+  "file_size": 871,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "119",
+    "name": "Get details of a forum in Disqus",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Disqus",
+        "type": "n8n-nodes-base.disqus",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "id": "hackernoon",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "disqusApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Disqus",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

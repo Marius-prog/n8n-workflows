@@ -1,0 +1,91 @@
+{
+  "id": 5239,
+  "filename": "1128_Manual_HTTP_Automation_Webhook.json",
+  "name": "Extract information from an image of a receipt",
+  "workflow_id": "77",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Mindee, HttpRequest with 3 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "ManualTrigger",
+    "Mindee",
+    "HttpRequest"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "75df1921c0bda79fa036bc0c54ee961b",
+  "file_size": 1358,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "77",
+    "name": "Extract information from an image of a receipt",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          340
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Mindee",
+        "type": "n8n-nodes-base.mindee",
+        "position": [
+          650,
+          340
+        ],
+        "parameters": {},
+        "credentials": {
+          "mindeeReceiptApi": "mindee"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          450,
+          340
+        ],
+        "parameters": {
+          "url": "https://miro.medium.com/max/1400/0*1T9GkAb93w5NSMsf",
+          "options": {},
+          "responseFormat": "file"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Mindee",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

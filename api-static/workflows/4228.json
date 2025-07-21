@@ -1,0 +1,67 @@
+{
+  "id": 4228,
+  "filename": "0117_Manual_Uplead_Import_Triggered.json",
+  "name": "Get information about a company with UpLead",
+  "workflow_id": "129",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Uplead with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Uplead"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "c7c57b052335ab8fa584684cd165ee4a",
+  "file_size": 849,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "129",
+    "name": "Get information about a company with UpLead",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Uplead",
+        "type": "n8n-nodes-base.uplead",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "company": "Apple"
+        },
+        "credentials": {
+          "upleadApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Uplead",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

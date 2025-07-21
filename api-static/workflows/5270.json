@@ -1,0 +1,74 @@
+{
+  "id": 5270,
+  "filename": "1159_Manual_Zoom_Automation_Triggered.json",
+  "name": "Creating a meeting with the Zoom node",
+  "workflow_id": "83",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Zoom with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Zoom"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "bd911fa3c4b01e19bd236149c0e8038a",
+  "file_size": 967,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "83",
+    "name": "Creating a meeting with the Zoom node",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          250,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Zoom",
+        "type": "n8n-nodes-base.zoom",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "topic": "Something",
+          "authentication": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "zoomOAuth2Api": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Zoom": {
+        "main": [
+          []
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Zoom",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

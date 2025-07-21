@@ -1,0 +1,69 @@
+{
+  "id": 5321,
+  "filename": "1210_Manual_Affinity_Create_Triggered.json",
+  "name": "Create an organization in Affinity",
+  "workflow_id": "95",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Affinity with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Affinity"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "0524241c8233d9cc23f8754e3b395492",
+  "file_size": 895,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "95",
+    "name": "Create an organization in Affinity",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          400,
+          250
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Affinity",
+        "type": "n8n-nodes-base.affinity",
+        "position": [
+          600,
+          250
+        ],
+        "parameters": {
+          "name": "",
+          "domain": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "affinityApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Affinity",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": 4146,
+  "filename": "0035_GoogleSheets_Webhook_Automate_Webhook.json",
+  "name": "GoogleSheets Webhook Automate Webhook",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Webhook workflow integrating GoogleSheets, Webhook with 2 nodes (low complexity)",
+  "trigger_type": "Webhook",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "GoogleSheets",
+    "Webhook"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "e6083eb35e4af8bbc7e8482852aeb952",
+  "file_size": 954,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Google Sheets",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          700,
+          300
+        ],
+        "parameters": {
+          "range": "Problems!A:D",
+          "options": {},
+          "sheetId": "17fzSFl1BZ1njldTfp5lvh8HtS0-pNXH66b7qGZIiGRU"
+        },
+        "credentials": {
+          "googleApi": ""
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "position": [
+          500,
+          300
+        ],
+        "parameters": {
+          "path": "webhook",
+          "options": {},
+          "responseData": "allEntries",
+          "responseMode": "lastNode"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

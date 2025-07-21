@@ -1,0 +1,150 @@
+{
+  "id": 5421,
+  "filename": "1310_Mattermost_Typeform_Send_Triggered.json",
+  "name": "Mattermost Typeform Send Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Mattermost, NoOp, If, +2 more with 5 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 5,
+  "integrations": [
+    "Mattermost",
+    "NoOp",
+    "If",
+    "AwsComprehend",
+    "TypeformTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "b78cd416efc7a10567ace8e88b8934bb",
+  "file_size": 2711,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          810,
+          300
+        ],
+        "parameters": {
+          "message": "=You got new feedback with a score of {{$json[\"SentimentScore\"][\"Negative\"]}}. Here is what it says:{{$node[\"Typeform Trigger\"].json[\"What did you think about the event?\"]}}",
+          "channelId": "h7cxrd1cefr13x689enzyw7xhc",
+          "attachments": [],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "Mattermost Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NoOp",
+        "type": "n8n-nodes-base.noOp",
+        "position": [
+          800,
+          500
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "IF",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          600,
+          400
+        ],
+        "parameters": {
+          "conditions": {
+            "number": [],
+            "string": [
+              {
+                "value1": "={{$json[\"Sentiment\"]}}",
+                "value2": "NEGATIVE"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "AWS Comprehend",
+        "type": "n8n-nodes-base.awsComprehend",
+        "position": [
+          400,
+          400
+        ],
+        "parameters": {
+          "text": "={{$json[\"What did you think about the event?\"]}}",
+          "operation": "detectSentiment"
+        },
+        "credentials": {
+          "aws": "AWS Comprehend Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Typeform Trigger",
+        "type": "n8n-nodes-base.typeformTrigger",
+        "position": [
+          200,
+          400
+        ],
+        "webhookId": "ad8a87ef-d293-4e48-8d36-838d69ebce0f",
+        "parameters": {
+          "formId": "DuJHEGW5"
+        },
+        "credentials": {
+          "typeformApi": "typeform"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "IF": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "NoOp",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AWS Comprehend": {
+        "main": [
+          [
+            {
+              "node": "IF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Typeform Trigger": {
+        "main": [
+          [
+            {
+              "node": "AWS Comprehend",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

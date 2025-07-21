@@ -1,0 +1,75 @@
+{
+  "id": 4128,
+  "filename": "0017_Mattermost_Emelia_Automate_Triggered.json",
+  "name": "Mattermost Emelia Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating Mattermost, EmeliaTrigger with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "Mattermost",
+    "EmeliaTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "78377bf5b0d2dee463a096abce55a739",
+  "file_size": 1231,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          650,
+          200
+        ],
+        "parameters": {
+          "message": "={{$json[\"contact\"][\"firstName\"]}} from {{$json[\"contact\"][\"company\"]}} has replied back to your campaign.",
+          "channelId": "qx9yo1i9z3bg5qcy5a1oxnh69c",
+          "attachments": [],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "Mattermost Credentials"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Emelia Trigger",
+        "type": "n8n-nodes-base.emeliaTrigger",
+        "position": [
+          450,
+          200
+        ],
+        "webhookId": "f53bc370-a8cb-4748-8f81-be7ae9b94972",
+        "parameters": {
+          "events": [
+            "replied"
+          ],
+          "campaignId": "6054d068b374b64365740101"
+        },
+        "credentials": {
+          "emeliaApi": "Emelia API Credentials"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Emelia Trigger": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

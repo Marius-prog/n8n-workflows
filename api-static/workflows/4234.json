@@ -1,0 +1,79 @@
+{
+  "id": 4234,
+  "filename": "0123_Facebook_Mattermost_Update_Triggered.json",
+  "name": "Receive a Mattermost message when a user updates their profile on Facebook",
+  "workflow_id": "131",
+  "active": 0,
+  "description": "Manual workflow integrating FacebookTrigger, Mattermost with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "FacebookTrigger",
+    "Mattermost"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "fb2024a2af866e4fd8aee3f420733ea5",
+  "file_size": 1455,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "131",
+    "name": "Receive a Mattermost message when a user updates their profile on Facebook",
+    "nodes": [
+      {
+        "name": "Facebook Trigger",
+        "type": "n8n-nodes-base.facebookTrigger",
+        "position": [
+          590,
+          260
+        ],
+        "webhookId": "14ba2eea-04a1-4659-b83e-0090ba480452",
+        "parameters": {
+          "appId": "",
+          "options": {
+            "includeValues": true
+          }
+        },
+        "credentials": {
+          "facebookGraphAppApi": "facebook"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          790,
+          260
+        ],
+        "parameters": {
+          "message": "=The user with uid {{$node[\"Facebook Trigger\"].json[\"uid\"]}} changed their {{$node[\"Facebook Trigger\"].json[\"changes\"][0][\"field\"]}} to {{$node[\"Facebook Trigger\"].json[\"changes\"][0][\"value\"][\"page\"]}}.",
+          "channelId": "13fx8838gtbj3d41a6a7c1w7fe",
+          "attachments": [],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "mattermost"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Facebook Trigger": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

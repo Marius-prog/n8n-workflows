@@ -1,0 +1,69 @@
+{
+  "id": 5304,
+  "filename": "1193_Manual_Intercom_Create_Triggered.json",
+  "name": "Create a new user in Intercom",
+  "workflow_id": "91",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Intercom with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Intercom"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "5e26fe3e974090ea1c6497e5476f3ac8",
+  "file_size": 906,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "91",
+    "name": "Create a new user in Intercom",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          600,
+          250
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Intercom",
+        "type": "n8n-nodes-base.intercom",
+        "position": [
+          800,
+          250
+        ],
+        "parameters": {
+          "idValue": "",
+          "identifierType": "email",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "intercomApi": ""
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Intercom",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

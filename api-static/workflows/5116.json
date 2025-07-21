@@ -1,0 +1,47 @@
+{
+  "id": 5116,
+  "filename": "1005_Clockify_Automate_Triggered.json",
+  "name": "Clockify Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating ClockifyTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "ClockifyTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "df2603a730c45ad57717bec0ff2cc288",
+  "file_size": 521,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Clockify Trigger",
+        "type": "n8n-nodes-base.clockifyTrigger",
+        "position": [
+          450,
+          480
+        ],
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "workspaceId": "5f115b31e3f0ad7f90326b39"
+        },
+        "credentials": {
+          "clockifyApi": "clockify_creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

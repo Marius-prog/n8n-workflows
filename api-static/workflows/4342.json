@@ -1,0 +1,108 @@
+{
+  "id": 4342,
+  "filename": "0231_Telegram_Nasa_Send_Scheduled.json",
+  "name": "Send the Astronomy Picture of the day daily to a Telegram channel",
+  "workflow_id": "174",
+  "active": 0,
+  "description": "Scheduled workflow integrating Cron, Nasa, Telegram with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Cron",
+    "Nasa",
+    "Telegram"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "19b44f429fe22fa667150fe636777877",
+  "file_size": 1677,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "174",
+    "name": "Send the Astronomy Picture of the day daily to a Telegram channel",
+    "nodes": [
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          450,
+          300
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 20
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "NASA",
+        "type": "n8n-nodes-base.nasa",
+        "position": [
+          650,
+          300
+        ],
+        "parameters": {
+          "download": false,
+          "additionalFields": {}
+        },
+        "credentials": {
+          "nasaApi": "NASA"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Telegram",
+        "type": "n8n-nodes-base.telegram",
+        "position": [
+          850,
+          300
+        ],
+        "parameters": {
+          "file": "={{$node[\"NASA\"].json[\"url\"]}}",
+          "chatId": "-485365454",
+          "operation": "sendPhoto",
+          "additionalFields": {
+            "caption": "={{$node[\"NASA\"].json[\"title\"]}}"
+          }
+        },
+        "credentials": {
+          "telegramApi": "Telegram n8n bot"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "NASA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "NASA": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

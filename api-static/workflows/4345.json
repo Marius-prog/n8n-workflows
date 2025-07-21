@@ -1,0 +1,112 @@
+{
+  "id": 4345,
+  "filename": "0234_GoogleSheets_Cron_Create_Scheduled.json",
+  "name": "GoogleSheets Cron Create Scheduled",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Scheduled workflow integrating Cron, MySql, GoogleSheets with 3 nodes (low complexity)",
+  "trigger_type": "Scheduled",
+  "complexity": "low",
+  "node_count": 3,
+  "integrations": [
+    "Cron",
+    "MySql",
+    "GoogleSheets"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "6779bed43a515e285b4dd9212db9908b",
+  "file_size": 1736,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "position": [
+          100,
+          160
+        ],
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "hour": 5,
+                "mode": "everyWeek"
+              }
+            ]
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "MySQL - insert",
+        "type": "n8n-nodes-base.mySql",
+        "position": [
+          500,
+          160
+        ],
+        "parameters": {
+          "table": "books",
+          "columns": "title, price",
+          "options": {
+            "ignore": true,
+            "priority": "LOW_PRIORITY"
+          }
+        },
+        "credentials": {
+          "mySql": {
+            "id": "82",
+            "name": "MySQL account"
+          }
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Google Sheets - read",
+        "type": "n8n-nodes-base.googleSheets",
+        "position": [
+          300,
+          160
+        ],
+        "parameters": {
+          "options": {},
+          "sheetId": "qwertz",
+          "authentication": "oAuth2"
+        },
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "2",
+            "name": "google_sheets_oauth"
+          }
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets - read",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Sheets - read": {
+        "main": [
+          [
+            {
+              "node": "MySQL - insert",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

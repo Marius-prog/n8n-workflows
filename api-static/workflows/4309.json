@@ -1,0 +1,134 @@
+{
+  "id": 4309,
+  "filename": "0198_Manual_Thehive_Create_Triggered.json",
+  "name": "Create, update and get a case in TheHive",
+  "workflow_id": "159",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, TheHive with 4 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 4,
+  "integrations": [
+    "ManualTrigger",
+    "TheHive"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "e961dd104bbfa660745d2f81be745dc1",
+  "file_size": 2311,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "159",
+    "name": "Create, update and get a case in TheHive",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          270,
+          340
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "TheHive",
+        "type": "n8n-nodes-base.theHive",
+        "position": [
+          470,
+          340
+        ],
+        "parameters": {
+          "tags": "n8n, theHive",
+          "owner": "Harshil",
+          "title": "n8n",
+          "options": {},
+          "resource": "case",
+          "severity": 1,
+          "operation": "create",
+          "startDate": "2020-12-03T10:08:14.000Z",
+          "description": "Creating a case from n8n"
+        },
+        "credentials": {
+          "theHiveApi": "hive"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "TheHive1",
+        "type": "n8n-nodes-base.theHive",
+        "position": [
+          670,
+          340
+        ],
+        "parameters": {
+          "id": "={{$node[\"TheHive\"].json[\"id\"]}}",
+          "resource": "case",
+          "operation": "update",
+          "updateFields": {
+            "severity": 3
+          }
+        },
+        "credentials": {
+          "theHiveApi": "hive"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "TheHive2",
+        "type": "n8n-nodes-base.theHive",
+        "position": [
+          870,
+          340
+        ],
+        "parameters": {
+          "id": "={{$node[\"TheHive\"].json[\"id\"]}}",
+          "resource": "case",
+          "operation": "get"
+        },
+        "credentials": {
+          "theHiveApi": "hive"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "TheHive": {
+        "main": [
+          [
+            {
+              "node": "TheHive1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "TheHive1": {
+        "main": [
+          [
+            {
+              "node": "TheHive2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "TheHive",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

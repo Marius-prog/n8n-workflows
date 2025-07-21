@@ -1,0 +1,85 @@
+{
+  "id": 4291,
+  "filename": "0180_Mattermost_Airtable_Create_Triggered.json",
+  "name": "Receive a Mattermost message when new data gets added to Airtable",
+  "workflow_id": "151",
+  "active": 0,
+  "description": "Manual workflow integrating AirtableTrigger, Mattermost with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "AirtableTrigger",
+    "Mattermost"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "dc137235abb3bf26f9f4642db9387456",
+  "file_size": 1475,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "id": "151",
+    "name": "Receive a Mattermost message when new data gets added to Airtable",
+    "nodes": [
+      {
+        "name": "Airtable Trigger",
+        "type": "n8n-nodes-base.airtableTrigger",
+        "position": [
+          550,
+          340
+        ],
+        "parameters": {
+          "baseId": "",
+          "tableId": "Data",
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "triggerField": "Created",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "airtableApi": "Airtable Credentials n8n"
+        },
+        "typeVersion": 1
+      },
+      {
+        "name": "Mattermost",
+        "type": "n8n-nodes-base.mattermost",
+        "position": [
+          750,
+          340
+        ],
+        "parameters": {
+          "message": "=New Data was added to Airtable.\nID:{{$node[\"Airtable Trigger\"].json[\"fields\"][\"id\"]}}\nName: {{$node[\"Airtable Trigger\"].json[\"fields\"][\"name\"]}}",
+          "channelId": "",
+          "attachments": [],
+          "otherOptions": {}
+        },
+        "credentials": {
+          "mattermostApi": "mattermost"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "Airtable Trigger": {
+        "main": [
+          [
+            {
+              "node": "Mattermost",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

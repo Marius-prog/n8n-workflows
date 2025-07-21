@@ -1,0 +1,40 @@
+{
+  "id": 5105,
+  "filename": "0994_Mailjet_Automate_Triggered.json",
+  "name": "Mailjet Automate Triggered",
+  "workflow_id": "",
+  "active": 0,
+  "description": "Manual workflow integrating MailjetTrigger with 1 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 1,
+  "integrations": [
+    "MailjetTrigger"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "048d0cd15b6c909ad34187ed6857cd96",
+  "file_size": 359,
+  "analyzed_at": "2025-07-21 10:13:09",
+  "raw_workflow": {
+    "nodes": [
+      {
+        "name": "Mailjet Trigger",
+        "type": "n8n-nodes-base.mailjetTrigger",
+        "position": [
+          530,
+          400
+        ],
+        "parameters": {
+          "event": "sent"
+        },
+        "credentials": {
+          "mailjetEmailApi": "mailjet creds"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "connections": {}
+  }
+}

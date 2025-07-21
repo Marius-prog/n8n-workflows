@@ -1,0 +1,72 @@
+{
+  "id": 5250,
+  "filename": "1139_Manual_Medium_Automation_Triggered.json",
+  "name": "Publish post to a publication",
+  "workflow_id": "7",
+  "active": 0,
+  "description": "Manual workflow integrating ManualTrigger, Medium with 2 nodes (low complexity)",
+  "trigger_type": "Manual",
+  "complexity": "low",
+  "node_count": 2,
+  "integrations": [
+    "ManualTrigger",
+    "Medium"
+  ],
+  "tags": [],
+  "created_at": "",
+  "updated_at": "",
+  "file_hash": "03a2978d81a20a84216b828ecb48ff36",
+  "file_size": 979,
+  "analyzed_at": "2025-07-21 10:13:10",
+  "raw_workflow": {
+    "id": "7",
+    "name": "Publish post to a publication",
+    "nodes": [
+      {
+        "name": "On clicking 'execute'",
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          600,
+          300
+        ],
+        "parameters": {},
+        "typeVersion": 1
+      },
+      {
+        "name": "Medium",
+        "type": "n8n-nodes-base.medium",
+        "position": [
+          800,
+          300
+        ],
+        "parameters": {
+          "title": "",
+          "content": "",
+          "publication": true,
+          "contentFormat": "",
+          "publicationId": "",
+          "additionalFields": {}
+        },
+        "credentials": {
+          "mediumApi": "medium"
+        },
+        "typeVersion": 1
+      }
+    ],
+    "active": false,
+    "settings": {},
+    "connections": {
+      "On clicking 'execute'": {
+        "main": [
+          [
+            {
+              "node": "Medium",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+}
