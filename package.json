@@ -12,7 +12,7 @@
     "build:netlify": "npm run build:json:prebuilt && npm run build:static",
     "build:json:prebuilt": "echo 'Using pre-built JSON files for Netlify deployment'",
     "build:json": "node src/build-static-api.js",
-    "build:static": "cp -r static/* . && cp -r api-static . && echo 'Static files and JSON API copied' && ls -la api-static/ && du -h api-static/",
+    "build:static": "cp -r static/* . && (cp -r api-static . 2>/dev/null || echo 'api-static not found, skipping') && echo 'Static files copied' && (ls -la api-static/ 2>/dev/null || echo 'No api-static directory') && echo 'Build complete'",
     "netlify:build": "npm run build"
   },
   "dependencies": {

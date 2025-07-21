@@ -1,7 +1,7 @@
 [build]
   publish = "static"
   functions = "functions"
-  command = "npm run build:static"
+  command = "./build-netlify.sh"
 
 [build.environment]
   NODE_VERSION = "18"
