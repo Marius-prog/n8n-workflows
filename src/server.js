@@ -69,6 +69,22 @@ app.get('/', (req, res) => {
   }
 });
 
+// API Documentation page
+app.get('/docs', (req, res) => {
+  const docsPath = path.join(__dirname, '../static/api-docs.html');
+  
+  if (fs.existsSync(docsPath)) {
+    res.sendFile(docsPath);
+  } else {
+    res.status(404).send(`
+      <html><body>
+        <h1>Documentation Not Found</h1>
+        <p>API documentation page not found. Please ensure api-docs.html exists in the static directory.</p>
+      </body></html>
+    `);
+  }
+});
+
 // API Routes
 
 // API Documentation endpoint
@@ -402,7 +418,8 @@ function startServer(port, host) {
     console.log('🚀 N8N Workflow Documentation Server');
     console.log('=' .repeat(50));
     console.log(`🌐 Server running at http://${serverHost}:${serverPort}`);
-    console.log(`📊 API Documentation: http://${serverHost}:${serverPort}/api/stats`);
+    console.log(`📚 API Documentation: http://${serverHost}:${serverPort}/docs`);
+    console.log(`📊 API Stats: http://${serverHost}:${serverPort}/api/stats`);
     console.log(`🔍 Workflow Search: http://${serverHost}:${serverPort}/api/workflows`);
     console.log();
     console.log('Press Ctrl+C to stop the server');
