@@ -13,7 +13,9 @@
     "build:json:prebuilt": "echo 'Using pre-built JSON files for Netlify deployment'",
     "build:json": "node src/build-static-api.js",
     "build:static": "cp -r static/* . && (cp -r api-static . 2>/dev/null || echo 'api-static not found, skipping') && echo 'Static files copied' && (ls -la api-static/ 2>/dev/null || echo 'No api-static directory') && echo 'Build complete'",
-    "netlify:build": "npm run build"
+    "netlify:build": "npm run build",
+    "heroku-postbuild": "npm run init && npm run index -- --force",
+    "postinstall": "npm run heroku-postbuild"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -23,9 +25,7 @@
     "helmet": "^7.1.0",
     "fs-extra": "^11.2.0",
     "chokidar": "^3.5.3",
-    "commander": "^11.1.0"
-  },
-  "optionalDependencies": {
+    "commander": "^11.1.0",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {

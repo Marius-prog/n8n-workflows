@@ -18,6 +18,15 @@ class WorkflowDatabase {
           dbExists: fs.existsSync(this.dbPath),
           workflowsExist: fs.existsSync(this.workflowsDir)
         });
+      } else if (process.env.NODE_ENV === 'production') {
+        // Heroku production environment
+        this.dbPath = process.env.DATABASE_PATH || 'database/workflows.db';
+        this.workflowsDir = 'workflows';
+        
+        console.log('Heroku production paths:', { 
+          dbPath: this.dbPath, 
+          workflowsDir: this.workflowsDir 
+        });
       } else {
         // Local development
         this.dbPath = 'database/workflows.db';

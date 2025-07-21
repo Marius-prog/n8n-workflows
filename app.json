@@ -1,0 +1,38 @@
+{
+  "name": "n8n-workflows-docs",
+  "description": "N8N Workflow Documentation System - Search and browse 2,055+ n8n automation workflows",
+  "repository": "https://github.com/your-username/n8n-workflows",
+  "logo": "",
+  "keywords": ["n8n", "workflows", "automation", "documentation", "nodejs", "express", "sqlite"],
+  "image": "heroku/nodejs",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "DATABASE_PATH": {
+      "description": "SQLite database path",
+      "value": "database/workflows.db"
+    },
+    "CORS_ORIGIN": {
+      "description": "CORS allowed origins",
+      "value": "*"
+    }
+  },
+  "scripts": {
+    "postdeploy": "npm run heroku-postbuild"
+  }
+}

@@ -41,7 +41,8 @@ venv.bak/
 Thumbs.db
 
 # Application specific
-# database/workflows.db  # Keep for Netlify deployment
+# database/workflows.db  # Keep for Netlify deployment (built during deploy)
+# For Heroku - database is rebuilt on each deploy
 database/workflows.db-*
 *.log
 

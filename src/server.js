@@ -315,13 +315,17 @@ app.use((req, res) => {
 });
 
 // Start server
-function startServer(port = 8000, host = '127.0.0.1') {
-  const server = app.listen(port, host, () => {
+function startServer(port, host) {
+  // Use passed parameters or fallback to environment/defaults
+  const serverPort = port || process.env.PORT || 8000;
+  const serverHost = host || '0.0.0.0';
+  
+  const server = app.listen(serverPort, serverHost, () => {
     console.log('🚀 N8N Workflow Documentation Server');
     console.log('=' .repeat(50));
-    console.log(`🌐 Server running at http://${host}:${port}`);
-    console.log(`📊 API Documentation: http://${host}:${port}/api/stats`);
-    console.log(`🔍 Workflow Search: http://${host}:${port}/api/workflows`);
+    console.log(`🌐 Server running at http://${serverHost}:${serverPort}`);
+    console.log(`📊 API Documentation: http://${serverHost}:${serverPort}/api/stats`);
+    console.log(`🔍 Workflow Search: http://${serverHost}:${serverPort}/api/workflows`);
     console.log();
     console.log('Press Ctrl+C to stop the server');
     console.log('-'.repeat(50));
@@ -341,8 +345,8 @@ function startServer(port = 8000, host = '127.0.0.1') {
 // CLI interface
 if (require.main === module) {
   program
-    .option('-p, --port <port>', 'Port to run server on', '8000')
-    .option('-h, --host <host>', 'Host to bind to', '127.0.0.1')
+    .option('-p, --port <port>', 'Port to run server on', process.env.PORT || '8000')
+    .option('-h, --host <host>', 'Host to bind to', '0.0.0.0')
     .option('--dev', 'Enable development mode')
     .parse();
   
