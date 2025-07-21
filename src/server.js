@@ -71,6 +71,84 @@ app.get('/', (req, res) => {
 
 // API Routes
 
+// API Documentation endpoint
+app.get('/api/docs', (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  
+  const apiDocs = {
+    title: "N8N Workflows API Documentation",
+    version: "1.0.0",
+    description: "REST API for browsing and searching 2,055+ n8n automation workflows",
+    baseUrl: baseUrl,
+    endpoints: {
+      "Health Check": {
+        method: "GET",
+        path: "/health",
+        description: "Check API health status"
+      },
+      "Get Statistics": {
+        method: "GET", 
+        path: "/api/stats",
+        description: "Get workflow repository statistics"
+      },
+      "Search Workflows": {
+        method: "GET",
+        path: "/api/workflows",
+        description: "Search and filter workflows",
+        parameters: {
+          q: "Search query string",
+          trigger: "Filter by trigger type (all, manual, webhook, scheduled, complex)",
+          complexity: "Filter by complexity (all, simple, medium, complex)",
+          active_only: "Show only active workflows (true/false)",
+          page: "Page number (default: 1)",
+          per_page: "Results per page (1-100, default: 20)"
+        },
+        example: `${baseUrl}/api/workflows?q=telegram&trigger=webhook&per_page=10`
+      },
+      "Get Workflow Details": {
+        method: "GET",
+        path: "/api/workflows/:filename",
+        description: "Get detailed information about a specific workflow",
+        example: `${baseUrl}/api/workflows/0001_Telegram_Schedule_Automation_Scheduled.json`
+      },
+      "Download Workflow": {
+        method: "GET", 
+        path: "/api/workflows/:filename/download",
+        description: "Download workflow JSON file"
+      },
+      "Get Workflow Diagram": {
+        method: "GET",
+        path: "/api/workflows/:filename/diagram", 
+        description: "Get Mermaid diagram representation"
+      },
+      "Get All Integrations": {
+        method: "GET",
+        path: "/api/integrations",
+        description: "Get sorted list of all 488 unique integrations"
+      },
+      "Get Categorized Workflows": {
+        method: "GET",
+        path: "/api/categories",
+        description: "Get workflows organized by categories (Communication, CRM, Data, etc.)"
+      },
+      "Reindex Workflows": {
+        method: "POST",
+        path: "/api/reindex", 
+        description: "Trigger workflow reindexing",
+        body: { force: "boolean" }
+      }
+    },
+    statistics: {
+      total_workflows: 2055,
+      active_workflows: 215,
+      unique_integrations: 488,
+      total_nodes: 29518
+    }
+  };
+  
+  res.json(apiDocs);
+});
+
 // Get workflow statistics
 app.get('/api/stats', async (req, res) => {
   try {
