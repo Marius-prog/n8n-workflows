@@ -16,10 +16,11 @@ fi
 # Copy API files if they exist
 echo "📊 Copying API files..."
 if [ -d "api-static" ]; then
-    cp -r api-static .
+    # Copy contents of api-static to root, not the directory itself
+    cp -r api-static/* .
     echo "✅ API files copied"
-    echo "📊 API directory contents:"
-    ls -la api-static/ | head -10
+    echo "📊 Checking copied API files:"
+    ls -la | grep -E "(workflows\.json|categories\.json)" || echo "No API files found in root"
     echo "📏 API directory size:"
     du -sh api-static/
 else
