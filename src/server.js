@@ -87,15 +87,27 @@ app.get('/docs', (req, res) => {
 
 // API Routes
 
-// API Documentation endpoint
+// API Documentation endpoint - redirect to formatted docs
 app.get('/api/docs', (req, res) => {
+  // Check if user wants JSON format
+  const acceptHeader = req.get('Accept') || '';
+  const userAgent = req.get('User-Agent') || '';
+  
+  // If it's a browser request or wants HTML, redirect to formatted docs
+  if (acceptHeader.includes('text/html') || userAgent.includes('Mozilla')) {
+    return res.redirect('/docs');
+  }
+  
+  // Otherwise return JSON for API clients
   const baseUrl = `${req.protocol}://${req.get('host')}`;
   
   const apiDocs = {
     title: "N8N Workflows API Documentation",
     version: "1.0.0",
     description: "REST API for browsing and searching 2,055+ n8n automation workflows",
+    message: "For formatted documentation, visit /docs",
     baseUrl: baseUrl,
+    formatted_docs: `${baseUrl}/docs`,
     endpoints: {
       "Health Check": {
         method: "GET",
@@ -153,12 +165,6 @@ app.get('/api/docs', (req, res) => {
         description: "Trigger workflow reindexing",
         body: { force: "boolean" }
       }
-    },
-    statistics: {
-      total_workflows: 2055,
-      active_workflows: 215,
-      unique_integrations: 488,
-      total_nodes: 29518
     }
   };
   
